@@ -64,23 +64,39 @@ export default function Hero() {
           </p>
 
           {/* Target Milestone Indicators */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
             {targets.map((target) => (
               <div 
                 key={target.id}
                 className="glass-panel border border-cyan-500/10 hover:border-cyan-500/30 rounded-xl p-4 bg-black/35 flex items-center justify-between"
               >
                 <div>
-                  <span className="text-[9px] font-mono text-gray-500 block uppercase">TARGET CORE</span>
+                  <span className="text-[9px] font-mono text-cyan-400/80 block uppercase">TARGET CORE</span>
                   <span className="font-bold text-sm sm:text-base text-white tracking-tight">{target.name}</span>
                 </div>
-                <div className="text-right">
-                  <span className="text-[9px] font-mono text-cyan-400 font-semibold px-2 py-0.5 rounded-full bg-cyan-950/40 border border-cyan-500/25">
+                <div className="text-right flex-shrink-0">
+                  <span className="text-[9px] font-mono text-purple-400 font-semibold px-2 py-0.5 rounded-full bg-purple-950/40 border border-purple-500/25">
                     {target.timeline}
                   </span>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Academic Achievements Sub-Drawer */}
+          <div className="border-t border-purple-500/10 pt-6 max-w-2xl space-y-3">
+            <h4 className="text-[10px] font-mono tracking-widest text-gray-500 uppercase font-bold">
+              ESTABLISHED VECTOR CREDENTIALS // BASELINE EXCELLENCE
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {studentData.profile.credentials.map((cred, idx) => (
+                <div key={idx} className="p-3 rounded-lg border border-purple-500/5 bg-purple-950/5 font-mono text-[9px] space-y-1">
+                  <span className="text-purple-400 font-bold block">{cred.name.toUpperCase()}</span>
+                  <span className="text-white block font-sans text-xs font-semibold">{cred.value}</span>
+                  <span className="text-gray-500 block leading-tight">{cred.info}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Action CTAs */}

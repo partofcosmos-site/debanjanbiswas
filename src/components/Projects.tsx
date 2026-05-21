@@ -115,6 +115,46 @@ export default function Projects() {
             </div>
           ))}
         </div>
+
+        {/* Subscriptions / Interactive coaching platforms sub-grid */}
+        <div className="pt-16 space-y-8">
+          <div className="text-center md:text-left space-y-2">
+            <h3 className="text-xs font-mono tracking-[0.25em] text-purple-400 font-bold uppercase">
+              ACTIVE ACADEMIC DIRECTIVES
+            </h3>
+            <p className="text-2xl font-extrabold text-white tracking-tight font-serif">
+              Coaching Feeds & Virtual Subscriptions
+            </p>
+            <p className="text-gray-400 text-xs font-sans max-w-xl">
+              Academic resources, lectures, and visual module platforms utilized in daily preparation matrices.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {studentData.subscriptions.map((sub) => (
+              <div 
+                key={sub.id} 
+                className="glass-panel p-5 rounded-xl bg-black/35 border border-purple-500/5 hover:border-purple-500/30 flex flex-col justify-between space-y-4"
+              >
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[8px] font-mono text-cyan-400 font-bold px-2 py-0.5 rounded bg-cyan-950/40 border border-cyan-500/20">
+                      {sub.type.toUpperCase()}
+                    </span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)] animate-pulse" />
+                  </div>
+                  <h4 className="text-base font-bold text-white tracking-tight font-serif">{sub.title}</h4>
+                  <p className="text-gray-400 text-xs leading-relaxed font-sans">{sub.description}</p>
+                </div>
+
+                <div className="pt-3 border-t border-purple-500/5 flex justify-between items-center text-[9px] font-mono text-gray-500">
+                  <span>PLATFORM</span>
+                  <span className="text-white font-semibold">{sub.platform.toUpperCase()}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

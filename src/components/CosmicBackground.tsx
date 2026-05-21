@@ -275,10 +275,21 @@ export default function CosmicBackground() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none z-0"
-      style={{ mixBlendMode: "screen" }}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 w-full h-full pointer-events-none z-0"
+        style={{ mixBlendMode: "screen" }}
+      />
+      {/* Simulation Interactive HUD Indicators */}
+      <div className="fixed bottom-6 left-6 z-40 hidden sm:flex items-center space-x-3 pointer-events-auto bg-black/40 border border-purple-500/10 px-4 py-2 rounded-xl backdrop-blur-md select-none font-mono text-[9px] text-gray-500 transition-all duration-300 hover:border-cyan-500/30">
+        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+        <span className="text-gray-300 font-bold">PHYSICS_ENGINE // ACTIVE</span>
+        <span>•</span>
+        <span className="text-cyan-400">CLICK: ATTRACT GRAVITY</span>
+        <span>•</span>
+        <span className="text-pink-400">HOVER: Deflect Charge</span>
+      </div>
+    </>
   );
 }

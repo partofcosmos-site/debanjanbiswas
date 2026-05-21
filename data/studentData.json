@@ -3,15 +3,57 @@
     "name": "Debanjan Biswas",
     "class": "Class 11",
     "aspirations": [
-      "International Physics Olympiad (IPhO) Candidate",
-      "IIT-JEE Advanced Aspirant"
+      "International Physics Olympiad (IPhO) Gold Medal Aspirant",
+      "IIT-JEE Advanced Candidate",
+      "Future Physics Researcher // MIT & Stanford Dream Trajectory"
     ],
-    "tagline": "Quantizing coordinate states. Developing mechanics, solving advanced calculations, and mapping physical systems from the molecular to the cosmic scale.",
+    "tagline": "Quantizing physical manifolds. Building a specialist physics spike, solving rigorous problem sets, and pursuing fundamental mechanics from deep state-government schooling in West Bengal to the elite laboratories of MIT.",
     "targets": [
-      { "id": "ipho", "name": "IPhO Gold Medal", "timeline": "2028 Target" },
-      { "id": "jee", "name": "IIT-JEE AIR < 100", "timeline": "2028 Target" }
+      { "id": "mit", "name": "MIT Physics (Dream Domain)", "timeline": "2028 Target" },
+      { "id": "stanford", "name": "Stanford Physics (Core Target)", "timeline": "2028 Target" },
+      { "id": "ipho", "name": "IPhO Gold Medal (India Team)", "timeline": "2028 Target" },
+      { "id": "backups", "name": "IITs (KGP Backup) / IISc / CMI / ISI", "timeline": "JEE Advanced" }
+    ],
+    "credentials": [
+      { "name": "Class 10 State Board Rank 5", "value": "643/700 (91.8%)", "info": "Government School, West Bengal Board" },
+      { "name": "National Means Cum Merit Scholar", "value": "NMMS Recipient", "info": "Scholastic Aptitude & Mental Ability" },
+      { "name": "Jawahar Navodaya Vidyalaya Alumni", "value": "JNV Admitted (Class 6)", "info": "Selected for merit-based boarding" }
     ]
   },
+  "subscriptions": [
+    {
+      "id": "vedantu",
+      "title": "Vedantu Physics Olympiad Program",
+      "platform": "Vedantu Online",
+      "description": "Full Physics Mastery & Indian National Physics Olympiad (INPhO / IOQP) first-stage preparation coaching.",
+      "status": "Active",
+      "type": "Olympiad Core"
+    },
+    {
+      "id": "fiitjee",
+      "title": "FIITJEE Advanced Live Portal",
+      "platform": "FIITJEE App",
+      "description": "Comprehensive IIT-JEE Advanced live lectures and high-level analytical mock assessments.",
+      "status": "Active",
+      "type": "JEE Advanced"
+    },
+    {
+      "id": "akash",
+      "title": "Akash Digital Module & Library",
+      "platform": "Akash App & Hard Copies",
+      "description": "Complete library of focused 10-12 minute visual physics breakdowns and physical review modules.",
+      "status": "Active",
+      "type": "Concept Visuals"
+    },
+    {
+      "id": "tutopia",
+      "title": "Tutopia Regional Coaching",
+      "platform": "Tutopia App",
+      "description": "Local online West Bengal JEE & state board preparation modules in Physics, Chemistry, and Math.",
+      "status": "Active",
+      "type": "State Boards // WBJEE"
+    }
+  ],
   "books": [
     {
       "id": "pathfinder",
@@ -53,38 +95,38 @@
   "domains": [
     {
       "name": "Classical Mechanics",
-      "category": "KINEMATICS & DYNAMICS",
+      "category": "ACTIVE IN CLASS: MOTION IN A PLANE",
       "energyLevel": 88,
-      "description": "Formulating rigid body dynamics, non-inertial frames, Lagrangian approaches, rotational systems, planetary mechanics, and chaotic double pendulums.",
-      "features": ["Rotational Dynamics & Torque", "System of Particles & Collisions", "Variable Mass Systems", "Central Force & Planetary Trajectories"]
+      "description": "Formulating rigid body dynamics, plane kinematics, non-inertial frames, Lagrangian approaches, rotational systems, and variable mass physics.",
+      "features": ["Motion in a Plane & Vector Shifts", "Rotational Dynamics & Torque", "System of Particles & Collisions", "Variable Mass Systems"]
     },
     {
       "name": "Electrodynamics",
-      "category": "FIELDS & CHARGES",
-      "energyLevel": 78,
+      "category": "FUTURE SYLLABUS CORE",
+      "energyLevel": 15,
       "description": "Calculating electric potentials, boundary conditions, Gauss's law vector integration, capacitor dielectric networks, and magnetic Lorentz currents.",
-      "features": ["Electrostatic Integration", "Dielectrics & Capacitance Networks", "Lorentz Forces & Magnetic Currents", "Electromagnetic Induction Vector fields"]
+      "features": ["Electrostatic Integration", "Dielectrics & Capacitance Networks", "Lorentz Forces & Magnetic Currents", "Electromagnetic Induction Fields"]
     },
     {
       "name": "Thermodynamics & KTG",
-      "category": "THERMAL PHYSICS",
-      "energyLevel": 85,
+      "category": "FUTURE SYLLABUS CORE",
+      "energyLevel": 10,
       "description": "Solving thermodynamic cycles, entropy distributions, gas equations of state, Maxwell-Boltzmann velocity curves, and heat transmission coefficients.",
       "features": ["Thermodynamic Cycles & Carnot Engines", "Entropy & Multi-State Probability", "Maxwell-Boltzmann Velocity Integrals", "Thermal Conductivity & Radiative Flux"]
     },
     {
       "name": "Optics & Waves",
-      "category": "WAVE THEORY",
-      "energyLevel": 72,
+      "category": "FUTURE SYLLABUS CORE",
+      "energyLevel": 8,
       "description": "Interference physics, Young's double slit intensity profiles, thin film diffraction, polarizations, acoustic Doppler shifts, and standing wave resonance.",
       "features": ["Coherent Superposition & Interference", "Wavefront Diffraction & Apertures", "Standing Waves & Acoustic Harmonics", "Acoustic Doppler Shift vectors"]
     },
     {
       "name": "Modern & Quantum Physics",
-      "category": "QUANTUM SYSTEM CORE",
-      "energyLevel": 65,
-      "description": "Investigating wave-particle dualities, photoelectric voltage thresholds, Bohr atomic orbitals, X-ray emission spectra, and special relativistic transformations.",
-      "features": ["Photoelectric Work Functions", "Bohr Atomic Orbits & Transitions", "Special Relativistic Mass-Energy Dilations", "Radioactive Decay Series Math"]
+      "category": "CHEMISTRY CORE DUALITY",
+      "energyLevel": 35,
+      "description": "Investigating wave-particle dualities, photoelectric voltage thresholds, Bohr atomic orbitals, de Broglie wavelengths, and atomic structures.",
+      "features": ["de Broglie Particle Wavelengths", "Bohr Atomic Orbits & Transitions", "Special Relativistic Dilations", "Radioactive Decay Series Math"]
     }
   ]
 }
