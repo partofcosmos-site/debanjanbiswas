@@ -29,7 +29,7 @@ export const onRequestPost = async (context: PagesFunctionContext<Env>) => {
     }
 
     const REPO_OWNER = "partofcosmos-site";
-    const REPO_NAME = "debanjan-portfolio";
+    const REPO_NAME = "debanjanbiswas";
     const FILE_PATH = "data/studentData.json";
     
     // 2. Fetch current data from GitHub
