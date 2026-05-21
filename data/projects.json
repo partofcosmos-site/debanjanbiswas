@@ -1,0 +1,20 @@
+[
+  {
+    "id": "stellar-dashboard",
+    "title": "Stellar Dashboard",
+    "description": "A dark-themed, glassmorphic analytics dashboard for cosmic data.",
+    "techStack": ["Next.js", "React", "Tailwind CSS"],
+    "githubLink": "https://github.com/partofcosmos-site/stellar-dashboard",
+    "demoLink": "#",
+    "category": "Web App"
+  },
+  {
+    "id": "nebula-visualizer",
+    "title": "Nebula Visualizer",
+    "description": "Interactive WebGL visualizer for particle simulations.",
+    "techStack": ["Next.js", "Three.js", "WebGL"],
+    "githubLink": "https://github.com/partofcosmos-site/nebula-visualizer",
+    "demoLink": "#",
+    "category": "Canvas"
+  }
+]
