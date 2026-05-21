@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Part of Cosmos | Cosmic Developer Portfolio",
-  description: "Explore Stellar Dashboard, Nebula Visualizer, and the cosmic tech stack of a Next.js and Three.js developer transmitting from the digital universe.",
+  title: "Debanjan Biswas | Physics Olympiad & IIT-JEE Portfolio",
+  description: "Academic student portfolio of Debanjan Biswas, Class 11 student preparing for the International Physics Olympiad (IPhO) and IIT-JEE.",
 };
 
 export default function RootLayout({

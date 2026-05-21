@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #030308;
+  --background: #04060a;
   --foreground: #f1f5f9;
-  --card: rgba(10, 10, 20, 0.45);
-  --card-border: rgba(139, 92, 246, 0.15);
+  --card: rgba(8, 12, 20, 0.5);
+  --card-border: rgba(139, 92, 246, 0.12);
   
   --neon-cyan: 6, 182, 212;
   --neon-purple: 139, 92, 246;
@@ -14,8 +14,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), monospace;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: var(--font-geist-mono), Courier, monospace;
 }
 
 /* Base resets & styles */
@@ -37,81 +38,112 @@ body {
   position: relative;
 }
 
+/* Scientific Coordinate Grid (Graph Paper manifold effect) */
+.space-grid {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(6, 182, 212, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 182, 212, 0.02) 1px, transparent 1px);
+  position: relative;
+}
+
+.space-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: 250px 250px;
+  background-image: 
+    linear-gradient(to right, rgba(139, 92, 246, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(139, 92, 246, 0.04) 1px, transparent 1px);
+  pointer-events: none;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #030308;
+  background: #04060a;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.3);
+  background: rgba(139, 92, 246, 0.25);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.6);
-  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+  background: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
 }
 
-/* Glassmorphism Styles */
+/* Academic Glassmorphism Panels */
 .glass-panel {
   background: var(--card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--card-border);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-panel:hover {
-  border-color: rgba(139, 92, 246, 0.35);
-  box-shadow: 0 10px 40px 0 rgba(139, 92, 246, 0.12),
-              0 0 20px 0 rgba(6, 182, 212, 0.05);
+  border-color: rgba(6, 182, 212, 0.3);
+  box-shadow: 0 15px 45px 0 rgba(6, 182, 212, 0.05),
+              0 0 25px 0 rgba(139, 92, 246, 0.03);
   transform: translateY(-2px);
 }
 
-/* Glow effects */
+/* Textbook outline graphic styling */
+.textbook-spine {
+  position: relative;
+}
+
+.textbook-spine::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.25));
+  border-right: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+/* Glowing scientific constants */
+.formula-glow {
+  text-shadow: 0 0 8px rgba(6, 182, 212, 0.4), 0 0 16px rgba(6, 182, 212, 0.15);
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
 .glow-cyan {
-  box-shadow: 0 0 25px rgba(6, 182, 212, 0.25);
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.2);
 }
 
 .glow-purple {
-  box-shadow: 0 0 25px rgba(139, 92, 246, 0.25);
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.2);
 }
 
 .glow-text-cyan {
-  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5), 0 0 20px rgba(6, 182, 212, 0.2);
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.4), 0 0 20px rgba(6, 182, 212, 0.1);
 }
 
 .glow-text-purple {
-  text-shadow: 0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.2);
-}
-
-/* Neon utilities */
-.border-glow-cyan {
-  border-color: rgba(6, 182, 212, 0.4);
-  box-shadow: 0 0 15px rgba(6, 182, 212, 0.15);
-}
-
-.border-glow-purple {
-  border-color: rgba(139, 92, 246, 0.4);
-  box-shadow: 0 0 15px rgba(139, 92, 246, 0.15);
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.4), 0 0 20px rgba(139, 92, 246, 0.1);
 }
 
 /* Custom Keyframe Animations */
 @keyframes twinkle {
-  0%, 100% { opacity: 0.2; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.2); }
+  0%, 100% { opacity: 0.15; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(1deg); }
+  50% { transform: translateY(-8px) rotate(0.5deg); }
 }
 
 @keyframes pulse-slow {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.05); }
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.03); }
 }
 
 .animate-twinkle {
@@ -127,20 +159,21 @@ body {
 }
 
 .animate-spin-slow {
-  animation: spin 30s linear infinite;
+  animation: spin 40s linear infinite;
 }
 
 .animate-spin-slower {
-  animation: spin 45s linear infinite;
+  animation: spin 60s linear infinite;
 }
 
 /* Constellation orbit lines */
 .orbit-ring {
-  border: 1px dashed rgba(139, 92, 246, 0.15);
+  border: 1px dashed rgba(6, 182, 212, 0.12);
   border-radius: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 

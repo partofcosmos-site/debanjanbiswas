@@ -1,0 +1,90 @@
+{
+  "profile": {
+    "name": "Debanjan Biswas",
+    "class": "Class 11",
+    "aspirations": [
+      "International Physics Olympiad (IPhO) Candidate",
+      "IIT-JEE Advanced Aspirant"
+    ],
+    "tagline": "Quantizing coordinate states. Developing mechanics, solving advanced calculations, and mapping physical systems from the molecular to the cosmic scale.",
+    "targets": [
+      { "id": "ipho", "name": "IPhO Gold Medal", "timeline": "2028 Target" },
+      { "id": "jee", "name": "IIT-JEE AIR < 100", "timeline": "2028 Target" }
+    ]
+  },
+  "books": [
+    {
+      "id": "pathfinder",
+      "title": "Pathfinder for Olympiad & JEE Advanced",
+      "author": "Arvind Tiwari, Sachin Singh",
+      "description": "Advanced problem arrays targeting deep mathematical application, multi-concept mechanics, and electromagnetic vectors.",
+      "status": "Active",
+      "progress": 45,
+      "category": "Olympiad Math"
+    },
+    {
+      "id": "irodov",
+      "title": "Problems in General Physics",
+      "author": "I.E. Irodov",
+      "description": "Classic benchmark problem set covering general mechanics, thermodynamics, electrodynamics, and molecular physics calculations.",
+      "status": "Active",
+      "progress": 65,
+      "category": "Core Problems"
+    },
+    {
+      "id": "krotov",
+      "title": "Problems in Physics",
+      "author": "S.S. Krotov",
+      "description": "High-level intellectual challenges from Russian Physics Olympiads focusing on elegant symmetry, mechanical balances, and electromagnetic induction.",
+      "status": "Planned",
+      "progress": 10,
+      "category": "Elite Problems"
+    },
+    {
+      "id": "halliday",
+      "title": "Fundamentals of Physics",
+      "author": "Resnick, Halliday, Walker",
+      "description": "Essential conceptual and mathematical foundation for rigorous physical theory, wave mechanics, and special relativity.",
+      "status": "Reference",
+      "progress": 85,
+      "category": "Theory Base"
+    }
+  ],
+  "domains": [
+    {
+      "name": "Classical Mechanics",
+      "category": "KINEMATICS & DYNAMICS",
+      "energyLevel": 88,
+      "description": "Formulating rigid body dynamics, non-inertial frames, Lagrangian approaches, rotational systems, planetary mechanics, and chaotic double pendulums.",
+      "features": ["Rotational Dynamics & Torque", "System of Particles & Collisions", "Variable Mass Systems", "Central Force & Planetary Trajectories"]
+    },
+    {
+      "name": "Electrodynamics",
+      "category": "FIELDS & CHARGES",
+      "energyLevel": 78,
+      "description": "Calculating electric potentials, boundary conditions, Gauss's law vector integration, capacitor dielectric networks, and magnetic Lorentz currents.",
+      "features": ["Electrostatic Integration", "Dielectrics & Capacitance Networks", "Lorentz Forces & Magnetic Currents", "Electromagnetic Induction Vector fields"]
+    },
+    {
+      "name": "Thermodynamics & KTG",
+      "category": "THERMAL PHYSICS",
+      "energyLevel": 85,
+      "description": "Solving thermodynamic cycles, entropy distributions, gas equations of state, Maxwell-Boltzmann velocity curves, and heat transmission coefficients.",
+      "features": ["Thermodynamic Cycles & Carnot Engines", "Entropy & Multi-State Probability", "Maxwell-Boltzmann Velocity Integrals", "Thermal Conductivity & Radiative Flux"]
+    },
+    {
+      "name": "Optics & Waves",
+      "category": "WAVE THEORY",
+      "energyLevel": 72,
+      "description": "Interference physics, Young's double slit intensity profiles, thin film diffraction, polarizations, acoustic Doppler shifts, and standing wave resonance.",
+      "features": ["Coherent Superposition & Interference", "Wavefront Diffraction & Apertures", "Standing Waves & Acoustic Harmonics", "Acoustic Doppler Shift vectors"]
+    },
+    {
+      "name": "Modern & Quantum Physics",
+      "category": "QUANTUM SYSTEM CORE",
+      "energyLevel": 65,
+      "description": "Investigating wave-particle dualities, photoelectric voltage thresholds, Bohr atomic orbitals, X-ray emission spectra, and special relativistic transformations.",
+      "features": ["Photoelectric Work Functions", "Bohr Atomic Orbits & Transitions", "Special Relativistic Mass-Energy Dilations", "Radioactive Decay Series Math"]
+    }
+  ]
+}

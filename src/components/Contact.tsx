@@ -22,20 +22,20 @@ export default function Contact() {
 
     setStatus("connecting");
     setLogs([]);
-    addLog("Initializing Quantum Bridge...");
+    addLog("Initializing sub-space resonance bridge...");
     
-    // Step 1: Connecting mock state
+    // Connect state
     await new Promise((resolve) => setTimeout(resolve, 800));
-    addLog("Securing sub-space frequency...");
+    addLog("Locking scientific telemetry coordinates...");
     setStatus("transmitting");
     
-    // Step 2: Transmitting mock state
+    // Transmit state
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    addLog("Uploading data stream packets (Type: SIGNAL)...");
+    addLog("Uploading data stream packets (Type: QUANTUM_SIGNAL)...");
     
-    // Step 3: Success mock state
+    // Success state
     await new Promise((resolve) => setTimeout(resolve, 700));
-    addLog("Packet fully uploaded. Parity checks OK.");
+    addLog("Packet fully uploaded. Parity checking complete (Errors: 0).");
     addLog("TRANSMISSION COMPLETED SUCCESSFULLY.");
     setStatus("success");
     setFormData({ name: "", email: "", message: "" });
@@ -47,64 +47,64 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative min-h-screen py-24 px-6 max-w-5xl mx-auto z-10">
+    <section id="contact" className="relative min-h-screen py-24 px-6 max-w-5xl mx-auto z-10 space-grid">
       <div className="space-y-16">
-        {/* Section Title */}
+        {/* Section Header */}
         <div className="text-center space-y-4">
-          <h2 className="text-sm font-mono tracking-[0.3em] text-pink-500 font-bold uppercase">
-            QUANTUM GATEWAY
+          <h2 className="text-xs font-mono tracking-[0.3em] text-pink-500 font-bold uppercase">
+            RESONANCE BRIDGE
           </h2>
           <p className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white">
-            Transmit a Message
+            Lab Connection Console
           </p>
           <div className="w-16 h-1 bg-gradient-to-r from-pink-500 to-purple-600 mx-auto rounded-full" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
-          {/* Scientific Console Description / Instructions */}
+          {/* Scientific lab telemetry board */}
           <div className="md:col-span-5 flex flex-col justify-between glass-panel rounded-2xl p-6 sm:p-8 space-y-8 bg-black/40">
             <div className="space-y-6">
               <div className="flex items-center space-x-2 text-pink-500">
                 <span className="w-2.5 h-2.5 rounded-full bg-pink-500 animate-ping" />
-                <span className="font-mono text-xs font-bold tracking-widest">GATEWAY_ACTIVE</span>
+                <span className="font-mono text-xs font-bold tracking-widest">BRIDGE_ACTIVE</span>
               </div>
-              <h4 className="text-xl font-bold tracking-tight text-white">Quantum Comms Node</h4>
+              <h4 className="text-xl font-bold tracking-tight text-white font-serif">Laboratory Comms</h4>
               <p className="text-gray-400 text-sm leading-relaxed font-sans">
-                Establish direct link. Enter your transmission details inside the interface console to communicate across the web orbit. All parameters will undergo parity checks before sub-space propagation.
+                Establish direct vector links. Enter your identity coordinates and logs to communicate with Debanjan&apos;s academic terminal. Messages are encoded and transmitted via sub-space propagation resonance.
               </p>
             </div>
 
-            {/* Console mock readouts */}
-            <div className="border border-purple-500/10 rounded-xl p-4 bg-black/70 font-mono text-[10px] text-gray-500 space-y-2.5 select-none">
+            {/* Readout hud */}
+            <div className="border border-purple-500/10 rounded-xl p-4 bg-black/70 font-mono text-[9px] text-gray-500 space-y-2.5 select-none">
               <div className="flex justify-between border-b border-purple-500/10 pb-1.5">
-                <span>GATEWAY_COORD:</span>
+                <span>LAB_COORD:</span>
                 <span className="text-purple-400">LAT.540F_LNG.4618</span>
               </div>
               <div className="flex justify-between">
-                <span>BANDWIDTH:</span>
-                <span className="text-cyan-400">12.8 EB/SEC</span>
+                <span>FREQUENCY:</span>
+                <span className="text-cyan-400">1420.405 MHz (Hydrogen)</span>
               </div>
               <div className="flex justify-between">
-                <span>STATUS:</span>
-                <span className="text-pink-500">STANDBY_FREQ_LOCK</span>
+                <span>RESONANCE:</span>
+                <span className="text-pink-500">ACTIVE_LOCKED</span>
               </div>
               <div className="flex justify-between">
-                <span>ENCRYPTION:</span>
-                <span className="text-white">QUANTUM_AES_256</span>
+                <span>TELEMETRY:</span>
+                <span className="text-white">OPTIMAL // OK</span>
               </div>
             </div>
           </div>
 
-          {/* Holographic Input Terminal Form */}
+          {/* Form console */}
           <div className="md:col-span-7 glass-panel rounded-2xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden bg-black/25">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(236,72,153,0.05),transparent_50%)] pointer-events-none" />
 
             {status === "idle" && (
               <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-                {/* Name */}
+                {/* Identity */}
                 <div className="space-y-2">
-                  <label htmlFor="name" className="block text-[10px] font-mono text-cyan-400 tracking-wider">
-                    NAME // SENDER_ID
+                  <label htmlFor="name" className="block text-[9px] font-mono text-cyan-400 tracking-wider">
+                    SENDER // IDENTITY_ID
                   </label>
                   <input
                     type="text"
@@ -118,10 +118,10 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Email */}
+                {/* Return Route */}
                 <div className="space-y-2">
-                  <label htmlFor="email" className="block text-[10px] font-mono text-cyan-400 tracking-wider">
-                    EMAIL // DEST_ROUTE
+                  <label htmlFor="email" className="block text-[9px] font-mono text-cyan-400 tracking-wider">
+                    RETURN ROUTE // DEST_EMAIL
                   </label>
                   <input
                     type="email"
@@ -135,10 +135,10 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Message */}
+                {/* Packet payload */}
                 <div className="space-y-2">
-                  <label htmlFor="message" className="block text-[10px] font-mono text-cyan-400 tracking-wider">
-                    MESSAGE // LOG_STREAM
+                  <label htmlFor="message" className="block text-[9px] font-mono text-cyan-400 tracking-wider">
+                    LOG PAYLOAD // MESSAGE
                   </label>
                   <textarea
                     id="message"
@@ -147,25 +147,24 @@ export default function Contact() {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    placeholder="Transcribe your message..."
+                    placeholder="Transcribe scientific logs..."
                     className="w-full bg-black/55 border border-purple-500/20 focus:border-cyan-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-cyan-500/20 transition-all duration-300 resize-none"
                   />
                 </div>
 
-                {/* Submit Action */}
+                {/* Transmit button */}
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 rounded-xl text-white font-mono text-xs font-bold tracking-wider cursor-pointer shadow-[0_0_15px_rgba(236,72,153,0.25)] hover:shadow-[0_0_25px_rgba(236,72,153,0.55)] transition-all duration-300"
+                  className="w-full py-3.5 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 rounded-xl text-white font-mono text-xs font-bold tracking-wider cursor-pointer shadow-[0_0_15px_rgba(236,72,153,0.2)] hover:shadow-[0_0_25px_rgba(236,72,153,0.5)] transition-all duration-300"
                 >
-                  TRANSMIT PROTOCOL
+                  TRANSMIT SIGNAL
                 </button>
               </form>
             )}
 
-            {/* Connecting/Transmitting Process HUD */}
+            {/* Connecting HUD */}
             {(status === "connecting" || status === "transmitting") && (
               <div className="flex flex-col justify-center items-center h-full min-h-[350px] space-y-8 py-10 relative z-10 select-none">
-                {/* Animated Sci-Fi Radar/Orb Loader */}
                 <div className="relative w-20 h-20 flex items-center justify-center">
                   <div className="absolute inset-0 rounded-full border border-pink-500/20 animate-ping" />
                   <div className="absolute w-[80%] h-[80%] rounded-full border border-dashed border-cyan-500/40 animate-spin" />
@@ -173,14 +172,14 @@ export default function Contact() {
                 </div>
                 <div className="text-center space-y-2">
                   <p className="font-mono text-xs text-white tracking-widest animate-pulse uppercase">
-                    {status === "connecting" ? "Establishing Bridge..." : "Uploading Packets..."}
+                    {status === "connecting" ? "Locking bridge..." : "Modulating frequencies..."}
                   </p>
-                  <span className="font-mono text-[9px] text-gray-500">PARITY STATUS: CHECKING</span>
+                  <span className="font-mono text-[9px] text-gray-500">PARITY STATUS: RESOLVING</span>
                 </div>
               </div>
             )}
 
-            {/* SUCCESS PANEL */}
+            {/* SUCCESS HUDS */}
             {status === "success" && (
               <div className="flex flex-col justify-center items-center h-full min-h-[350px] space-y-6 text-center py-6 relative z-10">
                 <div className="w-16 h-16 rounded-full bg-cyan-950/40 border border-cyan-400/50 flex items-center justify-center glow-cyan shadow-[0_0_15px_rgba(6,182,212,0.15)] animate-float">
@@ -189,13 +188,13 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-2xl font-bold tracking-tight text-white">Signal Transmitted</h4>
+                  <h4 className="text-2xl font-bold tracking-tight text-white font-serif">Signal Resonated</h4>
                   <p className="text-gray-400 text-sm max-w-xs font-sans">
-                    The quantum tunnel successfully completed propagation. Parity status confirmed.
+                    Quantum sub-space tunnel fully locked onto destination frequency. Message archived.
                   </p>
                 </div>
 
-                {/* Console Log outputs */}
+                {/* Console Log display */}
                 <div className="w-full border border-cyan-500/20 rounded-xl p-4 bg-black/60 font-mono text-[9px] text-cyan-500 text-left space-y-1.5 max-h-28 overflow-y-auto">
                   {logs.map((log, i) => (
                     <div key={i} className="leading-tight">{log}</div>
@@ -206,7 +205,7 @@ export default function Contact() {
                   onClick={handleReset}
                   className="px-6 py-2.5 border border-cyan-500/30 hover:border-cyan-500 text-cyan-300 hover:text-white rounded-lg font-mono text-[10px] tracking-widest cursor-pointer transition-all duration-300"
                 >
-                  NEW TRANSMISSION
+                  TRANSMIT NEW STREAM
                 </button>
               </div>
             )}
