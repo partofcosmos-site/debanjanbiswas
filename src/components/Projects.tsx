@@ -60,7 +60,7 @@ export default function Projects() {
           {filteredBooks.map((book: Book) => (
             <div
               key={book.id}
-              className="glass-panel textbook-spine group relative rounded-2xl pl-10 pr-6 py-8 flex flex-col justify-between overflow-hidden"
+              className="glass-panel textbook-spine group relative rounded-2xl pl-10 pr-6 py-8 flex flex-col justify-between overflow-hidden h-full"
             >
               {/* Cover texture */}
               <div className="absolute inset-0 bg-gradient-to-br from-slate-900/5 to-black/35 pointer-events-none" />
@@ -117,15 +117,16 @@ export default function Projects() {
         </div>
 
         {/* Subscriptions / Interactive coaching platforms sub-grid */}
-        <div className="pt-16 space-y-8">
-          <div className="text-center md:text-left space-y-2">
-            <h3 className="text-xs font-mono tracking-[0.25em] text-purple-400 font-bold uppercase">
+        <div className="pt-24 space-y-12">
+          <div className="text-center space-y-4">
+            <h3 className="text-xs font-mono tracking-[0.3em] text-purple-400 font-bold uppercase">
               ACTIVE ACADEMIC DIRECTIVES
             </h3>
-            <p className="text-2xl font-extrabold text-white tracking-tight font-serif">
+            <p className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white">
               Coaching Feeds & Virtual Subscriptions
             </p>
-            <p className="text-gray-400 text-xs font-sans max-w-xl">
+            <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full" />
+            <p className="text-gray-400 text-sm font-sans max-w-xl mx-auto pt-2">
               Academic resources, lectures, and visual module platforms utilized in daily preparation matrices.
             </p>
           </div>
@@ -134,7 +135,7 @@ export default function Projects() {
             {studentData.subscriptions.map((sub) => (
               <div 
                 key={sub.id} 
-                className="glass-panel p-5 rounded-xl bg-black/35 border border-purple-500/5 hover:border-purple-500/30 flex flex-col justify-between space-y-4"
+                className="glass-panel p-5 rounded-xl bg-black/35 border border-purple-500/5 hover:border-purple-500/30 flex flex-col justify-between space-y-4 h-full"
               >
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
