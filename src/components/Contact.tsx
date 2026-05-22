@@ -47,64 +47,53 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative min-h-screen py-24 px-6 max-w-7xl mx-auto z-10 space-grid">
+    <section className="relative min-h-screen py-32 px-6 max-w-7xl mx-auto z-10">
       <div className="space-y-16">
         {/* Section Header */}
-        <div className="text-center space-y-4">
-          <h2 className="text-xs font-mono tracking-[0.3em] text-pink-500 font-bold uppercase">
-            RESONANCE BRIDGE
+        <div className="text-center space-y-4 max-w-2xl mx-auto mb-12">
+          <h2 className="text-xs font-semibold tracking-widest text-indigo-400 uppercase">
+            Get in touch
           </h2>
-          <p className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white">
-            Lab Connection Console
+          <p className="text-4xl md:text-5xl font-bold tracking-tight text-white">
+            Contact
           </p>
-          <div className="w-16 h-1 bg-gradient-to-r from-pink-500 to-purple-600 mx-auto rounded-full" />
+          <div className="w-12 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full mt-6" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
-          {/* Scientific lab telemetry board */}
-          <div className="md:col-span-5 flex flex-col justify-between glass-panel rounded-2xl p-6 sm:p-8 space-y-8 bg-black/40">
+          <div className="md:col-span-5 flex flex-col justify-between rounded-2xl p-8 space-y-8 bg-white/[0.02] border border-white/5">
             <div className="space-y-6">
-              <div className="flex items-center space-x-2 text-pink-500">
-                <span className="w-2.5 h-2.5 rounded-full bg-pink-500 animate-ping" />
-                <span className="font-mono text-xs font-bold tracking-widest">BRIDGE_ACTIVE</span>
-              </div>
-              <h4 className="text-xl font-bold tracking-tight text-white font-serif">Laboratory Comms</h4>
-              <p className="text-gray-400 text-sm leading-relaxed font-sans">
-                Establish direct vector links. Enter your identity coordinates and logs to communicate with Debanjan&apos;s academic terminal. Messages are encoded and transmitted via sub-space propagation resonance.
+              <h4 className="text-2xl font-bold tracking-tight text-white">Reach Out</h4>
+              <p className="text-gray-400 text-base leading-relaxed font-sans">
+                Whether you have a question about my studies, Olympiad preparation, or just want to say hi, I'll try my best to get back to you!
               </p>
             </div>
 
-            {/* Readout hud */}
-            <div className="border border-purple-500/10 rounded-xl p-4 bg-black/70 font-mono text-[9px] text-gray-500 space-y-2.5 select-none">
-              <div className="flex justify-between border-b border-purple-500/10 pb-1.5">
-                <span>LAB_COORD:</span>
-                <span className="text-purple-400">LAT.540F_LNG.4618</span>
+            {/* Information readout */}
+            <div className="border border-white/5 rounded-xl p-5 bg-black/40 font-mono text-[11px] text-gray-500 space-y-3 select-none">
+              <div className="flex justify-between border-b border-white/5 pb-2">
+                <span>LOCATION:</span>
+                <span className="text-indigo-400">Earth</span>
+              </div>
+              <div className="flex justify-between border-b border-white/5 pb-2">
+                <span>STATUS:</span>
+                <span className="text-white">Active Student</span>
               </div>
               <div className="flex justify-between">
-                <span>FREQUENCY:</span>
-                <span className="text-cyan-400">1420.405 MHz (Hydrogen)</span>
-              </div>
-              <div className="flex justify-between">
-                <span>RESONANCE:</span>
-                <span className="text-pink-500">ACTIVE_LOCKED</span>
-              </div>
-              <div className="flex justify-between">
-                <span>TELEMETRY:</span>
-                <span className="text-white">OPTIMAL // OK</span>
+                <span>RESPONSE TIME:</span>
+                <span className="text-gray-400">Within 24 Hours</span>
               </div>
             </div>
           </div>
 
           {/* Form console */}
-          <div className="md:col-span-7 glass-panel rounded-2xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden bg-black/25">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(236,72,153,0.05),transparent_50%)] pointer-events-none" />
+          <div className="md:col-span-7 rounded-2xl p-8 flex flex-col justify-between relative overflow-hidden bg-white/[0.02] border border-white/5">
 
             {status === "idle" && (
               <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-                {/* Identity */}
                 <div className="space-y-2">
-                  <label htmlFor="name" className="block text-[9px] font-mono text-cyan-400 tracking-wider">
-                    SENDER // IDENTITY_ID
+                  <label htmlFor="name" className="block text-[11px] font-mono text-gray-400 tracking-wider">
+                    NAME
                   </label>
                   <input
                     type="text"
@@ -114,14 +103,13 @@ export default function Contact() {
                     onChange={handleInputChange}
                     required
                     placeholder="Enter your name"
-                    className="w-full bg-black/55 border border-purple-500/20 focus:border-cyan-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-cyan-500/20 transition-all duration-300"
+                    className="w-full bg-black/40 border border-white/10 focus:border-indigo-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-indigo-500/20 transition-colors duration-300"
                   />
                 </div>
 
-                {/* Return Route */}
                 <div className="space-y-2">
-                  <label htmlFor="email" className="block text-[9px] font-mono text-cyan-400 tracking-wider">
-                    RETURN ROUTE // DEST_EMAIL
+                  <label htmlFor="email" className="block text-[11px] font-mono text-gray-400 tracking-wider">
+                    EMAIL
                   </label>
                   <input
                     type="email"
@@ -131,14 +119,13 @@ export default function Contact() {
                     onChange={handleInputChange}
                     required
                     placeholder="Enter your email"
-                    className="w-full bg-black/55 border border-purple-500/20 focus:border-cyan-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-cyan-500/20 transition-all duration-300"
+                    className="w-full bg-black/40 border border-white/10 focus:border-indigo-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-indigo-500/20 transition-colors duration-300"
                   />
                 </div>
 
-                {/* Packet payload */}
                 <div className="space-y-2">
-                  <label htmlFor="message" className="block text-[9px] font-mono text-cyan-400 tracking-wider">
-                    LOG PAYLOAD // MESSAGE
+                  <label htmlFor="message" className="block text-[11px] font-mono text-gray-400 tracking-wider">
+                    MESSAGE
                   </label>
                   <textarea
                     id="message"
@@ -147,17 +134,16 @@ export default function Contact() {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    placeholder="Transcribe scientific logs..."
-                    className="w-full bg-black/55 border border-purple-500/20 focus:border-cyan-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-cyan-500/20 transition-all duration-300 resize-none"
+                    placeholder="Write your message..."
+                    className="w-full bg-black/40 border border-white/10 focus:border-indigo-500/50 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-indigo-500/20 transition-colors duration-300 resize-none"
                   />
                 </div>
 
-                {/* Transmit button */}
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 rounded-xl text-white font-mono text-xs font-bold tracking-wider cursor-pointer shadow-[0_0_15px_rgba(236,72,153,0.2)] hover:shadow-[0_0_25px_rgba(236,72,153,0.5)] transition-all duration-300"
+                  className="w-full py-4 bg-white hover:bg-gray-200 rounded-xl text-black font-semibold text-sm transition-colors duration-300"
                 >
-                  TRANSMIT SIGNAL
+                  Send Message
                 </button>
               </form>
             )}
@@ -182,30 +168,23 @@ export default function Contact() {
             {/* SUCCESS HUDS */}
             {status === "success" && (
               <div className="flex flex-col justify-center items-center h-full min-h-[350px] space-y-6 text-center py-6 relative z-10">
-                <div className="w-16 h-16 rounded-full bg-cyan-950/40 border border-cyan-400/50 flex items-center justify-center glow-cyan shadow-[0_0_15px_rgba(6,182,212,0.15)] animate-float">
-                  <svg className="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <div className="w-16 h-16 rounded-full bg-green-500/10 border border-green-400/30 flex items-center justify-center">
+                  <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-2xl font-bold tracking-tight text-white font-serif">Signal Resonated</h4>
+                  <h4 className="text-2xl font-bold tracking-tight text-white">Message Sent</h4>
                   <p className="text-gray-400 text-sm max-w-xs font-sans">
-                    Quantum sub-space tunnel fully locked onto destination frequency. Message archived.
+                    Thanks for reaching out! I'll get back to you as soon as possible.
                   </p>
-                </div>
-
-                {/* Console Log display */}
-                <div className="w-full border border-cyan-500/20 rounded-xl p-4 bg-black/60 font-mono text-[9px] text-cyan-500 text-left space-y-1.5 max-h-28 overflow-y-auto">
-                  {logs.map((log, i) => (
-                    <div key={i} className="leading-tight">{log}</div>
-                  ))}
                 </div>
 
                 <button
                   onClick={handleReset}
-                  className="px-6 py-2.5 border border-cyan-500/30 hover:border-cyan-500 text-cyan-300 hover:text-white rounded-lg font-mono text-[10px] tracking-widest cursor-pointer transition-all duration-300"
+                  className="px-6 py-2.5 border border-white/10 hover:bg-white/5 text-gray-300 hover:text-white rounded-lg text-sm font-medium transition-colors duration-300 mt-6"
                 >
-                  TRANSMIT NEW STREAM
+                  Send another message
                 </button>
               </div>
             )}

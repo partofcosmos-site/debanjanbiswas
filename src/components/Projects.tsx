@@ -44,10 +44,9 @@ export default function Projects() {
     : studentData.books.filter((book: Book) => book.category === filter);
 
   return (
-    <section id="books" className="relative min-h-screen py-24 px-6 max-w-7xl mx-auto z-10 space-grid">
-      {/* Decorative field coordinates in background */}
-      <div className="absolute right-0 top-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
-      <div className="absolute left-0 bottom-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[140px] pointer-events-none" style={{ animationDelay: "2s" }} />
+    <section className="relative min-h-screen py-32 px-6 max-w-7xl mx-auto z-10">
+      <div className="absolute right-0 top-1/4 w-96 h-96 bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
+      <div className="absolute left-0 bottom-1/4 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[150px] pointer-events-none" style={{ animationDelay: "2s" }} />
 
       <motion.div 
         variants={containerVariants}
@@ -57,15 +56,14 @@ export default function Projects() {
         className="space-y-16 relative z-10"
       >
         {/* Section Header */}
-        <motion.div variants={itemVariants} className="text-center space-y-4">
-          <h2 className="text-xs font-mono tracking-[0.3em] text-cyan-400 font-bold uppercase flex items-center justify-center">
-            <BookOpen className="w-4 h-4 mr-2" />
-            LITERATURE SHELF
+        <motion.div variants={itemVariants} className="text-center space-y-4 max-w-2xl mx-auto mb-12">
+          <h2 className="text-xs font-semibold tracking-widest text-indigo-400 uppercase">
+            Curated Library
           </h2>
-          <p className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white drop-shadow-md">
-            Study Resources & Textbooks
+          <p className="text-4xl md:text-5xl font-bold tracking-tight text-white">
+            Resource Shelf
           </p>
-          <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-600 mx-auto rounded-full shadow-[0_0_10px_rgba(6,182,212,0.5)]" />
+          <div className="w-12 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full mt-6" />
         </motion.div>
 
         {/* Filter Navigation */}
@@ -74,10 +72,10 @@ export default function Projects() {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-5 py-2 rounded-lg font-mono text-[10px] tracking-wider transition-all duration-300 cursor-pointer backdrop-blur-md ${
+              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-colors duration-300 cursor-pointer ${
                 filter === cat
-                  ? "bg-cyan-950/60 text-cyan-300 border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.3)]"
-                  : "bg-black/40 text-gray-400 border border-gray-800/60 hover:border-cyan-500/30 hover:text-white"
+                  ? "bg-white text-black shadow-md"
+                  : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/5"
               }`}
             >
               {cat.toUpperCase()}
@@ -178,13 +176,13 @@ export default function Projects() {
               <motion.div 
                 key={sub.id} 
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="group p-5 rounded-xl bg-black/40 backdrop-blur-md border border-purple-500/10 hover:border-purple-400/50 flex flex-col justify-between space-y-4 h-full shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-colors transition-shadow duration-300"
+                className="group p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 flex flex-col justify-between space-y-4 h-full transition-colors duration-300"
               >
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-[8px] font-mono text-cyan-300 font-bold px-2 py-0.5 rounded bg-cyan-950/50 border border-cyan-500/30">
+                    <div className="bg-indigo-500/20 text-indigo-300 px-3 py-1 rounded-full text-xs font-medium border border-indigo-500/20">
                       {sub.type.toUpperCase()}
-                    </span>
+                    </div>
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)] animate-pulse" />
                   </div>
                   <h4 className="text-base font-bold text-white tracking-tight font-serif group-hover:text-purple-300 transition-colors">
