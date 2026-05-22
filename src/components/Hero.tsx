@@ -46,7 +46,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.2 }}
         transition={{ duration: 2, delay: 1 }}
-        className="absolute top-[20%] right-[15%] font-serif text-2xl italic text-cyan-400 select-none animate-float pointer-events-none formula-glow"
+        className="hidden md:block absolute top-[20%] right-[15%] font-serif text-2xl italic text-cyan-400 select-none animate-float pointer-events-none formula-glow"
       >
         G = 6.674 × 10⁻¹¹ m³ kg⁻¹ s⁻²
       </motion.div>
@@ -54,7 +54,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.25 }}
         transition={{ duration: 2, delay: 1.5 }}
-        className="absolute bottom-[25%] left-[10%] font-serif text-3xl italic text-purple-400 select-none animate-float pointer-events-none formula-glow" style={{ animationDelay: "1.5s" }}
+        className="hidden md:block absolute bottom-[25%] left-[10%] font-serif text-3xl italic text-purple-400 select-none animate-float pointer-events-none formula-glow" style={{ animationDelay: "1.5s" }}
       >
         iℏ(∂/∂t)Ψ = ĤΨ
       </motion.div>
@@ -62,7 +62,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.15 }}
         transition={{ duration: 2, delay: 2 }}
-        className="absolute top-[60%] right-[25%] font-serif text-4xl italic text-pink-500 select-none animate-float pointer-events-none formula-glow" style={{ animationDelay: "3s" }}
+        className="hidden md:block absolute top-[60%] right-[25%] font-serif text-4xl italic text-pink-500 select-none animate-float pointer-events-none formula-glow" style={{ animationDelay: "3s" }}
       >
         E = mc²
       </motion.div>
@@ -158,7 +158,7 @@ export default function Hero() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => scrollToSection("books")}
-              className="group px-8 py-3.5 rounded-xl font-mono text-xs font-bold tracking-wider bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(139,92,246,0.5)] transition-all duration-300 flex items-center"
+              className="group px-8 py-3.5 rounded-xl font-mono text-xs font-bold tracking-wider bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(139,92,246,0.5)] transition-colors transition-shadow duration-300 flex items-center"
             >
               BROWSE RESOURCE SHELF
               <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -168,7 +168,7 @@ export default function Hero() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => scrollToSection("contact")}
-              className="px-8 py-3.5 rounded-xl font-mono text-xs font-bold tracking-wider bg-black/60 backdrop-blur-md text-cyan-300 border border-cyan-500/30 hover:border-cyan-400 hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+              className="px-8 py-3.5 rounded-xl font-mono text-xs font-bold tracking-wider bg-black/60 backdrop-blur-md text-cyan-300 border border-cyan-500/30 hover:border-cyan-400 hover:text-white transition-colors transition-shadow duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]"
             >
               CALIBRATE CONNECTION
             </motion.button>

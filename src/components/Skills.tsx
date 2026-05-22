@@ -70,7 +70,7 @@ export default function Skills() {
                 whileTap={{ scale: 0.98 }}
                 key={domain.name}
                 onClick={() => setActiveDomain(index)}
-                className={`group w-full text-left rounded-xl p-4 flex items-center justify-between border cursor-pointer transition-all duration-300 backdrop-blur-md ${
+                className={`group w-full text-left rounded-xl p-4 flex items-center justify-between border cursor-pointer transition-colors transition-shadow duration-300 backdrop-blur-md ${
                   activeDomain === index
                     ? "border-cyan-500/50 bg-gradient-to-r from-cyan-950/40 to-purple-950/40 shadow-[0_0_20px_rgba(6,182,212,0.2)]"
                     : "border-gray-800/50 bg-black/40 hover:border-cyan-500/30 hover:bg-black/60"

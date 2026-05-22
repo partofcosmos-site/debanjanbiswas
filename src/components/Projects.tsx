@@ -178,7 +178,7 @@ export default function Projects() {
               <motion.div 
                 key={sub.id} 
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="group p-5 rounded-xl bg-black/40 backdrop-blur-md border border-purple-500/10 hover:border-purple-400/50 flex flex-col justify-between space-y-4 h-full shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-all duration-300"
+                className="group p-5 rounded-xl bg-black/40 backdrop-blur-md border border-purple-500/10 hover:border-purple-400/50 flex flex-col justify-between space-y-4 h-full shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-colors transition-shadow duration-300"
               >
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
