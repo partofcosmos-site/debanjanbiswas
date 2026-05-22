@@ -106,7 +106,7 @@ export default function Skills() {
           </motion.div>
 
           {/* Central Holographic Visualizer Card (Right side) */}
-          <motion.div variants={itemVariants} className="lg:col-span-7 h-full">
+          <motion.div variants={itemVariants} className="lg:col-span-7 min-h-[420px]">
             <AnimatePresence mode="wait">
               <motion.div 
                 key={activeDomain}
@@ -114,7 +114,7 @@ export default function Skills() {
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
                 transition={{ duration: 0.4 }}
-                className="rounded-3xl p-6 sm:p-8 md:p-10 relative overflow-hidden h-full flex flex-col justify-between border border-cyan-500/10 bg-black/50 backdrop-blur-2xl shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                className="rounded-3xl p-6 sm:p-8 md:p-10 relative overflow-hidden min-h-[420px] flex flex-col justify-between border border-cyan-500/10 bg-black/50 backdrop-blur-2xl shadow-[0_0_30px_rgba(0,0,0,0.5)]"
               >
                 {/* Radial gradient glow behind content */}
                 <div

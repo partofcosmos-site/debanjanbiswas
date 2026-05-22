@@ -86,17 +86,14 @@ export default function Projects() {
         </motion.div>
 
         {/* Textbooks Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
-          <AnimatePresence mode="popLayout">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
             {filteredBooks.map((book: Book) => (
               <motion.div
-                layout
                 key={book.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
                 whileHover={{ scale: 1.02, y: -5 }}
-                transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 25 }}
+                transition={{ duration: 0.4 }}
                 className="group relative rounded-2xl pl-10 pr-6 py-8 flex flex-col justify-between overflow-hidden h-full border border-cyan-500/10 hover:border-cyan-400/50 bg-black/40 backdrop-blur-xl shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(6,182,212,0.2)]"
               >
                 {/* Book Spine Aesthetic */}
@@ -158,8 +155,7 @@ export default function Projects() {
                 </div>
               </motion.div>
             ))}
-          </AnimatePresence>
-        </motion.div>
+        </div>
 
         {/* Subscriptions / Interactive coaching platforms sub-grid */}
         <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="pt-24 space-y-12">
