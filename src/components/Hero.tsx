@@ -51,7 +51,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             variants={fadeUpVariants}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6 leading-tight"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-normal text-white mb-6 leading-snug"
           >
             Decoding the mechanics of the <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">universe.</span>
           </motion.h1>

@@ -92,16 +92,16 @@ export default function Projects() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ duration: 0.4 }}
-                className="group relative rounded-2xl pl-10 pr-6 py-8 flex flex-col justify-between overflow-hidden h-full border border-cyan-500/10 hover:border-cyan-400/50 bg-black/40 backdrop-blur-xl shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(6,182,212,0.2)]"
+                className="group relative rounded-2xl pl-10 pr-6 py-8 flex flex-col overflow-hidden h-auto min-h-full border border-white/5 hover:border-white/10 bg-white/[0.02] backdrop-blur-xl transition-colors duration-300 gap-6"
               >
                 {/* Book Spine Aesthetic */}
-                <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-b from-cyan-900/40 to-purple-900/40 border-r border-cyan-500/20" />
+                <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-b from-indigo-900/20 to-purple-900/20 border-r border-white/5" />
                 
                 {/* Cover texture / Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-transparent to-purple-500/5 pointer-events-none group-hover:opacity-100 opacity-50 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-transparent to-purple-500/5 pointer-events-none group-hover:opacity-100 opacity-50 transition-opacity duration-500" />
                 <div className="absolute right-0 top-0 w-32 h-32 bg-[radial-gradient(circle_at_top_right,rgba(139,92,246,0.1),transparent_60%)] pointer-events-none group-hover:scale-150 transition-transform duration-700" />
 
-                <div className="space-y-6 relative z-10">
+                <div className="flex-1 space-y-6 relative z-10">
                   {/* Header catalog code */}
                   <div className="flex justify-between items-center">
                     <span className="text-[9px] font-mono text-gray-400 tracking-wider flex items-center">
@@ -111,21 +111,21 @@ export default function Projects() {
                     
                     <span className={`text-[9px] font-mono font-semibold px-2.5 py-0.5 rounded-full border ${
                       book.status === "Active"
-                        ? "bg-cyan-950/60 border-cyan-500/30 text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.2)]"
+                        ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-300"
                         : book.status === "Reference"
-                        ? "bg-purple-950/60 border-purple-500/30 text-purple-300 shadow-[0_0_10px_rgba(168,85,247,0.2)]"
-                        : "bg-gray-950/60 border-gray-700 text-gray-400"
+                        ? "bg-purple-500/10 border-purple-500/20 text-purple-300"
+                        : "bg-white/5 border-white/10 text-gray-400"
                     }`}>
                       {book.status.toUpperCase()}
                     </span>
                   </div>
 
                   {/* Title & Author details */}
-                  <div className="space-y-2">
-                    <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-cyan-300 transition-colors duration-300 font-serif">
+                  <div className="space-y-3">
+                    <h3 className="text-xl sm:text-2xl font-bold tracking-normal text-white transition-colors duration-300 font-serif leading-snug">
                       {book.title}
                     </h3>
-                    <p className="text-xs font-mono text-cyan-600/80 group-hover:text-cyan-400 transition-colors duration-300">
+                    <p className="text-xs font-mono text-gray-400 transition-colors duration-300">
                       BY {book.author.toUpperCase()}
                     </p>
                     <p className="text-gray-400 text-sm leading-relaxed pt-2">
@@ -135,19 +135,19 @@ export default function Projects() {
                 </div>
 
                 {/* Progress & Directive indicator */}
-                <div className="pt-8 border-t border-cyan-500/10 mt-8 relative z-10 group-hover:border-cyan-500/30 transition-colors duration-300">
+                <div className="pt-6 border-t border-white/5 relative z-10 transition-colors duration-300 mt-auto">
                   <div className="flex justify-between items-center text-[9px] font-mono text-gray-400 mb-2">
                     <span>PREPARATION INDEX</span>
-                    <span className="text-cyan-400 font-bold">{book.progress}% COMPLETE</span>
+                    <span className="text-indigo-400 font-bold">{book.progress}% COMPLETE</span>
                   </div>
                   
-                  <div className="w-full h-1.5 bg-black/80 rounded-full border border-gray-800 overflow-hidden">
+                  <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${book.progress}%` }}
                       viewport={{ once: true }}
                       transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }}
-                      className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 shadow-[0_0_10px_rgba(6,182,212,0.6)]"
+                      className="h-full rounded-full bg-indigo-500"
                     />
                   </div>
                 </div>
@@ -157,16 +157,15 @@ export default function Projects() {
 
         {/* Subscriptions / Interactive coaching platforms sub-grid */}
         <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="pt-24 space-y-12">
-          <motion.div variants={itemVariants} className="text-center space-y-4">
-            <h3 className="text-xs font-mono tracking-[0.3em] text-purple-400 font-bold uppercase flex items-center justify-center">
-              <Zap className="w-4 h-4 mr-2" />
-              ACTIVE ACADEMIC DIRECTIVES
+          <motion.div variants={itemVariants} className="text-center space-y-4 max-w-2xl mx-auto">
+            <h3 className="text-xs font-semibold tracking-widest text-indigo-400 uppercase">
+              Subscriptions
             </h3>
-            <p className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white drop-shadow-md">
+            <p className="text-3xl md:text-4xl font-bold tracking-normal text-white leading-snug">
               Coaching Feeds & Virtual Subscriptions
             </p>
-            <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full shadow-[0_0_10px_rgba(168,85,247,0.5)]" />
-            <p className="text-gray-400 text-sm font-sans max-w-xl mx-auto pt-2">
+            <div className="w-12 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full mt-6" />
+            <p className="text-gray-400 text-sm max-w-xl mx-auto pt-4 leading-relaxed">
               Academic resources, lectures, and visual module platforms utilized in daily preparation matrices.
             </p>
           </motion.div>
@@ -191,12 +190,11 @@ export default function Projects() {
                   <p className="text-gray-400 text-xs leading-relaxed font-sans">{sub.description}</p>
                 </div>
 
-                <div className="pt-3 border-t border-purple-500/10 group-hover:border-purple-500/30 transition-colors flex justify-between items-center text-[9px] font-mono text-gray-500">
+                <div className="pt-4 mt-4 border-t border-white/5 transition-colors flex justify-between items-center text-[9px] font-mono text-gray-500">
                   <span className="flex items-center">
-                    <GraduationCap className="w-3 h-3 mr-1 opacity-50" />
                     PLATFORM
                   </span>
-                  <span className="text-white font-semibold">{sub.platform.toUpperCase()}</span>
+                  <span className="text-gray-300 font-semibold">{sub.platform.toUpperCase()}</span>
                 </div>
               </motion.div>
             ))}

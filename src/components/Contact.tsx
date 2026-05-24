@@ -54,7 +54,7 @@ export default function Contact() {
           <h2 className="text-xs font-semibold tracking-widest text-indigo-400 uppercase">
             Get in touch
           </h2>
-          <p className="text-4xl md:text-5xl font-bold tracking-tight text-white">
+          <p className="text-3xl md:text-5xl font-bold tracking-normal text-white leading-snug">
             Contact
           </p>
           <div className="w-12 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full mt-6" />

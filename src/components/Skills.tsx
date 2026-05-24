@@ -54,7 +54,7 @@ export default function Skills() {
           <h2 className="text-xs font-semibold tracking-widest text-indigo-400 uppercase">
             Curriculum
           </h2>
-          <p className="text-4xl md:text-5xl font-bold tracking-tight text-white">
+          <p className="text-3xl md:text-5xl font-bold tracking-normal text-white leading-snug">
             Syllabus & Core Topics
           </p>
           <div className="w-12 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full mt-6" />
@@ -107,7 +107,7 @@ export default function Skills() {
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
                 transition={{ duration: 0.4 }}
-                className="rounded-3xl p-8 relative overflow-hidden min-h-[420px] flex flex-col justify-between border border-white/5 bg-white/[0.02] backdrop-blur-2xl"
+                className="rounded-3xl p-8 relative overflow-hidden h-full min-h-[480px] flex flex-col justify-between border border-white/5 bg-white/[0.02] backdrop-blur-2xl gap-8"
               >
                 {/* Minimal radial glow behind content */}
                 <div
@@ -124,7 +124,7 @@ export default function Skills() {
                         <Activity className="w-3 h-3 mr-1" />
                         CONCEPT NODE // 0{activeDomain + 1}
                       </span>
-                      <h3 className="text-3xl font-extrabold text-white tracking-tight">
+                      <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-normal leading-snug">
                         {domains[activeDomain].name}
                       </h3>
                     </div>
@@ -166,7 +166,7 @@ export default function Skills() {
                 </div>
 
                 {/* Progress Index Bar */}
-                <div className="pt-8 border-t border-white/10 mt-8 relative z-10">
+                <div className="pt-8 border-t border-white/10 relative z-10 mt-auto">
                   <div className="flex justify-between items-center text-[9px] font-mono text-gray-400 mb-2">
                     <span className="flex items-center">
                       <span className="w-1.5 h-1.5 rounded-full bg-green-500 mr-2 animate-pulse" />
