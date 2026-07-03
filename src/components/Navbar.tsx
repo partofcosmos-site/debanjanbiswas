@@ -26,45 +26,46 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
+  const handleLinkClick = () => {
     setMobileMenuOpen(false);
-  }, [pathname]);
+  };
 
   return (
     <header 
-      className={`fixed top-0 left-0 w-full z-50 transition-colors transition-shadow duration-300 ${
-        scrolled ? "bg-[#04060a]/80 backdrop-blur-md border-b border-white/5" : "bg-transparent"
+      className={`fixed top-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-5xl z-50 rounded-2xl transition-all duration-500 ${
+        scrolled 
+          ? "bg-[#020408]/70 backdrop-blur-2xl border border-white/8 shadow-2xl shadow-black/50 py-2.5" 
+          : "bg-[#020408]/30 backdrop-blur-lg border border-white/[0.03] py-3.5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-3 group">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-gray-700 to-gray-400 flex items-center justify-center text-black font-bold font-serif text-sm group-hover:scale-105 transition-transform">
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-bold text-[11px] group-hover:scale-105 shadow-lg shadow-indigo-500/15 transition-transform duration-300">
             DB
           </div>
-          <span className="font-sans font-semibold tracking-wide text-white text-sm hidden sm:block">
-            Debanjan Biswas
+          <span className="font-semibold tracking-tight text-white/90 text-sm hidden sm:block group-hover:text-white transition-colors">
+            Debanjan
           </span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-1">
+        <nav className="hidden md:flex items-center gap-1">
           {navItems.map((item) => {
             const isActive = pathname === item.path;
             return (
               <Link
                 key={item.name}
                 href={item.path}
-                className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  isActive ? "text-white" : "text-gray-400 hover:text-white hover:bg-white/5"
+                className={`relative px-4 py-2 rounded-lg text-[13px] font-medium tracking-wide transition-colors ${
+                  isActive ? "text-white" : "text-gray-400 hover:text-gray-200"
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="navbar-indicator"
-                    className="absolute inset-0 bg-white/10 rounded-lg"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    className="absolute inset-0 bg-white/[0.07] rounded-lg"
+                    transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
                   />
                 )}
                 <span className="relative z-10">{item.name}</span>
@@ -76,30 +77,31 @@ export default function Navbar() {
         {/* Mobile Menu Toggle */}
         <button 
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 -mr-2 text-gray-400 hover:text-white transition-colors"
+          className="md:hidden p-2 text-gray-400 hover:text-white transition-colors"
         >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Mobile Navigation */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-b border-white/5 bg-[#04060a]/95 backdrop-blur-xl overflow-hidden"
+            className="md:hidden mt-2 mx-3 rounded-xl border border-white/5 bg-[#020408]/95 backdrop-blur-2xl overflow-hidden"
           >
-            <nav className="flex flex-col px-6 py-4 space-y-2">
+            <nav className="flex flex-col px-3 py-2 gap-0.5">
               {navItems.map((item) => {
                 const isActive = pathname === item.path;
                 return (
                   <Link
                     key={item.name}
                     href={item.path}
-                    className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                      isActive ? "bg-white/10 text-white" : "text-gray-400 hover:bg-white/5 hover:text-white"
+                    onClick={handleLinkClick}
+                    className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                      isActive ? "bg-white/[0.07] text-white" : "text-gray-400 hover:bg-white/[0.03] hover:text-white"
                     }`}
                   >
                     {item.name}

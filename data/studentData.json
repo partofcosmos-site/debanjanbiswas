@@ -15,7 +15,6 @@
       { "id": "backups", "name": "IITs (KGP Backup) / IISc / CMI / ISI", "timeline": "JEE Advanced" }
     ],
     "credentials": [
-      { "name": "Class 10 State Board Rank 5", "value": "643/700 (91.8%)", "info": "Government School, West Bengal Board" },
       { "name": "National Means Cum Merit Scholar", "value": "NMMS Recipient", "info": "Scholastic Aptitude & Mental Ability" },
       { "name": "Jawahar Navodaya Vidyalaya Alumni", "value": "JNV Admitted (Class 6)", "info": "Selected for merit-based boarding" }
     ]

@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, Layers, Zap, GraduationCap } from "lucide-react";
+import { BookOpen, Layers, Bookmark, Sparkles } from "lucide-react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import studentData from "../../data/studentData.json";
 
 interface Book {
@@ -15,23 +15,20 @@ interface Book {
   category: string;
 }
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
+    transition: { staggerChildren: 0.08 },
   },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring" as const, stiffness: 60, damping: 15 },
+    transition: { type: "spring" as const, stiffness: 120, damping: 18 },
   },
 };
 
@@ -44,157 +41,155 @@ export default function Projects() {
     : studentData.books.filter((book: Book) => book.category === filter);
 
   return (
-    <section className="relative min-h-screen py-32 px-6 max-w-7xl mx-auto z-10">
-      <div className="absolute right-0 top-1/4 w-96 h-96 bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
-      <div className="absolute left-0 bottom-1/4 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[150px] pointer-events-none" style={{ animationDelay: "2s" }} />
+    <section className="relative min-h-screen page-section px-6 max-w-5xl mx-auto z-10">
+      {/* Background Ambience */}
+      <div className="absolute right-0 top-1/4 w-80 h-80 bg-indigo-600/4 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
+      <div className="absolute left-0 bottom-1/4 w-96 h-96 bg-violet-600/3 rounded-full blur-[140px] pointer-events-none" />
 
       <motion.div 
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="space-y-16 relative z-10"
+        viewport={{ once: true, margin: "-80px" }}
+        className="space-y-12 relative z-10"
       >
         {/* Section Header */}
-        <motion.div variants={itemVariants} className="text-center space-y-4 max-w-2xl mx-auto mb-12">
-          <h2 className="text-xs font-semibold tracking-widest text-indigo-400 uppercase">
-            Curated Library
-          </h2>
-          <p className="text-4xl md:text-5xl font-bold tracking-tight text-white">
+        <motion.div variants={itemVariants} className="space-y-3 max-w-xl">
+          <span className="text-[11px] font-medium tracking-widest text-indigo-400 uppercase flex items-center gap-1.5">
+            <BookOpen className="w-3.5 h-3.5" /> Curated Library
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
             Resource Shelf
-          </p>
-          <div className="w-12 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full mt-6" />
+          </h2>
+          <div className="w-10 h-0.5 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full" />
         </motion.div>
 
         {/* Filter Navigation */}
-        <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-2 md:gap-4">
+        <motion.div variants={itemVariants} className="flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-colors duration-300 cursor-pointer ${
+              className={`px-4 py-2 rounded-lg text-[12px] font-medium tracking-wide transition-all duration-300 cursor-pointer ${
                 filter === cat
-                  ? "bg-white text-black shadow-md"
-                  : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/5"
+                  ? "bg-white text-black shadow-lg shadow-white/5"
+                  : "bg-white/[0.03] text-gray-400 hover:text-white hover:bg-white/[0.06] border border-white/5"
               }`}
             >
-              {cat.toUpperCase()}
+              {cat}
             </button>
           ))}
         </motion.div>
 
-        {/* Textbooks Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
+        {/* Book Cards Grid */}
+        <motion.div variants={containerVariants} className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <AnimatePresence mode="popLayout">
             {filteredBooks.map((book: Book) => (
               <motion.div
+                layout
                 key={book.id}
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                whileHover={{ scale: 1.02, y: -5 }}
-                transition={{ duration: 0.4 }}
-                className="group relative rounded-2xl pl-10 pr-6 py-8 flex flex-col overflow-hidden h-auto min-h-full border border-white/5 hover:border-white/10 bg-white/[0.02] backdrop-blur-xl transition-colors duration-300 gap-6"
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.35 }}
+                className="group glass-panel rounded-2xl p-6 flex flex-col justify-between overflow-hidden min-h-[240px] gap-5"
               >
-                {/* Book Spine Aesthetic */}
-                <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-b from-indigo-900/20 to-purple-900/20 border-r border-white/5" />
+                {/* Book Spine */}
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-indigo-500/30 via-violet-500/20 to-pink-500/30 group-hover:from-indigo-400/60 group-hover:to-pink-400/60 transition-all duration-500" />
                 
-                {/* Cover texture / Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-transparent to-purple-500/5 pointer-events-none group-hover:opacity-100 opacity-50 transition-opacity duration-500" />
-                <div className="absolute right-0 top-0 w-32 h-32 bg-[radial-gradient(circle_at_top_right,rgba(139,92,246,0.1),transparent_60%)] pointer-events-none group-hover:scale-150 transition-transform duration-700" />
-
-                <div className="flex-1 space-y-6 relative z-10">
-                  {/* Header catalog code */}
+                <div className="space-y-3 relative z-10 pl-3">
+                  {/* Catalog & Status */}
                   <div className="flex justify-between items-center">
-                    <span className="text-[9px] font-mono text-gray-400 tracking-wider flex items-center">
-                      <Layers className="w-3 h-3 mr-1 opacity-50" />
-                      CATALOGUE // 00_{book.id.toUpperCase()}
+                    <span className="text-[10px] font-mono text-gray-600 tracking-wider flex items-center gap-1.5">
+                      <Layers className="w-3 h-3 text-indigo-400/60" />
+                      {book.id.toUpperCase()}
                     </span>
                     
-                    <span className={`text-[9px] font-mono font-semibold px-2.5 py-0.5 rounded-full border ${
+                    <span className={`text-[10px] font-mono font-medium px-2.5 py-0.5 rounded-full border ${
                       book.status === "Active"
-                        ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-300"
+                        ? "bg-indigo-500/8 border-indigo-500/20 text-indigo-300"
                         : book.status === "Reference"
-                        ? "bg-purple-500/10 border-purple-500/20 text-purple-300"
-                        : "bg-white/5 border-white/10 text-gray-400"
+                        ? "bg-violet-500/8 border-violet-500/20 text-violet-300"
+                        : "bg-white/[0.03] border-white/8 text-gray-500"
                     }`}>
-                      {book.status.toUpperCase()}
+                      {book.status}
                     </span>
                   </div>
 
-                  {/* Title & Author details */}
-                  <div className="space-y-3">
-                    <h3 className="text-xl sm:text-2xl font-bold tracking-normal text-white transition-colors duration-300 font-serif leading-snug">
+                  {/* Title & Details */}
+                  <div className="space-y-1.5">
+                    <h3 className="text-lg font-bold tracking-tight text-white leading-snug">
                       {book.title}
                     </h3>
-                    <p className="text-xs font-mono text-gray-400 transition-colors duration-300">
-                      BY {book.author.toUpperCase()}
+                    <p className="text-[11px] font-mono text-gray-500 tracking-wide">
+                      {book.author}
                     </p>
-                    <p className="text-gray-400 text-sm leading-relaxed pt-2">
+                    <p className="text-gray-400 text-sm leading-relaxed pt-1">
                       {book.description}
                     </p>
                   </div>
                 </div>
 
-                {/* Progress & Directive indicator */}
-                <div className="pt-6 border-t border-white/5 relative z-10 transition-colors duration-300 mt-auto">
-                  <div className="flex justify-between items-center text-[9px] font-mono text-gray-400 mb-2">
-                    <span>PREPARATION INDEX</span>
-                    <span className="text-indigo-400 font-bold">{book.progress}% COMPLETE</span>
+                {/* Progress */}
+                <div className="pt-4 border-t border-white/5 relative z-10 pl-3 mt-auto">
+                  <div className="flex justify-between items-center text-[10px] font-mono text-gray-600 mb-2">
+                    <span className="flex items-center gap-1"><Bookmark className="w-3 h-3 text-indigo-400/60" /> Progress</span>
+                    <span className="text-indigo-400 font-semibold">{book.progress}%</span>
                   </div>
                   
-                  <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${book.progress}%` }}
                       viewport={{ once: true }}
-                      transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }}
-                      className="h-full rounded-full bg-indigo-500"
+                      transition={{ duration: 1, ease: "easeOut" }}
+                      className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-violet-500"
                     />
                   </div>
                 </div>
               </motion.div>
             ))}
-        </div>
+          </AnimatePresence>
+        </motion.div>
 
-        {/* Subscriptions / Interactive coaching platforms sub-grid */}
-        <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="pt-24 space-y-12">
-          <motion.div variants={itemVariants} className="text-center space-y-4 max-w-2xl mx-auto">
-            <h3 className="text-xs font-semibold tracking-widest text-indigo-400 uppercase">
-              Subscriptions
+        {/* Subscriptions Section */}
+        <motion.div variants={containerVariants} className="pt-16 space-y-10">
+          <motion.div variants={itemVariants} className="space-y-3 max-w-xl">
+            <span className="text-[11px] font-medium tracking-widest text-pink-400 uppercase flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5" /> Subscriptions
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
+              Coaching & Platforms
             </h3>
-            <p className="text-3xl md:text-4xl font-bold tracking-normal text-white leading-snug">
-              Coaching Feeds & Virtual Subscriptions
-            </p>
-            <div className="w-12 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full mt-6" />
-            <p className="text-gray-400 text-sm max-w-xl mx-auto pt-4 leading-relaxed">
-              Academic resources, lectures, and visual module platforms utilized in daily preparation matrices.
+            <div className="w-10 h-0.5 bg-gradient-to-r from-pink-500 to-violet-500 rounded-full" />
+            <p className="text-gray-400 text-sm leading-relaxed max-w-lg pt-1">
+              Academic resources and lecture platforms utilized in daily preparation.
             </p>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {studentData.subscriptions.map((sub) => (
               <motion.div 
                 key={sub.id} 
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="group p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 flex flex-col justify-between space-y-4 h-full transition-colors duration-300"
+                whileHover={{ y: -4 }}
+                className="group glass-panel p-5 rounded-xl flex flex-col justify-between gap-4 h-full transition-all duration-300"
               >
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <div className="bg-indigo-500/20 text-indigo-300 px-3 py-1 rounded-full text-xs font-medium border border-indigo-500/20">
-                      {sub.type.toUpperCase()}
+                    <div className="bg-indigo-500/8 text-indigo-300 px-2.5 py-0.5 rounded-full text-[10px] font-medium tracking-wide border border-indigo-500/15 font-mono">
+                      {sub.type}
                     </div>
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)] animate-pulse" />
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)] animate-pulse" />
                   </div>
-                  <h4 className="text-base font-bold text-white tracking-tight font-serif group-hover:text-purple-300 transition-colors">
+                  <h4 className="text-base font-bold text-white tracking-tight leading-snug group-hover:text-indigo-300 transition-colors">
                     {sub.title}
                   </h4>
-                  <p className="text-gray-400 text-xs leading-relaxed font-sans">{sub.description}</p>
+                  <p className="text-gray-500 text-xs leading-relaxed">{sub.description}</p>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-white/5 transition-colors flex justify-between items-center text-[9px] font-mono text-gray-500">
-                  <span className="flex items-center">
-                    PLATFORM
-                  </span>
-                  <span className="text-gray-300 font-semibold">{sub.platform.toUpperCase()}</span>
+                <div className="pt-3 border-t border-white/5 flex justify-between items-center text-[10px] font-mono text-gray-600">
+                  <span>Platform</span>
+                  <span className="text-gray-400 font-medium">{sub.platform}</span>
                 </div>
               </motion.div>
             ))}

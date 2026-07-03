@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Atom, CheckCircle2, Activity, ShieldCheck } from "lucide-react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+import { CheckCircle2, Activity, ShieldCheck, Cpu } from "lucide-react";
 import studentData from "../../data/studentData.json";
 
 interface Domain {
@@ -13,20 +13,20 @@ interface Domain {
   features: string[];
 }
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+    transition: { staggerChildren: 0.06 },
   },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, x: -20 },
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 12 },
   visible: {
     opacity: 1,
-    x: 0,
-    transition: { type: "spring" as const, stiffness: 100, damping: 15 },
+    y: 0,
+    transition: { type: "spring" as const, stiffness: 120, damping: 18 },
   },
 };
 
@@ -34,130 +34,125 @@ export default function Skills() {
   const [activeDomain, setActiveDomain] = useState<number>(0);
   const domains = studentData.domains;
 
-  const colors = ["#06b6d4", "#8b5cf6", "#ec4899", "#06b6d4", "#8b5cf6"];
-  const currentColor = colors[activeDomain % colors.length];
-
   return (
-    <section id="skills" className="relative min-h-screen py-32 px-6 max-w-7xl mx-auto z-10">
-      {/* Background radial potential visualizer */}
-      <div className="absolute left-0 top-1/4 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[150px] pointer-events-none" />
+    <section id="skills" className="relative min-h-screen page-section px-6 max-w-5xl mx-auto z-10">
+      {/* Ambient glow */}
+      <div className="absolute left-0 top-1/4 w-96 h-96 bg-indigo-600/4 rounded-full blur-[140px] pointer-events-none" />
 
       <motion.div 
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="space-y-16 relative z-10"
+        viewport={{ once: true, margin: "-80px" }}
+        className="space-y-12 relative z-10"
       >
         {/* Section Header */}
-        <motion.div variants={itemVariants} className="text-center space-y-4 max-w-2xl mx-auto mb-16">
-          <h2 className="text-xs font-semibold tracking-widest text-indigo-400 uppercase">
-            Curriculum
-          </h2>
-          <p className="text-3xl md:text-5xl font-bold tracking-normal text-white leading-snug">
+        <motion.div variants={itemVariants} className="space-y-3 max-w-xl">
+          <span className="text-[11px] font-medium tracking-widest text-indigo-400 uppercase flex items-center gap-1.5">
+            <Cpu className="w-3.5 h-3.5" /> Curriculum Overview
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
             Syllabus & Core Topics
-          </p>
-          <div className="w-12 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full mt-6" />
+          </h2>
+          <div className="w-10 h-0.5 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full" />
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Orbital Selectors (Left side) */}
-          <motion.div variants={itemVariants} className="lg:col-span-5 flex flex-col space-y-3">
-            {domains.map((domain: Domain, index: number) => (
-              <motion.button
-                whileHover={{ scale: 1.02, x: 5 }}
-                whileTap={{ scale: 0.98 }}
-                key={domain.name}
-                onClick={() => setActiveDomain(index)}
-                className={`group w-full text-left rounded-2xl p-5 flex items-center justify-between border cursor-pointer transition-colors transition-shadow duration-300 backdrop-blur-md ${
-                  activeDomain === index
-                    ? "border-indigo-500/50 bg-white/10 shadow-lg"
-                    : "border-white/5 bg-white/[0.02] hover:border-white/10 hover:bg-white/5"
-                }`}
-              >
-                <div className="flex items-center space-x-4">
-                  <div
-                    className={`w-2.5 h-2.5 rounded-full transition-colors duration-500`}
-                    style={{
-                      backgroundColor: activeDomain === index ? currentColor : "#374151"
-                    }}
-                  />
-                  <div>
-                    <h4 className={`font-semibold text-lg transition-colors duration-300 ${activeDomain === index ? "text-white" : "text-gray-400 group-hover:text-white"}`}>
-                      {domain.name}
-                    </h4>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* Domain Selectors */}
+          <motion.div variants={itemVariants} className="lg:col-span-5 flex flex-col gap-2">
+            {domains.map((domain: Domain, index: number) => {
+              const isActive = activeDomain === index;
+              return (
+                <motion.button
+                  whileHover={{ x: 3 }}
+                  whileTap={{ scale: 0.99 }}
+                  key={domain.name}
+                  onClick={() => setActiveDomain(index)}
+                  className={`group w-full text-left rounded-xl p-4 flex items-center justify-between cursor-pointer transition-all duration-300 ${
+                    isActive
+                      ? "bg-indigo-500/[0.06] border border-indigo-500/25 shadow-lg shadow-indigo-500/5"
+                      : "bg-white/[0.02] border border-white/[0.04] hover:border-white/8 hover:bg-white/[0.03]"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <div
+                      className="w-2 h-2 rounded-full transition-all duration-400"
+                      style={{
+                        backgroundColor: isActive ? "#6366f1" : "#374151",
+                        boxShadow: isActive ? "0 0 8px rgba(99,102,241,0.5)" : "none"
+                      }}
+                    />
+                    <div>
+                      <h4 className={`font-bold text-sm tracking-tight transition-colors duration-300 ${isActive ? "text-white" : "text-gray-400 group-hover:text-gray-200"}`}>
+                        {domain.name}
+                      </h4>
+                      <span className="text-[9px] font-mono text-gray-600 tracking-wider block mt-0.5">{domain.category}</span>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-center space-x-2">
-                  <span className={`font-mono text-xs transition-colors duration-300 ${activeDomain === index ? "text-indigo-400" : "text-gray-500"}`}>
+                  <span className={`font-mono text-xs font-semibold transition-colors duration-300 ${isActive ? "text-indigo-400" : "text-gray-600"}`}>
                     {domain.energyLevel}%
                   </span>
-                </div>
-              </motion.button>
-            ))}
+                </motion.button>
+              );
+            })}
           </motion.div>
 
-          {/* Central Holographic Visualizer Card (Right side) */}
+          {/* Detail Card */}
           <motion.div variants={itemVariants} className="lg:col-span-7 min-h-[420px]">
             <AnimatePresence mode="wait">
               <motion.div 
                 key={activeDomain}
-                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-                transition={{ duration: 0.4 }}
-                className="rounded-3xl p-8 relative overflow-hidden h-full min-h-[480px] flex flex-col justify-between border border-white/5 bg-white/[0.02] backdrop-blur-2xl gap-8"
+                exit={{ opacity: 0, y: -12, filter: "blur(4px)" }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="glass-panel rounded-2xl p-7 relative overflow-hidden h-full min-h-[420px] flex flex-col justify-between gap-6"
               >
-                {/* Minimal radial glow behind content */}
-                <div
-                  className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-[100px] opacity-20 pointer-events-none transition-colors duration-1000 ${
-                    activeDomain % 2 === 0 ? "bg-indigo-500" : "bg-purple-500"
-                  }`}
-                />
+                {/* Subtle glow */}
+                <div className="absolute top-0 right-0 w-48 h-48 rounded-full blur-[80px] opacity-8 pointer-events-none bg-indigo-500" />
 
-                <div className="space-y-8 relative z-10">
-                  {/* Visualizer header */}
-                  <div className="flex justify-between items-start border-b border-white/10 pb-6">
-                    <div className="space-y-2">
-                      <span className="text-[10px] font-mono text-indigo-400 font-semibold tracking-wider flex items-center">
-                        <Activity className="w-3 h-3 mr-1" />
-                        CONCEPT NODE // 0{activeDomain + 1}
+                <div className="space-y-5 relative z-10">
+                  {/* Header */}
+                  <div className="flex justify-between items-start border-b border-white/5 pb-5">
+                    <div className="space-y-1">
+                      <span className="text-[10px] font-mono text-indigo-400 font-medium tracking-wider flex items-center gap-1.5">
+                        <Activity className="w-3 h-3" />
+                        Topic {String(activeDomain + 1).padStart(2, "0")}
                       </span>
-                      <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-normal leading-snug">
+                      <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-tight">
                         {domains[activeDomain].name}
                       </h3>
                     </div>
                     
                     <div className="text-right">
-                      <span className="text-[9px] font-mono text-gray-400 block mb-1">CONCEPT INTEGRITY</span>
-                      <span className="text-3xl font-mono font-extrabold text-white">
+                      <span className="text-[9px] font-mono text-gray-600 block mb-1">Strength</span>
+                      <span className="text-2xl font-mono font-bold text-white">
                         {domains[activeDomain].energyLevel}%
                       </span>
                     </div>
                   </div>
 
-                  {/* Analytical details */}
-                  <div className="space-y-6">
-                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                  {/* Description & Features */}
+                  <div className="space-y-5">
+                    <p className="text-gray-300 text-sm leading-relaxed">
                       {domains[activeDomain].description}
                     </p>
 
-                    {/* Core Topics list */}
-                    <div className="space-y-4">
-                      <h5 className="text-[9px] font-mono text-white/50 font-bold uppercase tracking-widest flex items-center">
-                        <ShieldCheck className="w-3 h-3 mr-2" />
-                        ACTIVE DIRECTIVES
+                    <div className="space-y-3">
+                      <h5 className="text-[10px] font-mono text-gray-500 font-medium tracking-widest flex items-center gap-2">
+                        <ShieldCheck className="w-3.5 h-3.5 text-indigo-400/60" />
+                        Core Topics
                       </h5>
                       
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         {domains[activeDomain].features.map((feature: string, i: number) => (
                           <div 
                             key={i}
-                            className="flex items-start space-x-2 text-xs text-gray-400 bg-white/5 p-3 rounded-lg border border-white/5"
+                            className="flex items-start gap-2 text-xs text-gray-400 bg-white/[0.03] p-3 rounded-lg border border-white/[0.04] hover:border-white/8 transition-colors"
                           >
-                            <CheckCircle2 className="w-4 h-4 text-indigo-400 flex-shrink-0 mt-0.5" />
-                            <span className="leading-snug">{feature}</span>
+                            <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400/70 flex-shrink-0 mt-0.5" />
+                            <span className="leading-relaxed">{feature}</span>
                           </div>
                         ))}
                       </div>
@@ -165,22 +160,22 @@ export default function Skills() {
                   </div>
                 </div>
 
-                {/* Progress Index Bar */}
-                <div className="pt-8 border-t border-white/10 relative z-10 mt-auto">
-                  <div className="flex justify-between items-center text-[9px] font-mono text-gray-400 mb-2">
-                    <span className="flex items-center">
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 mr-2 animate-pulse" />
-                      STATUS: ACTIVE
+                {/* Progress Bar */}
+                <div className="pt-5 border-t border-white/5 relative z-10 mt-auto">
+                  <div className="flex justify-between items-center text-[10px] font-mono text-gray-600 mb-2">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_rgba(52,211,153,0.5)]" />
+                      Active
                     </span>
-                    <span>PROGRESS_LEVEL</span>
+                    <span>Progress</span>
                   </div>
                   
-                  <div className="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+                  <div className="w-full bg-white/5 rounded-full h-1 overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${domains[activeDomain].energyLevel}%` }}
-                      transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-                      className="h-full bg-indigo-500 rounded-full"
+                      transition={{ duration: 0.7, ease: "easeOut" }}
+                      className="h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full"
                     />
                   </div>
                 </div>

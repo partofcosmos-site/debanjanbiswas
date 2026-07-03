@@ -1,5 +1,5 @@
 // Protects the entire Cloudflare Pages deployment with HTTP Basic Authentication
-export const onRequest = async (context: any) => {
+export const onRequest = async (context: { request: Request; next: () => Promise<Response> }) => {
   const { request } = context;
   const authHeader = request.headers.get("Authorization");
 

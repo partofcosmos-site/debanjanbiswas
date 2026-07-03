@@ -1,25 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #04060a;
-  --foreground: #f1f5f9;
-  --card: rgba(8, 12, 20, 0.5);
-  --card-border: rgba(139, 92, 246, 0.12);
+  --background: #020408;
+  --foreground: #e8eaed;
   
-  --neon-cyan: 6, 182, 212;
-  --neon-purple: 139, 92, 246;
-  --neon-pink: 236, 72, 153;
+  /* Refined palette */
+  --accent-indigo: #6366f1;
+  --accent-violet: #8b5cf6;
+  --accent-pink: #ec4899;
+  --accent-cyan: #22d3ee;
+  
+  --card-glass: rgba(8, 12, 24, 0.55);
+  --card-border: rgba(255, 255, 255, 0.04);
+  --card-border-hover: rgba(99, 102, 241, 0.18);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: var(--font-geist-mono), Courier, monospace;
+  --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-mono), monospace;
 }
 
-/* Base resets & styles */
+/* Base resets */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -28,6 +31,7 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
@@ -36,83 +40,87 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
   position: relative;
+  min-height: 100%;
 }
 
-/* Custom Scrollbar */
+/* Premium Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #04060a;
+  background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  background: rgba(99, 102, 241, 0.12);
+  border-radius: 9999px;
+  border: 2px solid var(--background);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(99, 102, 241, 0.3);
 }
 
-/* Textbook outline graphic styling */
-.textbook-spine {
-  position: relative;
+/* Cosmic Background Grid */
+.cosmic-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
-.textbook-spine::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 100%;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.1));
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+/* Premium Glassmorphism Panel */
+.glass-panel {
+  background: var(--card-glass);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--card-border);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Custom Keyframe Animations */
-@keyframes twinkle {
-  0%, 100% { opacity: 0.15; transform: scale(0.85); }
-  50% { opacity: 1; transform: scale(1.15); }
+.glass-panel:hover {
+  border-color: var(--card-border-hover);
+  box-shadow: 
+    0 8px 32px -8px rgba(0, 0, 0, 0.5), 
+    0 0 16px -2px rgba(99, 102, 241, 0.06);
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(0.5deg); }
+/* Glow active */
+.glow-active {
+  border-color: rgba(99, 102, 241, 0.4) !important;
+  box-shadow: 0 0 20px -5px rgba(99, 102, 241, 0.2);
 }
 
+/* Animations */
 @keyframes pulse-slow {
-  0%, 100% { opacity: 0.25; transform: scale(1); }
-  50% { opacity: 0.45; transform: scale(1.03); }
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.03); }
 }
 
-.animate-twinkle {
-  animation: twinkle 4s infinite ease-in-out;
-}
-
-.animate-float {
-  animation: float 6s infinite ease-in-out;
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
 .animate-pulse-slow {
-  animation: pulse-slow 8s infinite ease-in-out;
+  animation: pulse-slow 10s infinite ease-in-out;
 }
 
-.animate-spin-slow {
-  animation: spin 40s linear infinite;
+.animate-float-slow {
+  animation: float-slow 8s infinite ease-in-out;
 }
 
-.animate-spin-slower {
-  animation: spin 60s linear infinite;
+/* Text Selection */
+::selection {
+  background: rgba(99, 102, 241, 0.3);
+  color: #ffffff;
 }
 
-/* Constellation orbit lines */
-.orbit-ring {
-  border: 1px dashed rgba(6, 182, 212, 0.12);
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+/* Section spacing for pages below navbar */
+.page-section {
+  padding-top: 8rem;
+  padding-bottom: 4rem;
 }
-
-

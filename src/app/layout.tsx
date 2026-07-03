@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -26,19 +26,25 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
+      className={`${outfit.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#04060a] text-slate-100 font-sans select-none antialiased">
+      <body className="min-h-full flex flex-col bg-[#020408] text-slate-100 font-sans select-none antialiased">
+        <div className="cosmic-grid" />
         <Navbar />
-        <main className="flex-grow flex flex-col relative z-10 pt-20">
+        <main className="flex-grow flex flex-col relative z-10">
           {children}
         </main>
         
-        {/* Minimal Footer */}
-        <footer className="w-full border-t border-white/5 py-8 mt-12">
-          <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500">
-            <p>© {new Date().getFullYear()} Debanjan Biswas. All rights reserved.</p>
-            <p className="mt-2 sm:mt-0">IPhO & IIT-JEE Candidate</p>
+        {/* Footer */}
+        <footer className="w-full border-t border-white/5 py-10 mt-16 relative z-10">
+          <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p className="text-xs text-gray-500 font-sans">
+              © {new Date().getFullYear()} Debanjan Biswas. All rights reserved.
+            </p>
+            <p className="text-xs text-gray-600 font-mono tracking-wider">
+              IPhO & IIT-JEE Candidate
+            </p>
           </div>
         </footer>
       </body>
