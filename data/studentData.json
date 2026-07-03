@@ -2,21 +2,13 @@
   "profile": {
     "name": "Debanjan Biswas",
     "class": "Class 11",
-    "aspirations": [
-      "International Physics Olympiad (IPhO) Gold Medal Aspirant",
-      "IIT-JEE Advanced Candidate",
-      "Future Physics Researcher // MIT & Stanford Dream Trajectory"
-    ],
-    "tagline": "Quantizing physical manifolds. Building a specialist physics spike, solving rigorous problem sets, and pursuing fundamental mechanics from deep state-government schooling in West Bengal to the elite laboratories of MIT.",
-    "targets": [
-      { "id": "mit", "name": "MIT Physics (Dream Domain)", "timeline": "2028 Target" },
-      { "id": "stanford", "name": "Stanford Physics (Core Target)", "timeline": "2028 Target" },
-      { "id": "ipho", "name": "IPhO Gold Medal (India Team)", "timeline": "2028 Target" },
-      { "id": "backups", "name": "IITs (KGP Backup) / IISc / CMI / ISI", "timeline": "JEE Advanced" }
-    ],
-    "credentials": [
-      { "name": "National Means Cum Merit Scholar", "value": "NMMS Recipient", "info": "Scholastic Aptitude & Mental Ability" },
-      { "name": "Jawahar Navodaya Vidyalaya Alumni", "value": "JNV Admitted (Class 6)", "info": "Selected for merit-based boarding" }
+    "school": "CBSE School, West Bengal",
+    "tagline": "A student from West Bengal passionate about physics, astronomy, and building things. Currently preparing for Physics Olympiad and JEE while exploring the universe one problem at a time.",
+    "highlights": [
+      { "label": "IIT Kharagpur Kriti RISE / I-KITES", "detail": "Selected participant in the IIT KGP research & innovation program", "featured": true },
+      { "label": "Hack Club Member", "detail": "Part of the global Hack Club community — building, shipping, and learning" },
+      { "label": "Contest Participant", "detail": "Compete in various physics, math, and coding contests — not a pro, but always in the arena" },
+      { "label": "NMMS Scholar", "detail": "National Means Cum Merit Scholarship recipient" }
     ]
   },
   "subscriptions": [
