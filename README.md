@@ -1,25 +1,39 @@
-# Part of Cosmos - Portfolio Architecture
-
-Welcome to the **Part of Cosmos** portfolio repository. 
-
-This project is being architected as a high-performance, aesthetically stunning web application built on the **Next.js App Router** framework. It is designed to showcase creative development, interactive experiences, and cosmic-themed UI/UX.
-
-## 🚀 Architecture & Tech Stack
-
-*   **Framework:** Next.js (App Router)
-*   **Language:** TypeScript / JavaScript
-*   **Styling:** Custom CSS / Tailwind CSS (Optional, based on requirements)
-*   **Data Management:** Local JSON data stores (e.g., `/data/projects.json`) for seamless static generation.
-*   **Deployment:** Vercel / GitHub Pages
-
-## 📂 Project Structure
-
-*   `/data/` - Holds static JSON data powering the portfolio content (e.g., project history, timeline).
-*   *(More directories like `/app`, `/components`, and `/public` will be initialized shortly as the Next.js foundation is laid down).*
-
-## 🛡️ Git Configuration
-
-A strict `.gitignore` shield is in place to prevent the caching of build artifacts, environment variables, and IDE cache files from entering the source control.
+# 🌌 Debanjan Biswas
+*Class 11 Student • Aspiring Physicist • Builder in the Cosmos*
 
 ---
-*Transmitting from the digital ether...*
+
+<div align="center">
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Debanjan%20Biswas-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/debanjan00/)
+[![Email](https://img.shields.io/badge/Email-partofcosmmos%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:partofcosmmos@gmail.com)
+[![Status](https://img.shields.io/badge/Status-JEE%20%26%20Physics%20Olympiad%20Aspirant-blueviolet?style=for-the-badge)](https://github.com/debanjan00)
+[![Hack Club](https://img.shields.io/badge/Hack%20Club-Member-EC3750?style=for-the-badge&logo=hackclub)](https://hackclub.com)
+
+</div>
+
+---
+
+### ✨ About Me
+
+I am a student from West Bengal, India, passionate about physics, astronomy, and building software. Currently preparing for the **Indian National Physics Olympiad (INPhO / IOQP)** and **IIT-JEE Advanced** while exploring the universe, one problem and line of code at a time.
+
+---
+
+### 🏆 Milestones & Highlights
+
+*   **IIT Kharagpur Kriti RISE / I-KITES** – Selected participant in the research & innovation program.
+*   **National Means Cum Merit Scholarship (NMMS) Scholar** – Academic aptitude scholarship recipient.
+*   **Hack Club Member** – Part of the global community of teenager builders and developers.
+*   **Contest Participant** – Actively competing in physics, math, and coding contests to sharpen my problem-solving skills.
+
+---
+
+### 📬 Connect in Orbit
+
+*   💼 **LinkedIn:** [/in/debanjan00](https://linkedin.com/in/debanjan00/)
+*   📧 **Email:** [partofcosmmos@gmail.com](mailto:partofcosmmos@gmail.com)
+
+---
+
+*📡 Transmitting from West Bengal, India...*
