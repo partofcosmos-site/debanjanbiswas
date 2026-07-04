@@ -30,42 +30,49 @@ export default function Contact() {
   };
 
   return (
-    <section className="relative min-h-screen page-section px-6 max-w-5xl mx-auto z-10">
-      {/* Background ambience */}
-      <div className="absolute right-0 bottom-1/4 w-80 h-80 bg-violet-600/4 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
-      <div className="absolute left-0 top-1/4 w-96 h-96 bg-indigo-600/4 rounded-full blur-[140px] pointer-events-none" />
+    <section className="relative min-h-screen page-section px-6 flex flex-col justify-center items-center z-10 py-24">
+      {/* Background ambient lighting */}
+      <div className="absolute right-0 bottom-1/4 w-96 h-96 bg-violet-600/3 rounded-full blur-[140px] pointer-events-none animate-pulse-slow" />
+      <div className="absolute left-0 top-1/4 w-96 h-96 bg-indigo-600/3 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="space-y-12">
-        {/* Section Header */}
-        <div className="space-y-3 max-w-xl">
-          <span className="text-[11px] font-medium tracking-widest text-indigo-400 uppercase flex items-center gap-1.5">
+      {/* Main Container */}
+      <div className="max-w-4xl w-full mx-auto space-y-12 relative z-10 flex flex-col items-center">
+        
+        {/* Section Header (Centered) */}
+        <div className="space-y-3 text-center max-w-xl">
+          <span className="text-[11px] font-mono font-medium tracking-widest text-indigo-400 uppercase flex items-center justify-center gap-1.5">
             <Mail className="w-3.5 h-3.5" /> Get in Touch
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-none">
             Contact
           </h2>
-          <div className="w-10 h-0.5 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full" />
+          <p className="text-gray-400 text-sm sm:text-base leading-relaxed max-w-md mx-auto pt-1">
+            Have questions about Physics Olympiad prep, advanced mechanics, or research collaborations? Let's connect.
+          </p>
+          <div className="w-12 h-0.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-pink-500 rounded-full mx-auto" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          {/* Info Panel */}
-          <div className="lg:col-span-5 flex flex-col justify-between rounded-2xl p-7 gap-6 glass-panel">
+        {/* Form and Info Layout Grid (Balanced Columns) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch w-full max-w-4xl">
+          
+          {/* Info Panel (Left side on desktop) */}
+          <div className="md:col-span-5 flex flex-col justify-between rounded-2xl p-7 gap-8 glass-panel bg-[#040813]/40 border border-white/[0.04]">
             <div className="space-y-4">
-              <h4 className="text-xl font-bold text-white tracking-tight">Let&apos;s Connect</h4>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Whether you have inquiries regarding Physics Olympiad preparation, advanced JEE mechanics, or research collaborations — feel free to reach out.
+              <h4 className="text-lg font-bold text-white tracking-tight">Let&apos;s Orbit</h4>
+              <p className="text-gray-400 text-sm leading-[1.75]">
+                I'm active in physics, math, and maker circles. Feel free to transmit a message, and I'll get back to you as soon as I exit my study loop.
               </p>
             </div>
 
-            {/* Info Readout */}
-            <div className="border border-white/[0.04] rounded-xl p-5 bg-[#020408]/60 font-mono text-[11px] text-gray-600 space-y-3">
+            {/* Structured Info Card */}
+            <div className="border border-white/[0.04] rounded-xl p-5 bg-[#010307]/80 font-mono text-[11px] text-gray-500 space-y-3.5">
               <div className="flex justify-between border-b border-white/[0.04] pb-2.5">
                 <span>Location</span>
                 <span className="text-indigo-400 font-medium">West Bengal, India</span>
               </div>
               <div className="flex justify-between border-b border-white/[0.04] pb-2.5">
-                <span>Current Focus</span>
-                <span className="text-white font-medium">IPhO & JEE Advanced</span>
+                <span>Focus</span>
+                <span className="text-white font-medium">INPhO & JEE Advanced</span>
               </div>
               <div className="flex justify-between">
                 <span>Availability</span>
@@ -77,8 +84,8 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Form Panel */}
-          <div className="lg:col-span-7 rounded-2xl p-7 flex flex-col justify-center relative overflow-hidden glass-panel">
+          {/* Form Panel (Right side on desktop) */}
+          <div className="md:col-span-7 rounded-2xl p-7 flex flex-col justify-center relative overflow-hidden glass-panel bg-[#040813]/40 border border-white/[0.04]">
             {status === "idle" && (
               <form onSubmit={handleSubmit} className="space-y-5 relative z-10 w-full">
                 <div className="space-y-1.5">
@@ -93,7 +100,7 @@ export default function Contact() {
                     onChange={handleInputChange}
                     required
                     placeholder="Your name"
-                    className="w-full bg-white/[0.02] border border-white/[0.06] focus:border-indigo-500/40 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/8 transition-all duration-300"
+                    className="w-full bg-[#010307]/40 border border-white/[0.06] focus:border-indigo-500/40 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-indigo-500/20 transition-all duration-300"
                   />
                 </div>
 
@@ -109,7 +116,7 @@ export default function Contact() {
                     onChange={handleInputChange}
                     required
                     placeholder="your@email.com"
-                    className="w-full bg-white/[0.02] border border-white/[0.06] focus:border-indigo-500/40 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/8 transition-all duration-300"
+                    className="w-full bg-[#010307]/40 border border-white/[0.06] focus:border-indigo-500/40 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-indigo-500/20 transition-all duration-300"
                   />
                 </div>
 
@@ -125,30 +132,30 @@ export default function Contact() {
                     onChange={handleInputChange}
                     required
                     placeholder="Write your message here..."
-                    className="w-full bg-white/[0.02] border border-white/[0.06] focus:border-indigo-500/40 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/8 transition-all duration-300 resize-none"
+                    className="w-full bg-[#010307]/40 border border-white/[0.06] focus:border-indigo-500/40 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-indigo-500/20 transition-all duration-300 resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-white hover:bg-gray-100 rounded-xl text-black font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-white/5"
+                  className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 rounded-xl text-white font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-indigo-600/10 border border-indigo-500/30"
                 >
                   <Send className="w-3.5 h-3.5" /> Send Message
                 </button>
               </form>
             )}
 
-            {/* Loading State */}
+            {/* Loading States */}
             {(status === "connecting" || status === "transmitting") && (
-              <div className="flex flex-col justify-center items-center h-full min-h-[320px] gap-6 py-8 relative z-10">
-                <div className="relative w-16 h-16 flex items-center justify-center">
+              <div className="flex flex-col justify-center items-center h-full min-h-[340px] gap-6 py-8 relative z-10">
+                <div className="relative w-14 h-14 flex items-center justify-center">
                   <div className="absolute inset-0 rounded-full border border-indigo-500/20 animate-ping" />
                   <div className="absolute w-[75%] h-[75%] rounded-full border border-dashed border-violet-400/30 animate-spin" />
                   <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-indigo-500 to-violet-500 animate-pulse shadow-lg shadow-indigo-500/30" />
                 </div>
                 <div className="text-center space-y-1.5">
                   <p className="font-mono text-xs text-white tracking-wide animate-pulse font-medium">
-                    {status === "connecting" ? "Connecting..." : "Sending message..."}
+                    {status === "connecting" ? "Connecting..." : "Transmitting..."}
                   </p>
                   <span className="font-mono text-[9px] text-gray-600 tracking-wider">Please wait</span>
                 </div>
@@ -157,14 +164,14 @@ export default function Contact() {
 
             {/* Success State */}
             {status === "success" && (
-              <div className="flex flex-col justify-center items-center h-full min-h-[320px] gap-5 text-center py-6 relative z-10">
-                <div className="w-14 h-14 rounded-full bg-emerald-500/8 border border-emerald-400/20 flex items-center justify-center">
+              <div className="flex flex-col justify-center items-center h-full min-h-[340px] gap-5 text-center py-6 relative z-10">
+                <div className="w-14 h-14 rounded-full bg-emerald-500/8 border border-emerald-400/25 flex items-center justify-center">
                   <CheckCircle2 className="w-7 h-7 text-emerald-400" />
                 </div>
                 <div className="space-y-2">
                   <h4 className="text-xl font-bold tracking-tight text-white">Message Sent</h4>
                   <p className="text-gray-400 text-sm max-w-xs leading-relaxed">
-                    Thanks for reaching out! I&apos;ll get back to you as soon as possible.
+                    Transmission complete. I&apos;ll read your message and reply as soon as possible.
                   </p>
                 </div>
 
@@ -177,6 +184,7 @@ export default function Contact() {
               </div>
             )}
           </div>
+
         </div>
       </div>
     </section>

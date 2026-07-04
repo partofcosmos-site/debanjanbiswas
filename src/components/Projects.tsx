@@ -129,24 +129,6 @@ export default function Projects() {
                     </p>
                   </div>
                 </div>
-
-                {/* Progress */}
-                <div className="pt-4 border-t border-white/5 relative z-10 pl-3 mt-auto">
-                  <div className="flex justify-between items-center text-[10px] font-mono text-gray-600 mb-2">
-                    <span className="flex items-center gap-1"><Bookmark className="w-3 h-3 text-indigo-400/60" /> Progress</span>
-                    <span className="text-indigo-400 font-semibold">{book.progress}%</span>
-                  </div>
-                  
-                  <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${book.progress}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1, ease: "easeOut" }}
-                      className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-violet-500"
-                    />
-                  </div>
-                </div>
               </motion.div>
             ))}
           </AnimatePresence>
