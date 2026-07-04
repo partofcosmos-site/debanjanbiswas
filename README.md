@@ -16,7 +16,7 @@
 
 ### ✨ About Me
 
-I am a student from West Bengal, India, passionate about physics, astronomy, and building software. Currently preparing for the **Indian National Physics Olympiad (INPhO / IOQP)** and **IIT-JEE Advanced** while exploring the universe, one problem and line of code at a time.
+I am a student from West Bengal, India, passionate about physics, astronomy, and building software. Currently preparing for the **Indian National Physics Olympiad (InPhO)** and **IIT-JEE Advanced** while exploring the universe, one problem and line of code at a time.
 
 ---
 
