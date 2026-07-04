@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import CosmicBackground from "@/components/CosmicBackground";
 
 const outfit = Outfit({
   variable: "--font-sans",
@@ -30,7 +31,7 @@ export default function RootLayout({
       className={`${outfit.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#020408] text-slate-100 font-sans select-none antialiased">
-        <div className="cosmic-grid" />
+        <CosmicBackground />
         <Navbar />
         <main className="flex-grow flex flex-col relative z-10">
           {children}
