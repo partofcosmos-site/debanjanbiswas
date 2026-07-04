@@ -1,6 +1,6 @@
 # 🌌 Debanjan Biswas
 *Class 11 Student • Aspiring Physicist • Builder in the Cosmos*
-Here is the link for my site -  [site](https://debanjanbiswas.pages.dev/)
+
 ---
 
 <div align="center">
@@ -13,7 +13,7 @@ Here is the link for my site -  [site](https://debanjanbiswas.pages.dev/)
 </div>
 
 ---
-
+Here is the link for my site -  [site](https://debanjanbiswas.pages.dev/)
 ### ✨ About Me
 
 I am a student from West Bengal, India, passionate about physics, astronomy, and building software. Currently preparing for the **Indian National Physics Olympiad (InPhO)** and **IIT-JEE Advanced** while exploring the universe, one problem and line of code at a time.
