@@ -29,7 +29,7 @@ export default function Hero() {
   const { name, class: className, school, tagline, highlights } = studentData.profile;
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-start overflow-hidden px-6 pt-48 sm:pt-52 md:pt-56 pb-20">
+    <section className="relative min-h-screen flex flex-col justify-start overflow-hidden px-6 pt-16 sm:pt-20 pb-20">
       {/* Soft background gradients */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute w-[500px] h-[500px] bg-indigo-600/8 rounded-full blur-[140px] top-[10%] right-[15%] animate-pulse-slow" />

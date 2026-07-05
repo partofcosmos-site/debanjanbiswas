@@ -8,7 +8,7 @@ const GOOGLE_FORM_URL =
 
 export default function Contact() {
   return (
-    <section className="relative min-h-screen px-6 flex flex-col justify-start items-center z-10 pt-48 sm:pt-52 md:pt-56 pb-20">
+    <section className="relative min-h-screen px-6 flex flex-col justify-start items-center z-10 pt-16 sm:pt-20 pb-20">
       {/* Background ambient lighting */}
       <div className="absolute right-0 bottom-1/4 w-96 h-96 bg-violet-600/3 rounded-full blur-[140px] pointer-events-none animate-pulse-slow" />
       <div className="absolute left-0 top-1/4 w-96 h-96 bg-indigo-600/3 rounded-full blur-[140px] pointer-events-none" />
