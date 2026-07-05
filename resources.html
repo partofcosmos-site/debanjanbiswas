@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" data-scroll-behavior="smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources &amp; Experience | Debanjan Biswas</title>
+  <meta name="description" content="Notes, strategies, and lessons from my Physics Olympiad and IIT-JEE preparation. Curated directories and lists of high school resources.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Cosmic Background Layers -->
+  <div class="cosmic-background">
+    <canvas class="cosmic-canvas"></canvas>
+    <div class="planet-sphere">
+      <div class="planet-clouds"></div>
+    </div>
+    <div class="glow-blob glow-left"></div>
+    <div class="glow-blob glow-right"></div>
+  </div>
+  <div class="cosmic-grid"></div>
+
+  <!-- Header / Navigation Bar -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">DB</div>
+        <span class="logo-text">Debanjan</span>
+      </a>
+      <!-- Desktop Navigation -->
+      <nav class="desktop-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="resources.html" class="nav-link active">Resources</a>
+        <a href="lab.html" class="nav-link">Lab</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <!-- Mobile toggle menu button -->
+      <button class="mobile-toggle" aria-label="Toggle Menu">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile dropdown menu -->
+    <div class="mobile-menu">
+      <nav>
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="resources.html" class="mobile-nav-link active">Resources</a>
+        <a href="lab.html" class="mobile-nav-link">Lab</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content container -->
+  <main class="container">
+    <section class="page-section">
+      <div class="page-ambient-lights">
+        <div class="ambient-light-1"></div>
+        <div class="ambient-light-2"></div>
+      </div>
+
+      <!-- Page Header -->
+      <div style="margin-bottom: 4rem; position: relative; z-index: 10;">
+        <span class="text-sm-mono" style="color: var(--accent-indigo); text-transform: uppercase; letter-spacing: 0.1em; display: flex; align-items: center; gap: 0.375rem;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+          Study Hub &amp; Experience
+        </span>
+        <h1 class="hero-title" style="margin-top: 0.5rem; margin-bottom: 1rem;">Resources</h1>
+        <p class="hero-tagline" style="margin-bottom: 1.5rem; max-width: 44rem;">
+          A raw compilation of my real experiences, preparation strategies, and resources I have been exposed to during my high school journey (updated as of July 5, 2026).
+        </p>
+        <div class="w-12 h-0.5 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full" style="width: 3rem; height: 2px; background: linear-gradient(to right, #6366f1, #8b5cf6); border-radius: 999px;"></div>
+      </div>
+
+      <!-- Guide Articles (Blog style accordion) -->
+      <div class="blog-list">
+        
+        <article class="glass-panel blog-card">
+          <button class="blog-trigger">
+            <div class="blog-flex">
+              <div class="blog-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              </div>
+              <div style="flex-grow: 1;">
+                <div class="blog-header-flex">
+                  <h3 class="blog-title">How I Actually Approach Irodov Problems</h3>
+                  <svg class="blog-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+                <p class="blog-summary">
+                  Your approach to Irodov depends entirely on your objective—whether you want fun/depth or selective olympiad study under a time limit.
+                </p>
+                <div class="blog-tags">
+                  <span class="blog-tag">Problem Solving</span>
+                  <span class="blog-tag">Physics Core</span>
+                  <span class="blog-tag">Methodology</span>
+                </div>
+              </div>
+            </div>
+          </button>
+
+          <div class="blog-content">
+            <p>
+              Your approach to I.E. Irodov&apos;s <em>Problems in General Physics</em> should depend entirely on your target objective:
+            </p>
+            <div style="display: grid; grid-template-cols: 1fr; gap: 1.25rem; margin: 1rem 0;">
+              <div style="padding: 1.25rem; border-radius: 0.75rem; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03);">
+                <strong style="color: var(--accent-pink); font-size: 13px; font-family: var(--font-mono); text-transform: uppercase; display: flex; align-items: center; gap: 0.375rem; margin-bottom: 0.5rem;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                  Scenario A: Having Real Fun
+                </strong>
+                <p style="font-size: 12px; color: #94a3b8; line-height: 1.6;">
+                  If your goal is falling in love with physics, there is no set system. Just go ahead, try solving them, fail, come back, review your theory, and use AI or online resources to speed up your learning. Never compromise on depth—the process is about building deep intuition.
+                </p>
+              </div>
+              <div style="padding: 1.25rem; border-radius: 0.75rem; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03);">
+                <strong style="color: var(--accent-indigo); font-size: 13px; font-family: var(--font-mono); text-transform: uppercase; display: flex; align-items: center; gap: 0.375rem; margin-bottom: 0.5rem;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                  Scenario B: Under Time Constraints
+                </strong>
+                <p style="font-size: 12px; color: #94a3b8; line-height: 1.6;">
+                  If you are training under a strict timeline (e.g. for the Physics Olympiad / IPhO), do not solve every question. The book contains many research-level questions. Instead, solve selectively with a mentor. If you don&apos;t have one, feel free to <a href="contact.html" style="color: var(--accent-indigo); text-decoration: underline;">contact me</a>—I keep a list of curated, high-value Irodov problems that target active exam topics.
+                </p>
+              </div>
+            </div>
+            <div style="background: rgba(99, 102, 241, 0.03); border: 1px solid rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 0.75rem; margin-bottom: 1rem;">
+              <span style="font-size: 10px; font-family: var(--font-mono); color: var(--accent-indigo); text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 0.25rem;">Rule #1: Solution Discipline</span>
+              <p style="font-size: 12px; color: #cbd5e1; line-height: 1.6;">
+                Never see the solution first and come to the question. Always do the opposite. First come to the question and then go to the solution. It&apos;s a very simple thing, but still I am saying this.
+              </p>
+            </div>
+            <p>
+              When it comes to the solving part, first dissect the problems in this path: draw the physical scenario, identify constraints, trace conservative values, and construct equations only after you have developed a solid graphical visualization of the forces at play.
+            </p>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Resources Directories -->
+      <div style="margin-bottom: 4rem;">
+        <h2 class="section-subtitle-line" style="margin-bottom: 2rem;">
+          <span class="span-indigo"></span>
+          Curated High School Directory
+        </h2>
+
+        <div class="resources-grid">
+          
+          <!-- CS/Coding Card -->
+          <div class="glass-panel directory-card">
+            <div class="directory-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              <h3>Coding &amp; CS</h3>
+            </div>
+            <p class="directory-desc">
+              Recommended platforms for algorithms, problem solving, and logic development:
+            </p>
+            <ul class="directory-list">
+              <li class="directory-item">
+                <span>CodeChef / Codeforces</span>
+                <span class="directory-val">Competitive programming sites</span>
+              </li>
+              <li class="directory-item">
+                <span>LeetCode</span>
+                <span class="directory-val">Interview logic &amp; puzzles</span>
+              </li>
+              <li class="directory-item">
+                <span>Python Programming</span>
+                <span class="directory-val highlight-val">No alternative for starting out</span>
+              </li>
+            </ul>
+            <div class="directory-links">
+              <a href="https://ioinformatics.org/" target="_blank" rel="noreferrer" class="directory-link">
+                International Olympiad in Informatics (IOI) <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+              <a href="https://ioai-official.org/" target="_blank" rel="noreferrer" class="directory-link">
+                International Olympiad of AI (IOAI) <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Physics Card -->
+          <div class="glass-panel directory-card">
+            <div class="directory-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 20V4H20"></path></svg>
+              <h3>Physics Olympiad &amp; Prep</h3>
+            </div>
+            <p class="directory-desc">
+              Resource review and coaching programs for advanced physics courses:
+            </p>
+            <ul class="directory-list">
+              <li class="directory-item-stacked">
+                <strong>Art of Problem Solving (AoPS) Physics</strong>
+                <span>Highly recommended curriculum for international physics streams.</span>
+              </li>
+              <li class="directory-item-stacked">
+                <strong>Vedantu Olympiad School (India)</strong>
+                <span>Personally enrolled; quite a nice setup as of date (July 5, 2026).</span>
+              </li>
+              <li class="directory-item-stacked">
+                <strong>Cheenta (India)</strong>
+                <span>Attended trial class; nice layout, priced around ₹16,000 for 10 months.</span>
+              </li>
+              <li class="directory-item-stacked">
+                <strong>PhysicsWallah</strong>
+                <span>Affordable syllabus coverage for the initial stage of Indian Olympiads.</span>
+              </li>
+            </ul>
+            <div class="lightbulb-tip">
+              💡 <span>True high achievers are autodidacts (self-learners). Don't worry about program brand names; just dedicate solid, focused time to the questions. Theory is just a blush.</span>
+            </div>
+          </div>
+
+          <!-- Math Card -->
+          <div class="glass-panel directory-card">
+            <div class="directory-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <h3>Mathematics Olympiad</h3>
+            </div>
+            <p class="directory-desc">
+              Math is not my primary domain, but for high-quality mathematical links and roadmaps, you should check this:
+            </p>
+            <a href="https://www.rushilmathur.com/" target="_blank" rel="noreferrer" class="directory-badge-card">
+              <div class="directory-badge-info">
+                <h4>Rushil Mathur&apos;s Website</h4>
+                <p>Curated Index &amp; Olympiad references shelf</p>
+              </div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </div>
+
+          <!-- Internships & Research Card -->
+          <div class="glass-panel directory-card">
+            <div class="directory-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+              <h3>Research &amp; Internships</h3>
+            </div>
+            <p class="directory-desc">
+              Avoid FOMO traps. Rule of thumb: <span style="font-style: italic; color: var(--accent-indigo);">the easier it is to get in, the less valuable the credential is.</span> Useful free resources:
+            </p>
+            <ul class="directory-list">
+              <li class="directory-item">
+                <span>Non-Trivial Program</span>
+                <span class="directory-val">Completely free of cost</span>
+              </li>
+              <li class="directory-item">
+                <span>LaunchX Workshops</span>
+                <span class="directory-val">Scholarships based on evaluation</span>
+              </li>
+              <li class="directory-item">
+                <span>The Knowledge Society (TKS)</span>
+                <span class="directory-val">Scholarships based on evaluation</span>
+              </li>
+              <li class="directory-item">
+                <span>Cheenta (India)</span>
+                <span class="directory-val highlight-val">Only Indian firm in this domain</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Life Lessons banner -->
+      <div class="lessons-banner">
+        <h3 class="section-subtitle-line">
+          <span class="span-pink"></span>
+          My Life Lessons (July 5, 2026)
+        </h3>
+        <div class="lessons-grid">
+          <div class="lesson-card">
+            <span>Principle 01</span>
+            <p>Never give up.</p>
+          </div>
+          <div class="lesson-card">
+            <span>Principle 02</span>
+            <p>Follow your passion.</p>
+          </div>
+          <div class="lesson-card">
+            <span>Principle 03</span>
+            <p>Never stop.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider line -->
+      <div style="border-top: 1px solid rgba(255, 255, 255, 0.05); margin: 4rem 0;"></div>
+
+      <!-- Collapsible Study Stack Section -->
+      <div class="study-stack-wrapper">
+        <button class="stack-header-btn">
+          <div class="stack-title-area">
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              What I personally use
+            </span>
+            <h2>My Study Stack</h2>
+            <p>The textbooks and learning subscriptions I utilize in daily self-study sessions.</p>
+          </div>
+          <svg class="stack-trigger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+
+        <div class="collapsible-stack-content">
+          
+          <!-- Books section -->
+          <div class="stack-sub-section">
+            <h3 class="section-subtitle-line">
+              <span class="span-indigo"></span>
+              Books
+            </h3>
+            <div class="stack-cards-grid">
+              
+              <div class="glass-panel stack-book-card">
+                <div class="stack-book-spine"></div>
+                <div class="stack-book-info">
+                  <div class="stack-book-meta">
+                    <span class="stack-book-cat">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                      Olympiad Math
+                    </span>
+                    <span class="stack-book-status status-active">Active</span>
+                  </div>
+                  <h4>Pathfinder for Olympiad &amp; JEE Advanced</h4>
+                  <p class="stack-book-author">Arvind Tiwari, Sachin Singh</p>
+                </div>
+              </div>
+
+              <div class="glass-panel stack-book-card">
+                <div class="stack-book-spine"></div>
+                <div class="stack-book-info">
+                  <div class="stack-book-meta">
+                    <span class="stack-book-cat">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                      Core Problems
+                    </span>
+                    <span class="stack-book-status status-active">Active</span>
+                  </div>
+                  <h4>Problems in General Physics</h4>
+                  <p class="stack-book-author">I.E. Irodov</p>
+                </div>
+              </div>
+
+              <div class="glass-panel stack-book-card">
+                <div class="stack-book-spine"></div>
+                <div class="stack-book-info">
+                  <div class="stack-book-meta">
+                    <span class="stack-book-cat">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                      Elite Problems
+                    </span>
+                    <span class="stack-book-status status-planned">Planned</span>
+                  </div>
+                  <h4>Problems in Physics</h4>
+                  <p class="stack-book-author">S.S. Krotov</p>
+                </div>
+              </div>
+
+              <div class="glass-panel stack-book-card">
+                <div class="stack-book-spine"></div>
+                <div class="stack-book-info">
+                  <div class="stack-book-meta">
+                    <span class="stack-book-cat">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                      Theory Base
+                    </span>
+                    <span class="stack-book-status status-reference">Reference</span>
+                  </div>
+                  <h4>Fundamentals of Physics</h4>
+                  <p class="stack-book-author">Resnick, Halliday, Walker</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Platforms section -->
+          <div class="stack-sub-section">
+            <h3 class="section-subtitle-line">
+              <span class="span-pink"></span>
+              Coaching &amp; Platforms
+            </h3>
+            <div class="coaching-grid">
+              
+              <div class="glass-panel coaching-card">
+                <div class="coaching-meta">
+                  <span class="coaching-type">Olympiad Core</span>
+                  <div class="coaching-indicator"></div>
+                </div>
+                <h4>Vedantu Physics Olympiad Program</h4>
+                <p>Full Physics Mastery &amp; Indian National Physics Olympiad (INPhO) preparation coaching.</p>
+                <div class="coaching-footer">
+                  <span>Platform</span>
+                  <span class="platform-val">Vedantu Online</span>
+                </div>
+              </div>
+
+              <div class="glass-panel coaching-card">
+                <div class="coaching-meta">
+                  <span class="coaching-type">JEE Advanced</span>
+                  <div class="coaching-indicator"></div>
+                </div>
+                <h4>FIITJEE Advanced Live Portal</h4>
+                <p>Comprehensive IIT-JEE Advanced live lectures and high-level analytical mock assessments.</p>
+                <div class="coaching-footer">
+                  <span>Platform</span>
+                  <span class="platform-val">FIITJEE App</span>
+                </div>
+              </div>
+
+              <div class="glass-panel coaching-card">
+                <div class="coaching-meta">
+                  <span class="coaching-type">Concept Visuals</span>
+                  <div class="coaching-indicator"></div>
+                </div>
+                <h4>Akash Digital Module &amp; Library</h4>
+                <p>Complete library of focused 10-12 minute visual physics breakdowns and physical review modules.</p>
+                <div class="coaching-footer">
+                  <span>Platform</span>
+                  <span class="platform-val">Akash App &amp; Books</span>
+                </div>
+              </div>
+
+              <div class="glass-panel coaching-card">
+                <div class="coaching-meta">
+                  <span class="coaching-type">State Boards // WBJEE</span>
+                  <div class="coaching-indicator"></div>
+                </div>
+                <h4>Tutopia Regional Coaching</h4>
+                <p>Local online West Bengal JEE &amp; state board preparation modules in Physics, Chemistry, and Math.</p>
+                <div class="coaching-footer">
+                  <span>Platform</span>
+                  <span class="platform-val">Tutopia App</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Layout -->
+  <footer>
+    <div class="footer-content">
+      <p class="copyright">© <span id="year-placeholder">2026</span> Debanjan Biswas. All rights reserved.</p>
+      <p class="title-meta">IPhO &amp; IIT-JEE Candidate</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    document.getElementById("year-placeholder").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
