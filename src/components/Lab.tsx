@@ -241,7 +241,7 @@ export default function Lab() {
   };
 
   return (
-    <section className="relative min-h-screen px-6 max-w-5xl mx-auto z-10 pt-36 sm:pt-40 md:pt-44 pb-20 flex flex-col justify-start items-center">
+    <section className="relative min-h-screen px-6 max-w-5xl mx-auto z-10 pt-48 sm:pt-52 md:pt-56 pb-20 flex flex-col justify-start items-center">
       <div className="space-y-12 relative z-10 w-full flex flex-col items-center">
         
         {/* Section Header */}

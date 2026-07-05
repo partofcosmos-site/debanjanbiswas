@@ -29,14 +29,14 @@ export default function Hero() {
   const { name, class: className, school, tagline, highlights } = studentData.profile;
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-start overflow-hidden px-6 pt-36 sm:pt-40 md:pt-44 pb-20">
+    <section className="relative min-h-screen flex flex-col justify-start overflow-hidden px-6 pt-48 sm:pt-52 md:pt-56 pb-20">
       {/* Soft background gradients */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute w-[500px] h-[500px] bg-indigo-600/8 rounded-full blur-[140px] top-[10%] right-[15%] animate-pulse-slow" />
         <div className="absolute w-[400px] h-[400px] bg-violet-600/6 rounded-full blur-[140px] bottom-[20%] left-[10%]" />
       </div>
 
-      <div className="max-w-4xl mx-auto w-full relative z-10">
+      <div className="max-w-5xl mx-auto w-full relative z-10">
         {/* INTRO */}
         <div className="mb-24">
           <motion.p
