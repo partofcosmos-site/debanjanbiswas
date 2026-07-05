@@ -30,7 +30,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="relative min-h-screen page-section px-6 flex flex-col justify-center items-center z-10 py-24">
+    <section className="relative min-h-screen px-6 flex flex-col justify-start items-center z-10 pt-36 sm:pt-40 md:pt-44 pb-20">
       {/* Background ambient lighting */}
       <div className="absolute right-0 bottom-1/4 w-96 h-96 bg-violet-600/3 rounded-full blur-[140px] pointer-events-none animate-pulse-slow" />
       <div className="absolute left-0 top-1/4 w-96 h-96 bg-indigo-600/3 rounded-full blur-[140px] pointer-events-none" />

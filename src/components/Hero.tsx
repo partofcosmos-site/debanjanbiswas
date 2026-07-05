@@ -29,7 +29,7 @@ export default function Hero() {
   const { name, class: className, school, tagline, highlights } = studentData.profile;
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden px-6 pt-32 pb-20">
+    <section className="relative min-h-screen flex flex-col justify-start overflow-hidden px-6 pt-36 sm:pt-40 md:pt-44 pb-20">
       {/* Soft background gradients */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute w-[500px] h-[500px] bg-indigo-600/8 rounded-full blur-[140px] top-[10%] right-[15%] animate-pulse-slow" />
@@ -38,7 +38,7 @@ export default function Hero() {
 
       <div className="max-w-4xl mx-auto w-full relative z-10">
         {/* INTRO */}
-        <div className="mb-20">
+        <div className="mb-24">
           <motion.p
             custom={0}
             initial="hidden"
@@ -67,7 +67,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             variants={fadeUpVariants}
-            className="text-base sm:text-lg text-gray-400 max-w-2xl mb-8 leading-relaxed"
+            className="text-base sm:text-lg text-gray-400 max-w-2xl mb-12 leading-relaxed"
           >
             {tagline}
           </motion.p>
@@ -78,7 +78,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             variants={fadeUpVariants}
-            className="flex flex-wrap items-center gap-3"
+            className="flex flex-wrap items-center gap-3.5 mb-6"
           >
             <Link href="/contact">
               <button className="group px-6 py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-100 transition-colors flex items-center shadow-lg shadow-white/5 cursor-pointer">
@@ -96,7 +96,7 @@ export default function Hero() {
         </div>
 
         {/* ABOUT + HIGHLIGHTS */}
-        <div className="border-t border-white/5 pt-14 grid grid-cols-1 lg:grid-cols-2 gap-14">
+        <div className="border-t border-white/5 pt-16 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           
           {/* About Me */}
           <motion.div
@@ -105,21 +105,23 @@ export default function Hero() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUpVariants}
-            className="space-y-5"
+            className="space-y-6"
           >
             <h2 className="text-xs font-semibold uppercase tracking-wider text-gray-500 flex items-center gap-2">
               <span className="w-6 h-px bg-gradient-to-r from-indigo-500 to-transparent" />
               About Me
             </h2>
-            <p className="text-gray-300 text-sm leading-[1.85]">
-              I&apos;m a {className} student from West Bengal, India. I love physics, astronomy, and building things on the internet. Most of my time goes into preparing for the Physics Olympiad and JEE — solving problems from Irodov, Krotov, and Pathfinder, and trying to build real intuition for how the universe works.
-            </p>
-            <p className="text-gray-400 text-sm leading-[1.85]">
-              Outside of academics, I&apos;m a member of Hack Club, where I get to build and ship projects with a global community of young makers. I also participate in various physics, math, and coding competitions — I&apos;m not a pro by any means, but I believe in showing up and learning from every contest.
-            </p>
-            <p className="text-gray-400 text-sm leading-[1.85]">
-              My long-term dream is to study physics at one of the world&apos;s best programs and eventually contribute to fundamental research.
-            </p>
+            <div className="space-y-6">
+              <p className="text-gray-300 text-sm leading-[1.85]">
+                I&apos;m a {className} student from West Bengal, India. I love physics, astronomy, and building things on the internet. Most of my time goes into preparing for the Physics Olympiad and JEE — solving problems from Irodov, Krotov, and Pathfinder, and trying to build real intuition for how the universe works.
+              </p>
+              <p className="text-gray-400 text-sm leading-[1.85]">
+                Outside of academics, I&apos;m a member of Hack Club, where I get to build and ship projects with a global community of young makers. I also participate in various physics, math, and coding competitions — I&apos;m not a pro by any means, but I believe in showing up and learning from every contest.
+              </p>
+              <p className="text-gray-400 text-sm leading-[1.85]">
+                My long-term dream is to study physics at one of the world&apos;s best programs and eventually contribute to fundamental research.
+              </p>
+            </div>
           </motion.div>
 
           {/* Highlights */}

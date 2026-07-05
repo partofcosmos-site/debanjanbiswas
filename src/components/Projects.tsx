@@ -41,7 +41,7 @@ export default function Projects() {
     : studentData.books.filter((book: Book) => book.category === filter);
 
   return (
-    <section className="relative min-h-screen page-section px-6 max-w-5xl mx-auto z-10">
+    <section className="relative min-h-screen px-6 max-w-5xl mx-auto z-10 pt-36 sm:pt-40 md:pt-44 pb-20 flex flex-col justify-start items-center">
       {/* Background Ambience */}
       <div className="absolute right-0 top-1/4 w-80 h-80 bg-indigo-600/4 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
       <div className="absolute left-0 bottom-1/4 w-96 h-96 bg-violet-600/3 rounded-full blur-[140px] pointer-events-none" />
@@ -51,7 +51,7 @@ export default function Projects() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
-        className="space-y-12 relative z-10"
+        className="space-y-12 relative z-10 w-full"
       >
         {/* Section Header */}
         <motion.div variants={itemVariants} className="space-y-3 max-w-xl">
