@@ -3,9 +3,6 @@
 import React from "react";
 import { Mail } from "lucide-react";
 
-const GOOGLE_FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSf00WVa0AIokq2kGWtIKxVLVksvPGe6kXFIzKiharMi5Ymn0A/viewform?embedded=true";
-
 export default function Contact() {
   return (
     <section className="relative min-h-screen px-6 flex flex-col justify-start items-center z-10 pt-16 sm:pt-20 pb-20">
@@ -31,14 +28,15 @@ export default function Contact() {
         </div>
 
         {/* Google Form Embed */}
-        <div className="w-full max-w-2xl glass-panel rounded-2xl overflow-hidden border border-white/[0.04] bg-[#040813]/40">
+        <div className="w-full max-w-2xl glass-panel rounded-2xl overflow-hidden border border-white/[0.04] bg-[#040813]/40 flex justify-center">
           <iframe
-            src={GOOGLE_FORM_URL}
-            width="100%"
-            height="700"
-            className="w-full border-0"
+            src="https://docs.google.com/forms/d/e/1FAIpQLSf00WVa0AIokq2kGWtIKxVLVksvPGe6kXFIzKiharMi5Ymn0A/viewform?embedded=true"
+            width="640"
+            height="691"
+            frameBorder="0"
+            marginHeight={0}
+            marginWidth={0}
             title="Contact Form"
-            loading="lazy"
           >
             Loading…
           </iframe>
