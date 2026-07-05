@@ -346,16 +346,10 @@ export default function Lab() {
                 >
                   <div className="space-y-4">
                     {/* Header */}
-                    <div className="border-b border-white/5 pb-4 space-y-1">
-                      <span className="text-[9px] font-mono text-indigo-400 tracking-widest uppercase block">
-                        Quest Sector {String(activeTab + 1).padStart(2, "0")}
-                      </span>
+                    <div className="border-b border-white/5 pb-4">
                       <h3 className="text-xl font-bold text-white tracking-tight leading-snug">
                         {domains[activeTab].name}
                       </h3>
-                      <span className="text-[10px] font-mono text-gray-600 block pt-1">
-                        {domains[activeTab].category}
-                      </span>
                     </div>
 
                     {/* Description */}
