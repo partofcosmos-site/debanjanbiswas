@@ -1300,6 +1300,7 @@ h1.hero-title {
 .contact-form-card {
   width: 100%;
   max-width: 42rem; /* max-w-2xl */
+  height: 640px;
   border-radius: 1rem;
   overflow: hidden;
   background: rgba(4, 8, 19, 0.4);
