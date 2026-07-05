@@ -171,7 +171,7 @@ export default function Hero() {
 
             {/* Secondary links */}
             <div className="pt-3 flex flex-wrap gap-2">
-              <Link href="/syllabus" className="text-xs text-gray-500 hover:text-indigo-400 transition-colors border border-white/5 hover:border-indigo-500/20 px-3 py-1.5 rounded-lg flex items-center gap-1">
+              <Link href="/lab" className="text-xs text-gray-500 hover:text-indigo-400 transition-colors border border-white/5 hover:border-indigo-500/20 px-3 py-1.5 rounded-lg flex items-center gap-1">
                 <ExternalLink className="w-3 h-3" /> Topics I Study
               </Link>
             </div>
