@@ -6,6 +6,11 @@
   <title>Physics Sandbox Lab | Debanjan Biswas</title>
   <meta name="description" content="Interactive Newtonian mechanics sandbox simulator by Debanjan Biswas, INPhO candidate &amp; JEE Advanced aspirant.">
   <link rel="stylesheet" href="style.css">
+  <!-- KaTeX for beautiful math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
 </head>
 <body>
 
@@ -170,29 +175,29 @@
           
           <div class="glass-panel" style="padding: 1.5rem; border-radius: 0.75rem; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03);">
             <h3 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem;">1. Newton's Law of Universal Gravitation</h3>
-            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1rem;">
+            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 0.75rem;">
               The gravitational force $\vec{F}$ acting on a satellite of mass $m$ due to a central body of mass $M$ at distance $r$ is:
             </p>
-            <div class="math-block">
-              F = G * (M * m) / r²
+            <div class="math-block" style="font-family: inherit; background: none; border: none; padding: 0; margin: 0.5rem 0;">
+              $$\vec{F} = G \frac{M \cdot m}{r^2} \hat{r}$$
             </div>
-            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5;">
+            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-top: 1rem; margin-bottom: 0.75rem;">
               Applying Newton's second law ($F = m \cdot a$), the mass of the satellite cancels out, meaning its acceleration depends solely on the star's mass and distance:
             </p>
-            <div class="math-block">
-              a = G * M / r²
+            <div class="math-block" style="font-family: inherit; background: none; border: none; padding: 0; margin: 0.5rem 0;">
+              $$a = G \frac{M}{r^2}$$
             </div>
           </div>
 
           <div class="glass-panel" style="padding: 1.5rem; border-radius: 0.75rem; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03);">
             <h3 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem;">2. Stable Circular Orbit Preset</h3>
-            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1rem;">
+            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 0.75rem;">
               For a perfect circular orbit, the centripetal acceleration ($a_c = v^2 / r$) must equal the gravitational acceleration:
             </p>
-            <div class="math-block">
-              v² / r = G * M / r²  =>  v = sqrt(G * M / r)
+            <div class="math-block" style="font-family: inherit; background: none; border: none; padding: 0; margin: 0.5rem 0;">
+              $$\frac{v^2}{r} = G \frac{M}{r^2} \implies v = \sqrt{\frac{GM}{r}}$$
             </div>
-            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5;">
+            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-top: 1rem;">
               When launching a planet, the engine calculates the tangential vector perpendicular to the radial vector and applies this exact velocity magnitude $v$ to establish a stable orbit.
             </p>
           </div>
