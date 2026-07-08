@@ -21,7 +21,7 @@ I am a student from West Bengal, India, passionate about physics, astronomy, and
 
 ---
 ### ✨ About The Project
-This is my personal website showcasing my past,present and future.It is filled with my love and juicy experiences 💫
+This is my personal website showcasing my past,present and future.It is filled with my love and juicy experiences 💫     
 I made this website using HTML, CSS, and JavaScript to showcase my work, research, and projects in their purest form. have tried my best to show my best self in the website using the mold of HTML,CSS,Javascript .
 ### 🏆 Milestones & Highlights
 
