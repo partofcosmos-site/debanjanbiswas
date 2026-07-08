@@ -1,3 +1,4 @@
+
 # 🌌 Debanjan Biswas
 *Class 11 Student • Aspiring Physicist • Builder in the Cosmos*
 
@@ -19,7 +20,9 @@ Here is the link for my site -  [https://debanjanbiswas.pages.dev/](https://deba
 I am a student from West Bengal, India, passionate about physics, astronomy, and building software. Currently preparing for the **Indian National Physics Olympiad (InPhO)** and **IIT-JEE Advanced** while exploring the universe, one problem and line of code at a time.
 
 ---
-
+### ✨ About The Project
+This is my personal website showcasing my past,present and future.It is filled with my love and juicy experiences 💫
+I made this website using HTML, CSS, and JavaScript to showcase my work, research, and projects in their purest form. have tried my best to show my best self in the website using the mold of HTML,CSS,Javascript .
 ### 🏆 Milestones & Highlights
 
 *   **IIT Kharagpur Kriti RISE / I-KITES** – Selected participant in the research & innovation program.
