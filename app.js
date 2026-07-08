@@ -325,6 +325,69 @@ function initLabSandbox() {
     });
   }
 
+  // Presets launch mechanics
+  const presetBtns = document.querySelectorAll(".preset-btn");
+  presetBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      planets = [];
+      const preset = btn.getAttribute("data-preset");
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const G = 0.05;
+
+      if (preset === "circular") {
+        const r = 120;
+        const speed = Math.sqrt((G * sunMass) / r);
+        planets.push({
+          x: centerX,
+          y: centerY - r,
+          vx: speed,
+          vy: 0,
+          mass: 4,
+          color: "#22d3ee",
+          trail: []
+        });
+      } else if (preset === "binary") {
+        const r1 = 100;
+        const speed1 = Math.sqrt((G * sunMass) / r1);
+        planets.push({
+          x: centerX,
+          y: centerY - r1,
+          vx: speed1,
+          vy: 0,
+          mass: 3,
+          color: "#8b5cf6",
+          trail: []
+        });
+
+        const r2 = 170;
+        const speed2 = Math.sqrt((G * sunMass) / r2);
+        planets.push({
+          x: centerX,
+          y: centerY + r2,
+          vx: -speed2, // Orbiting opposite direction
+          vy: 0,
+          mass: 5,
+          color: "#ec4899",
+          trail: []
+        });
+      } else if (preset === "elliptical") {
+        const r = 120;
+        // Keplerian elliptic: launch with 65% of circular speed
+        const speed = Math.sqrt((G * sunMass) / r) * 0.65;
+        planets.push({
+          x: centerX,
+          y: centerY - r,
+          vx: speed,
+          vy: 0,
+          mass: 4,
+          color: "#4ade80",
+          trail: []
+        });
+      }
+    });
+  });
+
   function resizeCanvas() {
     const rect = canvas.getBoundingClientRect();
     canvas.width = rect.width;

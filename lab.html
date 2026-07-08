@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Physics Sandbox Lab | Debanjan Biswas</title>
-  <meta name="description" content="Newtonian mechanics gravity simulator. Interactively orbit objects around a central mass coordinates layout.">
+  <meta name="description" content="Interactive Newtonian mechanics sandbox simulator by Debanjan Biswas, INPhO candidate &amp; JEE Advanced aspirant.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -106,10 +106,101 @@
             value="5000"
             class="sandbox-slider-input"
           >
-          <div class="sandbox-slider-labels">
+          <div class="sandbox-slider-labels" style="margin-bottom: 1.5rem;">
             <span>Weak gravity</span>
             <span>Strong gravity</span>
           </div>
+
+          <div class="sandbox-slider-info">
+            <span>Simulation Orbit Presets:</span>
+          </div>
+          <div class="presets-panel">
+            <button class="preset-btn" data-preset="circular">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle></svg>
+              Circular Orbit
+            </button>
+            <button class="preset-btn" data-preset="binary">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="4"></ellipse><ellipse cx="12" cy="12" rx="4" ry="10"></ellipse></svg>
+              Binary System
+            </button>
+            <button class="preset-btn" data-preset="elliptical">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              Elliptical Keplerian
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- How it Works section -->
+      <div class="sandbox-explain-section">
+        <h2 class="section-subtitle-line" style="margin-bottom: 2rem;">
+          <span class="span-indigo"></span>
+          How it Works: Physics &amp; Mechanics
+        </h2>
+        
+        <p class="hero-tagline" style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; max-width: 100%; margin-bottom: 1.5rem;">
+          This sandbox simulates planetary orbits around a heavy central star using Newtonian mechanics. It runs on a continuous numerical integration loop, calculating gravitational forces and updating position vectors at 60 frames per second.
+        </p>
+
+        <div class="physics-derivations-grid">
+          
+          <div class="glass-panel" style="padding: 1.5rem; border-radius: 0.75rem; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03);">
+            <h3 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem;">1. Newton's Law of Universal Gravitation</h3>
+            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1rem;">
+              The gravitational force $\vec{F}$ acting on a satellite of mass $m$ due to a central body of mass $M$ at distance $r$ is:
+            </p>
+            <div class="math-block">
+              F = G * (M * m) / r²
+            </div>
+            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5;">
+              Applying Newton's second law ($F = m \cdot a$), the mass of the satellite cancels out, meaning its acceleration depends solely on the star's mass and distance:
+            </p>
+            <div class="math-block">
+              a = G * M / r²
+            </div>
+          </div>
+
+          <div class="glass-panel" style="padding: 1.5rem; border-radius: 0.75rem; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03);">
+            <h3 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem;">2. Stable Circular Orbit Preset</h3>
+            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1rem;">
+              For a perfect circular orbit, the centripetal acceleration ($a_c = v^2 / r$) must equal the gravitational acceleration:
+            </p>
+            <div class="math-block">
+              v² / r = G * M / r²  =>  v = sqrt(G * M / r)
+            </div>
+            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5;">
+              When launching a planet, the engine calculates the tangential vector perpendicular to the radial vector and applies this exact velocity magnitude $v$ to establish a stable orbit.
+            </p>
+          </div>
+
+          <div class="glass-panel" style="padding: 1.5rem; border-radius: 0.75rem; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03);">
+            <h3 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem;">3. Euler Numerical Integration</h3>
+            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1rem;">
+              The engine solves the differential equations of motion step-by-step. In each frame, it calculates the direction vector to the sun, computes acceleration, and updates velocity and position:
+            </p>
+            <div class="math-block">
+              // Acceleration vector direction<br>
+              ax = (dx / r) * (G * M / r²)<br>
+              ay = (dy / r) * (G * M / r²)<br><br>
+              // Update state<br>
+              vx += ax; vy += ay;<br>
+              x += vx; y += vy;
+            </div>
+          </div>
+
+          <div class="glass-panel" style="padding: 1.5rem; border-radius: 0.75rem; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03);">
+            <h3 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem;">4. Simulation Model &amp; Code</h3>
+            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1rem;">
+              <strong>Assumptions:</strong> The central star mass is infinite compared to the satellites, representing a fixed center of mass (the sun does not wobble). Satellite-to-satellite gravitational interactions are set to zero to avoid complex N-body chaotic disruptions.
+            </p>
+            <div style="margin-top: 1.5rem;">
+              <a href="https://github.com/partofcosmos-site/debanjanbiswas" target="_blank" rel="noreferrer" class="link-pill" style="border-color: rgba(255, 255, 255, 0.15); color: #fff; display: inline-flex; align-items: center; gap: 0.375rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                View Sandbox Source Code
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -119,7 +210,7 @@
   <footer>
     <div class="footer-content">
       <p class="copyright">© <span id="year-placeholder">2026</span> Debanjan Biswas. All rights reserved.</p>
-      <p class="title-meta">IPhO &amp; IIT-JEE Candidate</p>
+      <p class="title-meta">Full Stack Developer &amp; Physics Aspirant</p>
     </div>
   </footer>
 

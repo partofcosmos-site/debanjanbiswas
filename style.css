@@ -900,24 +900,37 @@ h1.hero-title {
 }
 
 .lesson-card {
-  padding: 1rem;
+  padding: 1.25rem;
   border-radius: 0.75rem;
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
 }
 
 .lesson-card span {
   font-size: 10px;
   font-family: var(--font-mono);
-  color: #4b5563;
+  color: var(--accent-pink);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   display: block;
-  margin-bottom: 0.25rem;
+}
+
+.lesson-card strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: block;
 }
 
 .lesson-card p {
   font-size: 0.75rem;
-  font-weight: 600;
-  color: #ffffff;
+  font-weight: 400;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin: 0;
 }
 
 /* Study Stack Collapsible section */
@@ -1486,5 +1499,314 @@ footer p.title-meta {
     right: -6rem;
     width: 320px;
     height: 320px;
+  }
+}
+
+/* ==========================================
+   Table of Contents
+   ========================================== */
+.toc-container {
+  margin-bottom: 2.5rem;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.toc-title {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.toc-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+}
+
+.toc-link {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.toc-link::before {
+  content: "→";
+  color: var(--accent-indigo);
+  font-weight: bold;
+}
+
+.toc-link:hover {
+  color: var(--accent-indigo);
+}
+
+/* ==========================================
+   Physics Sandbox How It Works / Presets
+   ========================================== */
+.sandbox-explain-section {
+  margin-top: 3.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 3rem;
+  width: 100%;
+}
+
+.presets-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.preset-btn {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.preset-btn:hover {
+  background: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.preset-btn svg {
+  opacity: 0.7;
+}
+
+.math-block {
+  display: block;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  font-family: "Courier New", Courier, monospace;
+  color: #e2e8f0;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+.physics-derivations-grid {
+  display: grid;
+  grid-template-cols: 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .physics-derivations-grid {
+    grid-template-cols: repeat(2, 1fr);
+  }
+}
+
+/* ==========================================
+   Resume Print Layout Styling
+   ========================================== */
+.resume-body {
+  background: #030712;
+  color: #f3f4f6;
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.resume-container {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.resume-header {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.resume-name {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.02em;
+  background: linear-gradient(to right, #ffffff, #a5b4fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.resume-tagline {
+  font-size: 1rem;
+  color: #a5b4fc;
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.resume-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.resume-meta a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.resume-meta a:hover {
+  color: #a5b4fc;
+}
+
+.resume-section {
+  margin-bottom: 2rem;
+}
+
+.resume-section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #e2e8f0;
+  border-left: 3px solid #6366f1;
+  padding-left: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.resume-item {
+  margin-bottom: 1.25rem;
+}
+
+.resume-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.25rem;
+}
+
+.resume-item-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.resume-item-date {
+  font-size: 0.8rem;
+  font-family: var(--font-mono), monospace;
+  color: #a5b4fc;
+}
+
+.resume-item-desc {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.resume-grid-2col {
+  display: grid;
+  grid-template-cols: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .resume-grid-2col {
+    grid-template-cols: 1fr 1fr;
+  }
+}
+
+.resume-skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.resume-skill-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.25rem;
+  color: #cbd5e1;
+}
+
+.print-actions {
+  max-width: 800px;
+  margin: 2rem auto -2rem auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media print {
+  .print-actions, header, footer, .cosmic-background, .cosmic-grid, .page-ambient-lights {
+    display: none !important;
+  }
+  body, .resume-body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .resume-container {
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+  }
+  .resume-name {
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+    color: #000 !important;
+  }
+  .resume-tagline {
+    color: #4f46e5 !important;
+  }
+  .resume-meta, .resume-item-desc {
+    color: #374151 !important;
+  }
+  .resume-section-title {
+    color: #111827 !important;
+    border-left-color: #4f46e5 !important;
+  }
+  .resume-item-title {
+    color: #000 !important;
+  }
+  .resume-item-date {
+    color: #4f46e5 !important;
+  }
+  .resume-skill-badge {
+    background: #f3f4f6 !important;
+    border-color: #e5e7eb !important;
+    color: #1f2937 !important;
   }
 }
