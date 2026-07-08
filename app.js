@@ -301,6 +301,20 @@ function initLabSandbox() {
   const massValSpan = document.querySelector(".mass-val");
   const nbodyToggle = document.getElementById("nbody-toggle");
   const collisionToggle = document.getElementById("collision-toggle");
+  const keplerToggle = document.getElementById("kepler-toggle");
+
+  // Kepler's 2nd law polygon area calculator
+  function calculateWedgeArea(points, cx, cy) {
+    let area = 0;
+    for (let k = 0; k < points.length - 1; k++) {
+      const x1 = points[k].x - cx;
+      const y1 = points[k].y - cy;
+      const x2 = points[k + 1].x - cx;
+      const y2 = points[k + 1].y - cy;
+      area += 0.5 * Math.abs(x1 * y2 - x2 * y1);
+    }
+    return area;
+  }
 
   // HUD elements
   const hudCount = document.getElementById("hud-count");
@@ -815,8 +829,67 @@ function initLabSandbox() {
       p.vy += 0.5 * (accs[index].ay + newAccs[index].ay) * dt;
     });
 
+    const keplerEnabled = keplerToggle ? keplerToggle.checked : false;
+
     // 5. Draw planets and trails
     planets.forEach((p) => {
+      // Kepler's 2nd Law Area Sweep calculation
+      if (keplerEnabled) {
+        if (!p.wedges) {
+          p.wedges = [];
+          p.currentWedgePoints = [{ x: p.x, y: p.y }];
+        } else {
+          p.currentWedgePoints.push({ x: p.x, y: p.y });
+          if (p.currentWedgePoints.length >= 45) { // every 45 frames
+            const area = calculateWedgeArea(p.currentWedgePoints, centerX, centerY);
+            p.wedges.push({
+              points: [...p.currentWedgePoints],
+              area: area,
+              color: p.wedges.length % 2 === 0 ? "rgba(99, 102, 241, 0.16)" : "rgba(34, 211, 238, 0.16)"
+            });
+            if (p.wedges.length > 6) {
+              p.wedges.shift();
+            }
+            p.currentWedgePoints = [{ x: p.x, y: p.y }];
+          }
+        }
+
+        // Draw completed wedges
+        p.wedges.forEach((w) => {
+          ctx.save();
+          ctx.beginPath();
+          ctx.moveTo(centerX, centerY);
+          w.points.forEach((pt) => {
+            ctx.lineTo(pt.x, pt.y);
+          });
+          ctx.closePath();
+          ctx.fillStyle = w.color;
+          ctx.fill();
+
+          ctx.strokeStyle = w.color.replace("0.16", "0.35");
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+
+          // Text label
+          const midPt = w.points[Math.floor(w.points.length / 2)];
+          const dx = midPt.x - centerX;
+          const dy = midPt.y - centerY;
+          const textX = centerX + dx * 0.65;
+          const textY = centerY + dy * 0.65;
+
+          ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
+          ctx.font = "8px var(--font-mono)";
+          ctx.textAlign = "center";
+          ctx.shadowBlur = 4;
+          ctx.shadowColor = "rgba(1, 3, 7, 0.9)";
+          ctx.fillText(`A: ${Math.round(w.area)}`, textX, textY);
+          ctx.restore();
+        });
+      } else {
+        p.wedges = null;
+        p.currentWedgePoints = null;
+      }
+
       // Log trails
       p.trail.push({ x: p.x, y: p.y });
       if (p.trail.length > 55) {
