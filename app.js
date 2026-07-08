@@ -299,6 +299,15 @@ function initLabSandbox() {
   const clearBtn = document.querySelector(".sandbox-clear-btn");
   const sliderInput = document.querySelector(".sandbox-slider-input");
   const massValSpan = document.querySelector(".mass-val");
+  const nbodyToggle = document.getElementById("nbody-toggle");
+  const collisionToggle = document.getElementById("collision-toggle");
+
+  // HUD elements
+  const hudCount = document.getElementById("hud-count");
+  const hudEnergy = document.getElementById("hud-energy");
+  const hudOrbit = document.getElementById("hud-orbit");
+  const hudEcc = document.getElementById("hud-ecc");
+
   if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
@@ -307,6 +316,16 @@ function initLabSandbox() {
   let animationId;
   let planets = [];
   let sunMass = 5000;
+  
+  // Drag and launch state
+  let isDragging = false;
+  let dragStart = { x: 0, y: 0 };
+  let dragCurrent = { x: 0, y: 0 };
+  const speedScale = 0.018; // Calibrated for launching
+  
+  // Hover state
+  let hoveredPlanet = null;
+  let canvasMouse = { x: 0, y: 0 };
 
   // Sync state with UI elements
   if (sliderInput && massValSpan) {
@@ -322,18 +341,22 @@ function initLabSandbox() {
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
       planets = [];
+      hoveredPlanet = null;
     });
   }
+
+  // Helper for Keplerian orbital speed
+  const G = 0.05;
 
   // Presets launch mechanics
   const presetBtns = document.querySelectorAll(".preset-btn");
   presetBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       planets = [];
+      hoveredPlanet = null;
       const preset = btn.getAttribute("data-preset");
       const centerX = canvas.width / 2;
       const centerY = canvas.height / 2;
-      const G = 0.05;
 
       if (preset === "circular") {
         const r = 120;
@@ -384,6 +407,39 @@ function initLabSandbox() {
           color: "#4ade80",
           trail: []
         });
+      } else if (preset === "moon") {
+        // Sun-Planet-Moon system
+        // Auto-enable N-body gravity so moon actually orbits planet
+        if (nbodyToggle) nbodyToggle.checked = true;
+
+        const rPlanet = 135;
+        const speedPlanet = Math.sqrt((G * sunMass) / rPlanet);
+        
+        // Heavy planet
+        planets.push({
+          id: 1,
+          x: centerX,
+          y: centerY - rPlanet,
+          vx: speedPlanet,
+          vy: 0,
+          mass: 16,
+          color: "#22d3ee",
+          trail: []
+        });
+
+        // Small moon orbiting planet
+        const rMoon = 22;
+        const speedMoon = Math.sqrt((G * 16) / rMoon); // GM_planet / r_moon
+        planets.push({
+          id: 2,
+          x: centerX,
+          y: centerY - rPlanet - rMoon,
+          vx: speedPlanet + speedMoon, // Orbiting in the same direction
+          vy: 0,
+          mass: 2.5,
+          color: "#fde047",
+          trail: []
+        });
       }
     });
   });
@@ -396,46 +452,215 @@ function initLabSandbox() {
   window.addEventListener("resize", resizeCanvas);
   resizeCanvas();
 
-  // Spawning mechanics on click
-  canvas.addEventListener("click", (e) => {
+  // Spawning mechanics on click and drag
+  canvas.addEventListener("mousedown", (e) => {
     const rect = canvas.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const clickY = e.clientY - rect.top;
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
-
-    const dx = clickX - centerX;
-    const dy = clickY - centerY;
+    const dx = x - centerX;
+    const dy = y - centerY;
     const r = Math.sqrt(dx * dx + dy * dy);
 
-    if (r < 25) return; // Prevent spawning inside solar sphere
+    if (r < 25) return; // Don't allow drag start inside the Sun
 
-    // Circular orbital speed: v = sqrt(G * M / r)
-    const G = 0.05;
+    isDragging = true;
+    dragStart = { x, y };
+    dragCurrent = { x, y };
+  });
+
+  canvas.addEventListener("mousemove", (e) => {
+    const rect = canvas.getBoundingClientRect();
+    canvasMouse.x = e.clientX - rect.left;
+    canvasMouse.y = e.clientY - rect.top;
+
+    if (isDragging) {
+      dragCurrent.x = canvasMouse.x;
+      dragCurrent.y = canvasMouse.y;
+    } else {
+      // Find nearest planet to hover
+      let nearest = null;
+      let minDist = 20; // Hover radius threshold
+      planets.forEach((p) => {
+        const dx = p.x - canvasMouse.x;
+        const dy = p.y - canvasMouse.y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d < minDist) {
+          nearest = p;
+          minDist = d;
+        }
+      });
+      hoveredPlanet = nearest;
+    }
+  });
+
+  canvas.addEventListener("mouseup", (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+
+    const rect = canvas.getBoundingClientRect();
+    const endX = e.clientX - rect.left;
+    const endY = e.clientY - rect.top;
+
+    const dx = endX - dragStart.x;
+    const dy = endY - dragStart.y;
+    const dragDist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dragDist < 5) {
+      // Circular launch on a simple click
+      launchCircularPlanet(dragStart.x, dragStart.y);
+    } else {
+      // Custom velocity launch
+      const vx = dx * speedScale;
+      const vy = dy * speedScale;
+      
+      const colors = ["#22d3ee", "#8b5cf6", "#ec4899", "#4ade80", "#a78bfa", "#fde047"];
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+      planets.push({
+        x: dragStart.x,
+        y: dragStart.y,
+        vx,
+        vy,
+        mass: Math.random() * 2.5 + 2.5,
+        color: randomColor,
+        trail: []
+      });
+    }
+  });
+
+  function launchCircularPlanet(x, y) {
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const dx = x - centerX;
+    const dy = y - centerY;
+    const r = Math.sqrt(dx * dx + dy * dy);
+    
+    if (r < 25) return;
+
     const orbitalSpeed = Math.sqrt((G * sunMass) / r);
 
-    // Tangential direction vector relative to central sun
+    // Tangential direction
     const tx = -dy / r;
     const ty = dx / r;
 
-    // Apply speed to tangential vector
     const vx = tx * orbitalSpeed;
     const vy = ty * orbitalSpeed;
 
-    const colors = ["#22d3ee", "#8b5cf6", "#ec4899", "#4ade80", "#a78bfa"];
+    const colors = ["#22d3ee", "#8b5cf6", "#ec4899", "#4ade80", "#a78bfa", "#fde047"];
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
     planets.push({
-      x: clickX,
-      y: clickY,
+      x,
+      y,
       vx,
       vy,
       mass: Math.random() * 2.5 + 2.5,
       color: randomColor,
       trail: []
     });
-  });
+  }
+
+  // Pre-calculate Keplerian predicted orbit for dragging visualization
+  function getOrbitPrediction(startX, startY, startVx, startVy, steps = 300) {
+    let simX = startX;
+    let simY = startY;
+    let simVx = startVx;
+    let simVy = startVy;
+    const path = [];
+    const dt = 1;
+
+    for (let i = 0; i < steps; i++) {
+      const dx = canvas.width / 2 - simX;
+      const dy = canvas.height / 2 - simY;
+      const r = Math.sqrt(dx * dx + dy * dy);
+
+      if (r < 12) break;
+
+      const acceleration = (G * sunMass) / (r * r);
+      simVx += (dx / r) * acceleration;
+      simVy += (dy / r) * acceleration;
+      simX += simVx;
+      simY += simVy;
+
+      path.push({ x: simX, y: simY });
+    }
+    return path;
+  }
+
+  // Acceleration calculations for Verlet Integrator
+  function getAccelerationNBody(x, y, pIndex, allPlanets, nBodyEnabled) {
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    
+    // Accel due to central sun
+    const dxSun = centerX - x;
+    const dySun = centerY - y;
+    const rSun = Math.sqrt(dxSun * dxSun + dySun * dySun);
+    let ax = 0;
+    let ay = 0;
+    if (rSun > 0.1) {
+      const fSun = (G * sunMass) / (rSun * rSun * rSun);
+      ax += dxSun * fSun;
+      ay += dySun * fSun;
+    }
+
+    // Accel due to other planets
+    if (nBodyEnabled) {
+      allPlanets.forEach((other, index) => {
+        if (index === pIndex) return;
+        const dx = other.x - x;
+        const dy = other.y - y;
+        const r = Math.sqrt(dx * dx + dy * dy);
+        if (r > 8) { // softening factor
+          const f = (G * other.mass) / (r * r * r);
+          ax += dx * f;
+          ay += dy * f;
+        }
+      });
+    }
+
+    return { ax, ay };
+  }
+
+  // Specific orbital specs for HUD
+  function getOrbitTypeAndSpecs(p) {
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const rx = p.x - centerX;
+    const ry = p.y - centerY;
+    const r = Math.sqrt(rx * rx + ry * ry);
+    const mu = G * sunMass;
+    
+    if (r < 0.1) return { energy: "-", eccentricity: "-", type: "-" };
+
+    const v2 = p.vx * p.vx + p.vy * p.vy;
+    
+    // E/m = v²/2 - mu/r
+    const energy = v2 / 2 - mu / r;
+    
+    // h = r x v
+    const h = rx * p.vy - ry * p.vx;
+    
+    // e² = 1 + (2 * E/m * h²) / mu²
+    const eSq = 1 + (2 * energy * h * h) / (mu * mu);
+    const eccentricity = Math.sqrt(Math.max(0, eSq));
+    
+    let type = "Elliptical";
+    if (eccentricity < 0.08) {
+      type = "Circular";
+    } else if (energy >= 0) {
+      type = "Hyperbolic (Escape)";
+    }
+    
+    return {
+      energy: energy.toFixed(2),
+      eccentricity: eccentricity.toFixed(3),
+      type: type
+    };
+  }
 
   // Newtonian simulation physics loop
   function draw() {
@@ -443,6 +668,9 @@ function initLabSandbox() {
 
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
+
+    const nBodyEnabled = nbodyToggle ? nbodyToggle.checked : false;
+    const collisionEnabled = collisionToggle ? collisionToggle.checked : true;
 
     // 1. Draw central star (Sun)
     ctx.save();
@@ -464,48 +692,153 @@ function initLabSandbox() {
     ctx.fill();
     ctx.restore();
 
-    const G = 0.05;
-    const newPlanets = [];
+    // 2. Draw drag line and orbit prediction
+    if (isDragging) {
+      ctx.save();
+      // Spawn point dot
+      ctx.beginPath();
+      ctx.arc(dragStart.x, dragStart.y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = "#ffffff";
+      ctx.fill();
 
+      // Get initial velocity vector from dragging
+      const vx = (dragCurrent.x - dragStart.x) * speedScale;
+      const vy = (dragCurrent.y - dragStart.y) * speedScale;
+
+      // Draw path prediction
+      const path = getOrbitPrediction(dragStart.x, dragStart.y, vx, vy, 300);
+      if (path.length > 1) {
+        ctx.beginPath();
+        ctx.moveTo(path[0].x, path[0].y);
+        for (let i = 1; i < path.length; i++) {
+          ctx.lineTo(path[i].x, path[i].y);
+        }
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.35)";
+        ctx.setLineDash([4, 4]);
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+
+      // Draw vector line
+      ctx.beginPath();
+      ctx.moveTo(dragStart.x, dragStart.y);
+      ctx.lineTo(dragCurrent.x, dragCurrent.y);
+      ctx.strokeStyle = "#818cf8";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Draw arrowhead
+      const angle = Math.atan2(dragCurrent.y - dragStart.y, dragCurrent.x - dragStart.x);
+      ctx.beginPath();
+      ctx.moveTo(dragCurrent.x, dragCurrent.y);
+      ctx.lineTo(dragCurrent.x - 10 * Math.cos(angle - Math.PI / 6), dragCurrent.y - 10 * Math.sin(angle - Math.PI / 6));
+      ctx.lineTo(dragCurrent.x - 10 * Math.cos(angle + Math.PI / 6), dragCurrent.y - 10 * Math.sin(angle + Math.PI / 6));
+      ctx.closePath();
+      ctx.fillStyle = "#818cf8";
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // 3. Collision and Merger Logic
+    if (collisionEnabled && planets.length > 1) {
+      for (let i = 0; i < planets.length; i++) {
+        for (let j = i + 1; j < planets.length; j++) {
+          const p1 = planets[i];
+          const p2 = planets[j];
+          if (p1.deleted || p2.deleted) continue;
+
+          const dx = p2.x - p1.x;
+          const dy = p2.y - p1.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const collisionDist = p1.mass + p2.mass;
+
+          if (dist < collisionDist) {
+            const primary = p1.mass >= p2.mass ? p1 : p2;
+            const secondary = p1.mass < p2.mass ? p1 : p2;
+
+            const mSum = primary.mass + secondary.mass;
+            
+            // Conserve Momentum
+            primary.vx = (primary.mass * primary.vx + secondary.mass * secondary.vx) / mSum;
+            primary.vy = (primary.mass * primary.vy + secondary.mass * secondary.vy) / mSum;
+            
+            // Center of Mass Position
+            primary.x = (primary.mass * primary.x + secondary.mass * secondary.x) / mSum;
+            primary.y = (primary.mass * primary.y + secondary.mass * secondary.y) / mSum;
+            
+            primary.mass = Math.min(mSum, 24); // Cap max size
+            
+            secondary.deleted = true;
+            if (hoveredPlanet === secondary) {
+              hoveredPlanet = primary;
+            }
+          }
+        }
+      }
+      planets = planets.filter((p) => !p.deleted);
+    }
+
+    // 4. Velocity Verlet Symplectic Integration Step
+    const dt = 1;
+    
+    // a. Compute accelerations at current positions
+    const accs = planets.map((p, index) => {
+      return getAccelerationNBody(p.x, p.y, index, planets, nBodyEnabled);
+    });
+
+    // b. Update positions using current velocity & acceleration (x = x + v*dt + 0.5*a*dt^2)
+    planets.forEach((p, index) => {
+      const dxSun = centerX - p.x;
+      const dySun = centerY - p.y;
+      const r = Math.sqrt(dxSun * dxSun + dySun * dySun);
+      if (r < 12) {
+        p.destroyed = true; // Crashed into sun
+        return;
+      }
+
+      p.x += p.vx * dt + 0.5 * accs[index].ax * dt * dt;
+      p.y += p.vy * dt + 0.5 * accs[index].ay * dt * dt;
+    });
+
+    // Filter out destroyed planets
+    planets = planets.filter((p) => !p.destroyed && (Math.sqrt((centerX - p.x)**2 + (centerY - p.y)**2) < 1200));
+
+    // c. Recompute accelerations at new positions
+    const newAccs = planets.map((p, index) => {
+      return getAccelerationNBody(p.x, p.y, index, planets, nBodyEnabled);
+    });
+
+    // d. Update velocities using average of old & new acceleration (v = v + 0.5*(a + a_new)*dt)
+    planets.forEach((p, index) => {
+      p.vx += 0.5 * (accs[index].ax + newAccs[index].ax) * dt;
+      p.vy += 0.5 * (accs[index].ay + newAccs[index].ay) * dt;
+    });
+
+    // 5. Draw planets and trails
     planets.forEach((p) => {
-      const dx = centerX - p.x;
-      const dy = centerY - p.y;
-      const r = Math.sqrt(dx * dx + dy * dy);
-
-      // Collided with Sun
-      if (r < 12) return;
-
-      // Newtonian gravity force: F = G * M1 * M2 / r^2
-      // Acceleration: a = F / M2 = G * M1 / r^2
-      const acceleration = (G * sunMass) / (r * r);
-      p.vx += (dx / r) * acceleration;
-      p.vy += (dy / r) * acceleration;
-
-      // Position update
-      p.x += p.vx;
-      p.y += p.vy;
-
       // Log trails
       p.trail.push({ x: p.x, y: p.y });
-      if (p.trail.length > 45) {
+      if (p.trail.length > 55) {
         p.trail.shift();
       }
 
       // Draw trails
       if (p.trail.length > 1) {
+        ctx.save();
         ctx.beginPath();
         ctx.moveTo(p.trail[0].x, p.trail[0].y);
         for (let i = 1; i < p.trail.length; i++) {
           ctx.lineTo(p.trail[i].x, p.trail[i].y);
         }
         ctx.strokeStyle = p.color;
-        ctx.globalAlpha = 0.15;
+        ctx.globalAlpha = 0.18;
         ctx.lineWidth = 1.5;
         ctx.stroke();
-        ctx.globalAlpha = 1.0;
+        ctx.restore();
       }
 
-      // Draw planet
+      // Draw planet body
       ctx.save();
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.mass, 0, Math.PI * 2);
@@ -513,16 +846,48 @@ function initLabSandbox() {
       ctx.shadowBlur = 6;
       ctx.shadowColor = p.color;
       ctx.fill();
-      ctx.restore();
 
-      // Max boundaries removal
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 1000) {
-        newPlanets.push(p);
+      // Draw a subtle ring around hovered planet
+      if (hoveredPlanet === p) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.mass + 5, 0, Math.PI * 2);
+        ctx.strokeStyle = "#ffffff";
+        ctx.globalAlpha = 0.4;
+        ctx.lineWidth = 1;
+        ctx.stroke();
       }
+      ctx.restore();
     });
 
-    planets = newPlanets;
+    // 6. Update HUD display
+    if (hudCount) {
+      hudCount.textContent = planets.length;
+    }
+    
+    // Choose which planet's stats to show in HUD (hovered first, else latest active)
+    let displayPlanet = hoveredPlanet;
+    if (!displayPlanet && planets.length > 0) {
+      displayPlanet = planets[planets.length - 1];
+    }
+
+    if (displayPlanet) {
+      const specs = getOrbitTypeAndSpecs(displayPlanet);
+      if (hudEnergy) hudEnergy.textContent = specs.energy;
+      if (hudOrbit) {
+        hudOrbit.textContent = specs.type;
+        // Color code escape vs bound
+        hudOrbit.style.color = specs.type.includes("Escape") ? "#f87171" : "#4ade80";
+      }
+      if (hudEcc) hudEcc.textContent = specs.eccentricity;
+    } else {
+      if (hudEnergy) hudEnergy.textContent = "-";
+      if (hudOrbit) {
+        hudOrbit.textContent = "-";
+        hudOrbit.style.color = "#4ade80";
+      }
+      if (hudEcc) hudEcc.textContent = "-";
+    }
+
     animationId = requestAnimationFrame(draw);
   }
 
