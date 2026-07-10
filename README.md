@@ -20,7 +20,7 @@ I am a student from West Bengal, India, passionate about physics, astronomy, and
 
 ### ✨ About The Project
 
-This is my personal website where I share my work, resources, and things I like. I made the site using just HTML, CSS, and JS because I wanted to write everything myself. It has a clean glassmorphic design and basic animations that I wrote in plain JavaScript.
+This is my personal website where I share my work, resources, and things I like. I built the site using HTML, CSS, and JavaScript, pairing with Antigravity IDE to design the glassmorphic layout and help implement the sandbox physics and MyAnimeList APIs.
 
 I also coded a gravity simulator in the 'Lab' section to play around with physics. It runs Newtonian calculations to launch custom satellites around a central star. You click and drag to launch things with different speeds, and it calculates the orbital energy and eccentricity to classify the orbit shape on the fly. It has options for mutual gravity between planets, collisions, and KaTeX math equations.
 
