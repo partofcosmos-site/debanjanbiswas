@@ -18,21 +18,13 @@ Here is the link for my site -  [site](https://debanjanbiswas.pages.dev/)
 
 I am a student from West Bengal, India, passionate about physics, astronomy, and building software. Currently preparing for the **Indian National Physics Olympiad (InPhO)** and **IIT-JEE Advanced** while exploring the universe, one problem and line of code at a time.
 
----
 ### ✨ About The Project
-This is my personal website showcasing my past, present, and future. It's built with pure HTML, CSS, and vanilla JS. I wanted to design it myself without heavy frameworks, so the styling is custom glassmorphic CSS, and the logic runs on client-side JS.
 
-#### 🛠️ Tech Features & How I Made It:
-* **Interactive Media Lounge:**
-  An interactive space showing my favorite movies, anime watchlist, and music. Built with a responsive card layout featuring 3D flip animations using CSS transforms. 
-* **Dynamic Anime Metadata Integration:**
-  To keep the watchlist updated, the site queries the MyAnimeList API (Jikan API) on load. To make sure the API rate limits (429 errors) don't lock up or freeze the page loading animation, I structured it with an optimized scheduler that delays queries by 1000ms.
-* **Secret Curator Admin Console:**
-  Pressing a secret key combination (`Ctrl+Shift+K`) brings up a hidden passcode overlay. It verifies the passcode entirely client-side using a secure SHA-256 hash. Once unlocked, a spreadsheet-like editor lets me edit, add, or delete watch items directly on the live page.
-* **Direct Serverless Git Sync Pipeline:**
-  To sync changes back to my GitHub repository, I set up a secure client-side deployment script. My GitHub PAT (Personal Access Token) is stored as an encrypted string. Upon entering the passcode, it decrypts the token in memory and uses the GitHub REST API to commit the database modifications directly to the main branch. This triggers a fresh cloud rebuild of my live site automatically without exposing any tokens in the source code.
-* **YouTube Music Navigation:**
-  The music cards are connected directly to their official pages on YouTube Music, allowing visitors to instantly listen to the exact track in a new tab.
+This is my personal website showcasing my past, present, and future. I made this website from scratch using plain HTML, CSS, and JS because I didn't want to use any bloated frameworks. Everything is styled with custom glassmorphic CSS, and the animations are coded in vanilla JavaScript.
+
+I also built an interactive 'Lounge' section. It's basically a watchlist grid for my favorite movies, anime, and songs. The cards flip around using CSS 3D transforms when you click them. The anime cards actually fetch live info directly from the MyAnimeList API. Since their API has strict rate limits, I had to code a timer delay in app.js that waits 1 second between requests so it doesn't break. 
+
+To edit my list easily, I set up a hidden 'Curator Console'. If you press Ctrl+Shift+K on the lounge page, a passcode prompt shows up. It checks the password client-side using a SHA-256 hash. Once unlocked, it reveals a spreadsheet-like editor to add or delete movies/music. I didn't want to expose my GitHub token in the code, so it's stored as an encrypted string. The console decrypts it in memory when unlocked and uses the GitHub REST API to push the updated database config back to my repo. This automatically triggers a fresh deployment for the live site. The music cards also link out directly to YouTube Music so visitors can listen to the exact track.
 
 ---
 
