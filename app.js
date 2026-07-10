@@ -2388,7 +2388,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         decryptedGithubToken = ""; // Wipe credentials from memory
         showStatus("Curator console locked.", "info");
       } else {
-        // Prompt passcode challenge to unlock
         showPasscodePrompt(() => {
           openModalBtn.style.display = "inline-flex";
           renderCuratorListTable();
@@ -2396,6 +2395,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           modalOverlay.classList.add("active");
         });
       }
+    }
   });
 });
 
