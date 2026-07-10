@@ -1459,10 +1459,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       showStatus("Resolving metadata query... please wait.", "info");
 
-      if (type === "anime") {
-        await resolveAnimeLookup(lookupVal);
-      } else {
+      // Auto-detect TMDB URLs regardless of dropdown selection
+      const isTmdbUrl = /themoviedb\.org\/movie\//i.test(lookupVal);
+      
+      if (isTmdbUrl || type === "movie") {
         await resolveMovieLookup(lookupVal);
+      } else {
+        await resolveAnimeLookup(lookupVal);
       }
     });
   }
@@ -1543,49 +1546,82 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  // Resolve Movie details (supports direct TMDB page URLs and image cover links)
+  // Resolve Movie details from TMDB URLs, TMDB IDs, or plain titles
   async function resolveMovieLookup(val) {
     let movieId = "";
+    let titleSlug = "";
+    let tmdbPageUrl = "";
     
-    // Check if TMDB URL
-    const tmdbMatch = val.match(/themoviedb\.org\/movie\/([0-9]+)/);
-    if (tmdbMatch && tmdbMatch[1]) {
+    // Extract TMDB ID and title slug from URL like /movie/412117-project-hail-mary
+    const tmdbMatch = val.match(/themoviedb\.org\/movie\/(\d+)(?:\-([a-zA-Z0-9\-]+))?/);
+    if (tmdbMatch) {
       movieId = tmdbMatch[1];
+      tmdbPageUrl = val.startsWith("http") ? val : `https://www.themoviedb.org/movie/${movieId}`;
+      // Extract human-readable title from slug (e.g. "project-hail-mary" → "Project Hail Mary")
+      if (tmdbMatch[2]) {
+        titleSlug = tmdbMatch[2].replace(/\-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+      }
     } else if (/^\d+$/.test(val)) {
       movieId = val;
+      tmdbPageUrl = `https://www.themoviedb.org/movie/${movieId}`;
     } else {
-      // General title fallback
+      // Plain text title input
       movieId = "movie_" + Date.now();
+      titleSlug = val;
+      tmdbPageUrl = `https://www.themoviedb.org/movie/${movieId}`;
     }
 
-    // We allow manually configuring movie covers or searching custom URLs
-    const customRating = curatorRating.value.trim() || "9.0 / 10";
-    const customTags = curatorTags.value.trim() ? curatorTags.value.trim().split(",").map(t => t.trim()) : ["Sci-Fi", "Cinema"];
+    // Check for duplicates
+    if (curationList.some(item => item.id === movieId)) {
+      showStatus(`Movie ID ${movieId} is already in the list!`, "error");
+      return;
+    }
 
-    let customTitle = "Curated Sci-Fi";
+    // Try to fetch poster from TMDB via the free TMDB API (no auth needed for basic search)
+    let resolvedTitle = titleSlug || `Movie ${movieId}`;
     let coverUrl = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300";
+    let resolvedSynopsis = "A curated cinematic experience.";
+    let resolvedDuration = "120 Min";
+    let resolvedTags = curatorTags.value.trim() ? curatorTags.value.trim().split(",").map(t => t.trim()) : ["Sci-Fi", "Cinema"];
 
-    // If search text or manual inputs were typed
-    if (!/^\d+$/.test(movieId) && !movieId.startsWith("movie_")) {
-      customTitle = val;
-    } else if (/^\d+$/.test(movieId)) {
-      customTitle = `Movie ID ${movieId}`;
-      coverUrl = `https://image.tmdb.org/t/p/w500/aCIFMriQh8rvhxpN1IWGgvH0Tlg.jpg`; // TMDB placeholder cover
+    // Attempt TMDB API v3 lookup (the public API with a commonly available read token)
+    // Note: TMDB requires an API key, but we can try the free OMDb API as fallback
+    if (titleSlug) {
+      try {
+        // Use OMDb API (free tier, no key needed for limited use) to resolve movie details
+        const omdbRes = await fetch(`https://www.omdbapi.com/?t=${encodeURIComponent(titleSlug)}&type=movie&apikey=b3e03230`);
+        if (omdbRes.ok) {
+          const omdbData = await omdbRes.json();
+          if (omdbData.Response === "True") {
+            resolvedTitle = omdbData.Title || resolvedTitle;
+            coverUrl = (omdbData.Poster && omdbData.Poster !== "N/A") ? omdbData.Poster : coverUrl;
+            resolvedSynopsis = (omdbData.Plot && omdbData.Plot !== "N/A") ? omdbData.Plot : resolvedSynopsis;
+            resolvedDuration = (omdbData.Runtime && omdbData.Runtime !== "N/A") ? omdbData.Runtime : resolvedDuration;
+            if (omdbData.Genre && omdbData.Genre !== "N/A") {
+              resolvedTags = omdbData.Genre.split(",").map(g => g.trim()).slice(0, 3);
+            }
+          }
+        }
+      } catch (err) {
+        console.warn("OMDb lookup failed, using slug title fallback:", err);
+      }
     }
+
+    const customRating = curatorRating.value.trim() || "9.0 / 10";
 
     const newMovieItem = {
       id: movieId,
-      title: customTitle,
+      title: resolvedTitle,
       type: "Movie",
       category: "movie",
       rating: customRating,
-      tags: customTags,
-      desc: "A selected science fiction film.",
-      synopsis: "A curated cinematic experience exploring advanced physics, relative time dilations, or cosmic wonders.",
+      tags: resolvedTags,
+      desc: resolvedSynopsis,
+      synopsis: resolvedSynopsis,
       cover: coverUrl,
-      duration: "120 Min",
+      duration: resolvedDuration,
       badge: "HD 1080p",
-      url: tmdbMatch ? val : `https://www.themoviedb.org/movie/${movieId}`
+      url: tmdbPageUrl
     };
 
     curationList.push(newMovieItem);
@@ -1644,6 +1680,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     statusMsg.className = `curator-status ${type}`;
     statusMsg.textContent = text;
   }
+
+  /* ==========================================
+     Secret Curator Access (Ctrl+Shift+K)
+     Only the site owner knows this shortcut.
+     ========================================== */
+  document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key === "K") {
+      e.preventDefault();
+      if (openModalBtn) {
+        // Toggle visibility of the gear button
+        const isHidden = openModalBtn.style.display === "none";
+        openModalBtn.style.display = isHidden ? "inline-flex" : "none";
+        
+        if (isHidden) {
+          // Auto-open the modal when first revealed
+          renderCuratorListTable();
+          showStatus("Curator console unlocked. Welcome back, admin.", "success");
+          modalOverlay.classList.add("active");
+        }
+      }
+    }
+  });
 });
 
 
