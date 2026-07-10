@@ -7,7 +7,7 @@
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Debanjan%20Biswas-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/debanjan00/)
 [![Email](https://img.shields.io/badge/Email-partofcosmmos%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:partofcosmmos@gmail.com)
-[![Status](https://img.shields.io/badge/Status-JEE%20%26%20Physics%20Olympiad%20Aspirant-blueviolet?style=for-the-badge)](https://github.com/debanjan00)
+[![Status](https://img.shields.io/badge/Status-JEE%20%26%20Physics%20Olympiad%20Aspirant-blueviolet?style=for-the-badge)](https://github.com/partofcosmos-site)
 [![Hack Club](https://img.shields.io/badge/Hack%20Club-Member-EC3750?style=for-the-badge&logo=hackclub)](https://hackclub.com)
 
 </div>
