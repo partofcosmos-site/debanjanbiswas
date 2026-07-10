@@ -1308,7 +1308,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/6a/1a/9c/6a1a9ce4-bca1-bf22-2d90-905499555926/194871868613.png/500x500bb.jpg",
       duration: "3:33",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Star%20Wars%20%28Epic%20Main%20Theme%29%20Samuel%20Kim"
+      url: "https://music.youtube.com/watch?v=R953YJ3oP20"
     },
     {
       id: "track-2",
@@ -1322,7 +1322,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b9/f2/2b/b9f22b26-d962-70de-6d85-674139ded7cc/842812190988_Cover.jpg/500x500bb.jpg",
       duration: "3:32",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Daylight%20David%20Kushner"
+      url: "https://music.youtube.com/watch?v=318XXiMW-xo"
     },
     {
       id: "track-3",
@@ -1336,7 +1336,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/25/46/a7/2546a71a-b2bb-b4c9-4c52-a4daa3ae23ca/13UMGIM15076.rgb.jpg/500x500bb.jpg",
       duration: "4:17",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Counting%20Stars%20OneRepublic"
+      url: "https://music.youtube.com/watch?v=hT_nvWreIhg"
     },
     {
       id: "track-4",
@@ -1350,7 +1350,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/99/83/9d/99839d8d-6a80-d45c-030a-a0b3342cb3ad/199999655466.png/500x500bb.jpg",
       duration: "2:43",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Technoblade%20%28Sped%20Up%29%20Abtmelody"
+      url: "https://music.youtube.com/watch?v=o6RQhyl9LAf"
     },
     {
       id: "track-5",
@@ -1364,7 +1364,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ce/a5/06/cea50685-c7ed-335e-09d1-9aa55a83db72/075679928184.jpg/500x500bb.jpg",
       duration: "3:49",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=See%20You%20Again%20%28feat.%20Charlie%20Puth%29%20Wiz%20Khalifa"
+      url: "https://music.youtube.com/watch?v=RgKAFK5djSk"
     },
     {
       id: "track-6",
@@ -1378,7 +1378,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/18/12/90/181290f5-737e-ac92-201f-d2f65c973f60/075679859518.jpg/500x500bb.jpg",
       duration: "2:49",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Let%20Me%20Down%20Slowly%20Alec%20Benjamin"
+      url: "https://music.youtube.com/watch?v=507T50t3x7g"
     },
     {
       id: "track-7",
@@ -1392,7 +1392,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7b/bd/88/7bbd8845-ace6-cbba-1925-834b3e1b47ac/8721465222470.png/500x500bb.jpg",
       duration: "3:29",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Cradles%20Sub%20Urban"
+      url: "https://music.youtube.com/watch?v=Hn4sfC2PbhI"
     },
     {
       id: "track-8",
@@ -1406,7 +1406,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f5/80/6e/f5806eb6-2539-0255-9996-ef7d3ad630c4/8721465219043.png/500x500bb.jpg",
       duration: "3:27",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=On%20%26%20On%20Cartoon%2C%20J%C3%A9ja%20%26%20Daniel%20Levi"
+      url: "https://music.youtube.com/watch?v=K41qvKu2H-k"
     },
     {
       id: "track-9",
@@ -1420,7 +1420,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/25/64/b3/2564b343-943a-68b2-4c55-ee2e14464cf0/21UMGIM83128.rgb.jpg/500x500bb.jpg",
       duration: "2:33",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Ghost%20Justin%20Bieber"
+      url: "https://music.youtube.com/watch?v=Fp8msFL6Y_w"
     },
     {
       id: "track-10",
@@ -1434,7 +1434,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/fe/66/14/fe66145c-430e-f7a0-e5ce-8e8e5be19c89/888915747841.jpg/500x500bb.jpg",
       duration: "2:39",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Falling%20Trevor%20Daniel"
+      url: "https://music.youtube.com/watch?v=L7mfjvdnPno"
     },
     {
       id: "track-11",
@@ -1448,7 +1448,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4b/30/2c/4b302cb6-7a14-5464-4e97-0577e9d0be49/18UMGIM82277.rgb.jpg/500x500bb.jpg",
       duration: "2:38",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Sunflower%20%28Spider-Man%3A%20Into%20the%20Spider-Verse%29%20Post%20Malone%20%26%20Swae%20Lee"
+      url: "https://music.youtube.com/watch?v=ApXoWLV5pxU"
     },
     {
       id: "track-12",
@@ -1462,7 +1462,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/43/8e/29/438e296e-12f8-2cf3-1b00-d1390e502020/075679632241.jpg/500x500bb.jpg",
       duration: "2:29",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=You%E2%80%99ll%20Be%20Alright%2C%20Kid%20Alex%20Warren"
+      url: "https://music.youtube.com/watch?v=Zz_T7j2-w1s"
     },
     {
       id: "track-13",
@@ -1476,7 +1476,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/38/6d/64/386d64d2-c311-4ea5-0841-99658f6f7253/16UMGIM39232.rgb.jpg/500x500bb.jpg",
       duration: "3:25",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Let%20Me%20Love%20You%20%28feat.%20Justin%20Bieber%29%20DJ%20Snake"
+      url: "https://music.youtube.com/watch?v=TTxcmPiAMqY"
     },
     {
       id: "track-14",
@@ -1490,7 +1490,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4b/30/2c/4b302cb6-7a14-5464-4e97-0577e9d0be49/18UMGIM82277.rgb.jpg/500x500bb.jpg",
       duration: "2:38",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Sunflower%20%28Spider-Man%3A%20Into%20the%20Spider-Verse%29%20Post%20Malone%20%26%20Swae%20Lee"
+      url: "https://music.youtube.com/watch?v=ApXoWLV5pxU"
     },
     {
       id: "track-15",
@@ -1504,7 +1504,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/60/e5/c5/60e5c57b-4c25-3737-45ed-911311a67866/artwork.jpg/500x500bb.jpg",
       duration: "3:55",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=No%20Friends%20CADMIUM%20%26%20Rosendale"
+      url: "https://music.youtube.com/watch?v=wI9hPmQM5c0"
     },
     {
       id: "track-16",
@@ -1546,7 +1546,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c8/cc/e8/c8cce868-9342-d78c-fec5-9d9e5b44106a/25UMGIM17787.rgb.jpg/500x500bb.jpg",
       duration: "2:27",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Pal%20Pal%20AFUSIC%20%26%20AliSoomroMusic"
+      url: "https://music.youtube.com/watch?v=OQdr-mK4CCA"
     },
     {
       id: "track-19",
@@ -1560,7 +1560,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3b/34/17/3b34172f-d530-23d8-b2dd-f38d86917e0a/5034644902203.jpg/500x500bb.jpg",
       duration: "3:26",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Finding%20Her%20%28Female%20Version%29%20%20%28From%20%22UR%20Debut%22%29%20Tanishka%20Bahl%2C%20Kushagra%2C%20Bharath%20%26%20Saaheal"
+      url: "https://music.youtube.com/search?q=Finding%20Her%20%28Female%20Version%29%20Tanishka%20Bahl"
     },
     {
       id: "track-20",
@@ -1574,7 +1574,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/df/09/7e/df097e10-36b1-a35c-bf5e-2ef138bd2ed7/15UMGIM68751.rgb.jpg/500x500bb.jpg",
       duration: "4:12",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Love%20Me%20Like%20You%20Do%20%28From%20%22Fifty%20Shades%20of%20Grey%22%29%20Ellie%20Goulding"
+      url: "https://music.youtube.com/watch?v=AJtX0syigUc"
     },
     {
       id: "track-21",
@@ -1588,7 +1588,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/500x500bb.jpg",
       duration: "4:23",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Perfect%20Ed%20Sheeran"
+      url: "https://music.youtube.com/watch?v=2Vv-BfVoq4g"
     },
     {
       id: "track-22",
@@ -1602,7 +1602,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/ad/ce/4f/adce4fe1-c6ea-4e41-4a9f-d27d16e4adeb/075679761927.jpg/500x500bb.jpg",
       duration: "2:48",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=abc%20%28nicer%29%20GAYLE"
+      url: "https://music.youtube.com/watch?v=Xa290yR1P_I"
     },
     {
       id: "track-23",
@@ -1616,7 +1616,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/0e/4f/58/0e4f5828-64f8-26d5-ebde-661b6fee89fe/5034644353067.jpg/500x500bb.jpg",
       duration: "3:27",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Finding%20Her%20Kushagra%20%26%20Bharath"
+      url: "https://music.youtube.com/watch?v=3Cp2QTBZAFQ"
     },
     {
       id: "track-24",
@@ -1630,7 +1630,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/d2/c5/64d2c511-67f4-ae09-5153-d39c3da413a3/21UMGIM75467.rgb.jpg/500x500bb.jpg",
       duration: "2:57",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Until%20I%20Found%20You%20Stephen%20Sanchez"
+      url: "https://music.youtube.com/watch?v=Vz1LVyA594c"
     },
     {
       id: "track-25",
@@ -1644,7 +1644,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/fb/bf/6d/fbbf6d06-9a6c-9c49-c313-aed403613252/075679900180.jpg/500x500bb.jpg",
       duration: "3:57",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Infinity%20Jaymes%20Young"
+      url: "https://music.youtube.com/watch?v=ep1i09v4-1c"
     },
     {
       id: "track-26",
@@ -1658,7 +1658,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/7b/37/53/7b375382-ce23-cfa4-03d4-1db4b0f89d72/886447442562.jpg/500x500bb.jpg",
       duration: "3:31",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Darkside%20Alan%20Walker%2C%20Au/Ra%20%26%20Tomine%20Harket"
+      url: "https://music.youtube.com/watch?v=M-KhTqO9a3w"
     },
     {
       id: "track-27",
@@ -1672,7 +1672,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4b/83/31/4b8331ab-e75b-1e73-30dc-2511b1c93463/886447816639.jpg/500x500bb.jpg",
       duration: "3:24",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=On%20My%20Way%20%28Da%20Tweekaz%20Remix%29%20Alan%20Walker%2C%20Sabrina%20Carpenter%20%26%20Farruko"
+      url: "https://music.youtube.com/watch?v=dhYOPzLEt_M"
     },
     {
       id: "track-28",
@@ -1686,7 +1686,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f5/7a/9e/f57a9e6a-31c8-0784-dfbd-4a0120bfd4af/21UMGIM17517.rgb.jpg/500x500bb.jpg",
       duration: "2:38",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Unstable%20%28feat.%20The%20Kid%20LAROI%29%20Justin%20Bieber"
+      url: "https://music.youtube.com/watch?v=4o8Pj44V03Q"
     },
     {
       id: "track-29",
@@ -1700,7 +1700,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/22/58/58/225858c4-ef47-2b91-723a-47af3e99699a/19UMGIM64502.rgb.jpg/500x500bb.jpg",
       duration: "3:09",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Memories%20Maroon%205"
+      url: "https://music.youtube.com/watch?v=SlPhMPnQ58k"
     },
     {
       id: "track-30",
@@ -1714,7 +1714,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/46/78/fb/4678fb84-d19e-f11b-93ff-4dc17660bff8/075679619075.jpg/500x500bb.jpg",
       duration: "3:06",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Ordinary%20Alex%20Warren"
+      url: "https://music.youtube.com/watch?v=u2ah9tWTkmk"
     },
     {
       id: "track-31",
@@ -1728,7 +1728,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=300",
       duration: "10:31:56",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=MUZYKA%20%231%20No%20Copyright%20Music%20%7C%20Bez%20Praw%20Autorskich%20NoA"
+      url: "https://music.youtube.com/search?q=MUZYKA%20%231%20No%20Copyright%20Music%20NoA"
     },
     {
       id: "track-32",
@@ -1756,7 +1756,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/500x500bb.jpg",
       duration: "3:53",
       badge: "HQ Stereo",
-      url: "https://music.youtube.com/search?q=Shape%20of%20You%20Ed%20Sheeran"
+      url: "https://music.youtube.com/watch?v=JGwWNGJdvx8"
     }
   ];
 
@@ -2003,13 +2003,26 @@ document.addEventListener("DOMContentLoaded", async () => {
             </div>
             <p class="lounge-back-desc" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${item.desc}</p>
             <div class="lounge-back-review" style="flex: 1; display: flex; flex-direction: column; overflow: hidden; margin-bottom: 0.6rem;">
-              <h5>Official Synopsis</h5>
+              <h5>${item.category === "music" ? "Track Synopsis" : "Official Synopsis"}</h5>
               <p style="overflow-y: auto; flex: 1; margin: 0; padding-right: 0.25rem;">${item.synopsis}</p>
             </div>
-            <a href="${item.url}" target="_blank" class="lounge-redirect-btn">
-              <span>View Detailed Analytics</span>
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            </a>
+            ${item.category === "music" ? `
+              <div style="display: flex; gap: 0.5rem; width: 100%;">
+                <button class="lounge-play-btn" style="flex: 1.3; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.5rem 0.75rem; font-size: 0.75rem; font-weight: 600; font-family: var(--font-sans); color: #fff; background: linear-gradient(135deg, var(--accent-indigo), #4f46e5); border: none; border-radius: 6px; cursor: pointer; transition: all 0.3s ease;">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  <span>Play Track</span>
+                </button>
+                <a href="${item.url}" target="_blank" class="lounge-redirect-btn" style="flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.5rem 0.75rem; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; font-size: 0.75rem; font-weight: 500; color: #cbd5e1; text-decoration: none; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.03);">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  <span>YT Music</span>
+                </a>
+              </div>
+            ` : `
+              <a href="${item.url}" target="_blank" class="lounge-redirect-btn">
+                <span>View Detailed Analytics</span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            `}
           </div>
         </div>
       `;
@@ -2965,10 +2978,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Global listener to sync with card play button click
     document.addEventListener("click", (e) => {
+      const playBtn = e.target.closest(".lounge-play-btn");
       const redirectBtn = e.target.closest(".lounge-redirect-btn");
-      if (!redirectBtn) return;
+      const trigger = playBtn || redirectBtn;
+      if (!trigger) return;
       
-      const card = redirectBtn.closest(".lounge-card");
+      const card = trigger.closest(".lounge-card");
       if (!card || card.getAttribute("data-category") !== "music") return;
 
       // Expand player if minimized
