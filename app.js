@@ -2068,20 +2068,177 @@ document.addEventListener("DOMContentLoaded", async () => {
      Secret Curator Access (Ctrl+Shift+K)
      Only the site owner knows this shortcut.
      ========================================== */
+  // Create and inject a sleek passcode challenge overlay dynamically
+  function showPasscodePrompt(onSuccess) {
+    const existing = document.getElementById("lounge-passcode-overlay");
+    if (existing) existing.remove();
+
+    const overlay = document.createElement("div");
+    overlay.id = "lounge-passcode-overlay";
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      font-family: var(--font-mono);
+    `;
+
+    overlay.innerHTML = `
+      <div class="glass-panel" style="
+        width: 100%;
+        max-width: 400px;
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(15, 23, 42, 0.4);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        text-align: center;
+        transform: translateY(20px);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      ">
+        <h4 style="margin-top: 0; margin-bottom: 0.5rem; color: #fff; font-size: 1.1rem; letter-spacing: 0.05em;">Curator Decryption</h4>
+        <p style="color: #94a3b8; font-size: 0.8rem; margin-bottom: 1.5rem;">Enter security passcode to unlock admin console</p>
+        
+        <input type="password" id="passcode-input" placeholder="••••••••" style="
+          width: 100%;
+          padding: 0.75rem 1rem;
+          background: rgba(15, 23, 42, 0.6);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          border-radius: 6px;
+          color: #fff;
+          font-size: 1rem;
+          text-align: center;
+          margin-bottom: 1rem;
+          outline: none;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        ">
+        
+        <div style="display: flex; gap: 0.75rem; justify-content: center;">
+          <button id="passcode-cancel" style="
+            padding: 0.5rem 1.25rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+          ">Cancel</button>
+          <button id="passcode-submit" style="
+            padding: 0.5rem 1.25rem;
+            background: linear-gradient(135deg, var(--accent-indigo), var(--accent-purple));
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+          ">Decrypt</button>
+        </div>
+        <div id="passcode-error" style="color: #ef4444; font-size: 0.75rem; margin-top: 1rem; height: 1.2rem; display: flex; align-items: center; justify-content: center;"></div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+    
+    const input = overlay.querySelector("#passcode-input");
+    const errorDiv = overlay.querySelector("#passcode-error");
+    const submitBtn = overlay.querySelector("#passcode-submit");
+    const cancelBtn = overlay.querySelector("#passcode-cancel");
+    const container = overlay.querySelector(".glass-panel");
+
+    setTimeout(() => {
+      overlay.style.opacity = "1";
+      container.style.transform = "translateY(0)";
+      input.focus();
+    }, 50);
+
+    function closeOverlay() {
+      overlay.style.opacity = "0";
+      container.style.transform = "translateY(20px)";
+      setTimeout(() => overlay.remove(), 300);
+    }
+
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function handleVerify() {
+      const hash = await sha256(input.value);
+      // Secure hash of default passcode "cosmos"
+      const expectedHash = "4cbe19716b1aa73a67dc4b28c34391879b503259fc76852082b4dafcf0de85b2";
+      
+      if (hash === expectedHash) {
+        closeOverlay();
+        onSuccess();
+      } else {
+        errorDiv.textContent = "Decryption Failed: Invalid Passcode.";
+        input.value = "";
+        input.style.borderColor = "#ef4444";
+        input.style.boxShadow = "0 0 10px rgba(239, 68, 68, 0.2)";
+        setTimeout(() => {
+          input.style.borderColor = "rgba(255, 255, 255, 0.15)";
+          input.style.boxShadow = "none";
+        }, 1500);
+      }
+    }
+
+    submitBtn.addEventListener("click", handleVerify);
+    cancelBtn.addEventListener("click", closeOverlay);
+    
+    input.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter") handleVerify();
+      if (ev.key === "Escape") closeOverlay();
+    });
+
+    input.onfocus = () => {
+      input.style.borderColor = "var(--accent-indigo)";
+      input.style.boxShadow = "0 0 10px rgba(129, 140, 248, 0.2)";
+    };
+    input.onblur = () => {
+      input.style.borderColor = "rgba(255, 255, 255, 0.15)";
+      input.style.boxShadow = "none";
+    };
+  }
+
+  /* ==========================================
+     Secret Curator Access (Ctrl+Shift+K)
+     Only the site owner knows this shortcut.
+     ========================================== */
   document.addEventListener("keydown", (e) => {
     if (e.ctrlKey && e.shiftKey && e.key === "K") {
       e.preventDefault();
-      if (openModalBtn) {
-        // Toggle visibility of the gear button
-        const isHidden = openModalBtn.style.display === "none";
-        openModalBtn.style.display = isHidden ? "inline-flex" : "none";
-
-        if (isHidden) {
-          // Auto-open the modal when first revealed
+      if (!openModalBtn) return;
+      
+      const isCurrentlyHidden = openModalBtn.style.display === "none" || !openModalBtn.style.display;
+      
+      if (!isCurrentlyHidden) {
+        // Locked/Close action
+        openModalBtn.style.display = "none";
+        modalOverlay.classList.remove("active");
+        showStatus("Curator console locked.", "info");
+      } else {
+        // Prompt passcode challenge to unlock
+        showPasscodePrompt(() => {
+          openModalBtn.style.display = "inline-flex";
           renderCuratorListTable();
-          showStatus("Curator console unlocked. Welcome back, admin.", "success");
+          showStatus("Curator console decrypted. Welcome back, admin.", "success");
           modalOverlay.classList.add("active");
-        }
+        });
       }
     }
   });
