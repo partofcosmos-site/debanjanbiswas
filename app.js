@@ -2979,11 +2979,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Global listener to sync with card play button click
     document.addEventListener("click", (e) => {
       const playBtn = e.target.closest(".lounge-play-btn");
-      const redirectBtn = e.target.closest(".lounge-redirect-btn");
-      const trigger = playBtn || redirectBtn;
-      if (!trigger) return;
+      if (!playBtn) return;
       
-      const card = trigger.closest(".lounge-card");
+      const card = playBtn.closest(".lounge-card");
       if (!card || card.getAttribute("data-category") !== "music") return;
 
       // Expand player if minimized
