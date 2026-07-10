@@ -970,20 +970,160 @@ function initLabSandbox() {
 /* ==========================================
    Cosmic Lounge Controller
    ========================================== */
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const loungeGrid = document.getElementById("lounge-grid");
   if (!loungeGrid) return;
 
   const searchInput = document.getElementById("lounge-search");
   const tabs = document.querySelectorAll(".lounge-tab");
-  const cards = loungeGrid.querySelectorAll(".lounge-card");
 
-  // Search Filter event
+  // Config: The 9 Curated Items (Anime use MAL IDs, movies use TMDB CDN links)
+  const curationList = [
+    {
+      id: "9253",
+      type: "TV",
+      category: "anime",
+      rating: "10.0 / 10",
+      tags: ["Time Travel", "Sci-Fi"],
+      desc: "A self-proclaimed mad scientist and his lab members accidentally invent a microwave-based time travel device, triggering a desperate fight to change worldlines.",
+      review: "The gold standard of time-travel fiction. It handles causality loops, world-lines, and attractor fields with extreme logical consistency.",
+      badge: "SUB/DUB",
+      fallbackTitle: "Steins;Gate",
+      fallbackCover: "https://cdn.myanimelist.net/images/anime/1935/127974.jpg",
+      fallbackEps: "24 Eps"
+    },
+    {
+      id: "interstellar",
+      title: "Interstellar",
+      type: "Movie",
+      category: "movie",
+      rating: "9.9 / 10",
+      tags: ["Astrophysics", "Relativity"],
+      desc: "A team of astronauts travel through a wormhole in search of a new home for humanity, navigating extreme time dilation near Gargantua.",
+      review: "Kip Thorne's general relativity modeling is flawless here. The rendering of Gargantua and Miller's planet time dilation are masterclasses.",
+      cover: "https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
+      duration: "169 Min",
+      badge: "4K IMAX"
+    },
+    {
+      id: "30",
+      type: "TV",
+      category: "anime",
+      rating: "9.8 / 10",
+      tags: ["Psychological", "Existential"],
+      desc: "In a post-apocalyptic world, a teenager is pressured to pilot a giant bio-mechanical construct to defend humanity from mysterious, alien Angels.",
+      review: "Evangelion is a masterpiece of deconstruction. It wraps mecha tropes around intense psychological exploration of depression and ego borders.",
+      badge: "SUB/DUB",
+      fallbackTitle: "Neon Genesis Evangelion",
+      fallbackCover: "https://cdn.myanimelist.net/images/anime/1314/108941.jpg",
+      fallbackEps: "26 Eps"
+    },
+    {
+      id: "tenet",
+      title: "Tenet",
+      type: "Movie",
+      category: "movie",
+      rating: "9.4 / 10",
+      tags: ["Entropy", "Thermodynamics"],
+      desc: "A secret agent is recruited to prevent armageddon triggered by technology that can invert entropy, causing objects and people to move backward in time.",
+      review: "Nolan's take on thermodynamic time arrows and CPT symmetry is incredibly ambitious. Temporal pincer movements are mind-bending to trace.",
+      cover: "https://image.tmdb.org/t/p/w500/aCIFMriQh8rvhxpN1IWGgvH0Tlg.jpg",
+      duration: "150 Min",
+      badge: "CPT Inv"
+    },
+    {
+      id: "32281",
+      type: "Movie",
+      category: "anime",
+      rating: "9.5 / 10",
+      tags: ["Space-Time", "Drama"],
+      desc: "Two high school students swap bodies periodically, leading to a desperate attempt to warn and save a town from an impending orbital comet impact.",
+      review: "Comet orbital trajectories, body-swapping across a three-year offset, and celestial artwork make this a spectacular visual and emotional experience.",
+      badge: "SUB/DUB",
+      fallbackTitle: "Your Name",
+      fallbackCover: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
+      fallbackEps: "106 Min"
+    },
+    {
+      id: "coherence",
+      title: "Coherence",
+      type: "Movie",
+      category: "movie",
+      rating: "9.5 / 10",
+      tags: ["Quantum", "Thriller"],
+      desc: "During a comet pass, a dinner party of friends experiences a power outage, only to discover that the comet has created a quantum coherence event, splitting reality.",
+      review: "A brilliant low-budget demonstration of Schrödinger's cat. It shows how macroscopic quantum decoherence would break down if parallel realities could interact.",
+      cover: "https://image.tmdb.org/t/p/w500/ezUtb9m5DeLwL2gxi4gktzNCvQv.jpg",
+      duration: "89 Min",
+      badge: "Decoh"
+    },
+    {
+      id: "1575",
+      type: "TV",
+      category: "anime",
+      rating: "9.6 / 10",
+      tags: ["Strategy", "Mecha"],
+      desc: "An exiled prince of an oppressive empire gains the power of absolute obedience and leads a masked rebellion to destroy his father's regime.",
+      review: "Lelouch is one of the greatest protagonists in fiction. Chess-like military tactics, geopolitics, and the ultimate sacrificial play of the Zero Requiem are masterclasses.",
+      badge: "SUB/DUB",
+      fallbackTitle: "Code Geass",
+      fallbackCover: "https://cdn.myanimelist.net/images/anime/1032/135088.jpg",
+      fallbackEps: "25 Eps"
+    },
+    {
+      id: "arrival",
+      title: "Arrival",
+      type: "Movie",
+      category: "movie",
+      rating: "9.7 / 10",
+      tags: ["Linguistics", "Spacetime"],
+      desc: "A linguist is recruited by the military to translate alien glyphs, discovering that learning their non-linear language alters her brain's perception of time.",
+      review: "Fascinating exploration of Fermat's Principle of Least Time. If light travel path is calculated by knowing the destination beforehand, time perception aligns.",
+      cover: "https://image.tmdb.org/t/p/w500/3b4fRUYXFaGVDqkb0ikjB4cn7ub.jpg",
+      duration: "116 Min",
+      badge: "Least T"
+    },
+    {
+      id: "339",
+      type: "TV",
+      category: "anime",
+      rating: "9.2 / 10",
+      tags: ["Cyberpunk", "Psychological"],
+      desc: "An introverted girl becomes obsessed with 'The Wired' (a global digital communications network), blurring the boundary between reality and digital consciousness.",
+      review: "Extremely ahead of its time. It predicts social media isolation, the collective digital consciousness, and questions what constitutes reality.",
+      badge: "SUB/DUB",
+      fallbackTitle: "Serial Experiments Lain",
+      fallbackCover: "https://cdn.myanimelist.net/images/anime/1718/91550.jpg",
+      fallbackEps: "13 Eps"
+    }
+  ];
+
+  // Resolve All Items
+  let resolvedItems = [];
+  const CACHE_KEY = "lounge_curated_grid_cache_v2";
+
+  try {
+    const cachedData = localStorage.getItem(CACHE_KEY);
+    if (cachedData) {
+      resolvedItems = JSON.parse(cachedData);
+    } else {
+      resolvedItems = await fetchCuratedData();
+      localStorage.setItem(CACHE_KEY, JSON.stringify(resolvedItems));
+    }
+  } catch (err) {
+    console.warn("Failed to load cached lounge data, falling back to static resolver...", err);
+    resolvedItems = getFallbackData();
+  }
+
+  // Render cards
+  renderCards(resolvedItems);
+
+  // Hook Search Filter event
   if (searchInput) {
     searchInput.addEventListener("input", filterGallery);
   }
 
-  // Category Tabs click event
+  // Hook Category Tabs click event
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
       tabs.forEach(t => t.classList.remove("active"));
@@ -992,29 +1132,182 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Mobile Tap-to-Flip handler
-  cards.forEach(card => {
-    card.addEventListener("click", (e) => {
-      // If user is clicking a link inside the card back, don't flip
-      if (e.target.tagName === "A" || e.target.closest("a")) return;
-      
-      // Toggle flip class
-      card.classList.toggle("flipped");
-      
-      // Optional: Unflip other cards when one is clicked
-      cards.forEach(otherCard => {
-        if (otherCard !== card) {
-          otherCard.classList.remove("flipped");
+  // Dynamic Jikan/Unsplash API Fetcher with Rate Limiter
+  async function fetchCuratedData() {
+    const list = [];
+    const JIKAN_DELAY = 350; // Milliseconds between Jikan hits to avoid 429 rate limits
+
+    for (const item of curationList) {
+      if (item.category === "anime") {
+        try {
+          // Delay to respect Jikan limits
+          await new Promise(resolve => setTimeout(resolve, JIKAN_DELAY));
+          
+          const res = await fetch(`https://api.jikan.moe/v4/anime/${item.id}`);
+          if (!res.ok) throw new Error(`Jikan returned ${res.status}`);
+          
+          const json = await res.resJson || await res.json();
+          const data = json.data;
+
+          list.push({
+            id: item.id,
+            category: item.category,
+            title: data.title_english || data.title,
+            cover: data.images.webp.large_image_url || data.images.jpg.large_image_url || item.fallbackCover,
+            episodes: `${data.episodes || "?"} Eps`,
+            badge: item.badge,
+            rating: item.rating,
+            tags: item.tags,
+            desc: item.desc,
+            review: item.review,
+            type: data.type || item.type
+          });
+        } catch (err) {
+          console.error(`Error fetching MAL ID ${item.id}:`, err);
+          // Push fallback data on fail
+          list.push({
+            id: item.id,
+            category: item.category,
+            title: item.fallbackTitle,
+            cover: item.fallbackCover,
+            episodes: item.fallbackEps,
+            badge: item.badge,
+            rating: item.rating,
+            tags: item.tags,
+            desc: item.desc,
+            review: item.review,
+            type: item.type
+          });
         }
-      });
+      } else {
+        // Movies have statically defined high-quality TMDB covers
+        list.push({
+          id: item.id,
+          category: item.category,
+          title: item.title,
+          cover: item.cover,
+          episodes: item.duration,
+          badge: item.badge,
+          rating: item.rating,
+          tags: item.tags,
+          desc: item.desc,
+          review: item.review,
+          type: item.type
+        });
+      }
+    }
+    return list;
+  }
+
+  // Generate Fallback Data Array directly
+  function getFallbackData() {
+    return curationList.map(item => {
+      if (item.category === "anime") {
+        return {
+          id: item.id,
+          category: item.category,
+          title: item.fallbackTitle,
+          cover: item.fallbackCover,
+          episodes: item.fallbackEps,
+          badge: item.badge,
+          rating: item.rating,
+          tags: item.tags,
+          desc: item.desc,
+          review: item.review,
+          type: item.type
+        };
+      } else {
+        return {
+          id: item.id,
+          category: item.category,
+          title: item.title,
+          cover: item.cover,
+          episodes: item.duration,
+          badge: item.badge,
+          rating: item.rating,
+          tags: item.tags,
+          desc: item.desc,
+          review: item.review,
+          type: item.type
+        };
+      }
     });
-  });
+  }
+
+  // Render HTML Cards dynamically inside #lounge-grid
+  function renderCards(items) {
+    loungeGrid.innerHTML = "";
+
+    items.forEach((item, index) => {
+      const searchKeywords = `${item.title} ${item.tags.join(" ")} ${item.desc} ${item.review}`.toLowerCase();
+      const card = document.createElement("div");
+      card.className = "lounge-card";
+      card.setAttribute("data-category", item.category);
+      card.setAttribute("data-search", searchKeywords);
+      card.style.animationDelay = `${index * 0.05}s`;
+
+      card.innerHTML = `
+        <div class="lounge-card-inner">
+          <!-- Front Face -->
+          <div class="lounge-card-front">
+            <div class="lounge-poster-wrapper">
+              <img src="${item.cover}" alt="${item.title} Poster" onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300'">
+              <span class="media-type-badge type-${item.category === 'anime' ? 'tv' : 'movie'}">${item.type}</span>
+            </div>
+            <div class="lounge-card-meta">
+              <span class="meta-item">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path><path d="M12 6v6l4 2"></path></svg>
+                ${item.episodes}
+              </span>
+              <span class="meta-item">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                ${item.badge}
+              </span>
+            </div>
+            <h3 class="lounge-anime-title">${item.title}</h3>
+          </div>
+          <!-- Back Face -->
+          <div class="lounge-card-back glass-panel">
+            <div class="lounge-back-header">
+              <h4>${item.title}</h4>
+              <span class="back-rating">${item.rating}</span>
+            </div>
+            <div class="lounge-back-tags">
+              ${item.tags.map(t => `<span class="lounge-tag">${t}</span>`).join("")}
+            </div>
+            <p class="lounge-back-desc">${item.desc}</p>
+            <div class="lounge-back-review">
+              <h5>Physics Review:</h5>
+              <p>${item.review}</p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Mobile Tap-to-Flip listener
+      card.addEventListener("click", (e) => {
+        if (e.target.tagName === "A" || e.target.closest("a")) return;
+        card.classList.toggle("flipped");
+
+        // Unflip others
+        const allCards = loungeGrid.querySelectorAll(".lounge-card");
+        allCards.forEach(otherCard => {
+          if (otherCard !== card) {
+            otherCard.classList.remove("flipped");
+          }
+        });
+      });
+
+      loungeGrid.appendChild(card);
+    });
+  }
 
   // Live filter cards by category and keyword search
   function filterGallery() {
     const activeTab = document.querySelector(".lounge-tab.active");
     const category = activeTab ? activeTab.getAttribute("data-category") : "all";
     const keyword = searchInput ? searchInput.value.toLowerCase().trim() : "";
+    const cards = loungeGrid.querySelectorAll(".lounge-card");
 
     cards.forEach(card => {
       const cardCategory = card.getAttribute("data-category");
@@ -1023,7 +1316,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const matchesCategory = (category === "all") || (category === cardCategory);
       const matchesKeyword = !keyword || searchStr.includes(keyword);
 
-      // Reset flip state on filter to avoid weird layout shifts
       card.classList.remove("flipped");
 
       if (matchesCategory && matchesKeyword) {
@@ -1034,5 +1326,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
 
