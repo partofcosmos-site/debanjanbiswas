@@ -2006,23 +2006,10 @@ document.addEventListener("DOMContentLoaded", async () => {
               <h5>${item.category === "music" ? "Track Synopsis" : "Official Synopsis"}</h5>
               <p style="overflow-y: auto; flex: 1; margin: 0; padding-right: 0.25rem;">${item.synopsis}</p>
             </div>
-            ${item.category === "music" ? `
-              <div style="display: flex; gap: 0.5rem; width: 100%;">
-                <button class="lounge-play-btn" style="flex: 1.3; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.5rem 0.75rem; font-size: 0.75rem; font-weight: 600; font-family: var(--font-sans); color: #fff; background: linear-gradient(135deg, var(--accent-indigo), #4f46e5); border: none; border-radius: 6px; cursor: pointer; transition: all 0.3s ease;">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                  <span>Play Track</span>
-                </button>
-                <a href="${item.url}" target="_blank" class="lounge-redirect-btn" style="flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.5rem 0.75rem; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; font-size: 0.75rem; font-weight: 500; color: #cbd5e1; text-decoration: none; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.03);">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  <span>YT Music</span>
-                </a>
-              </div>
-            ` : `
-              <a href="${item.url}" target="_blank" class="lounge-redirect-btn">
-                <span>View Detailed Analytics</span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-              </a>
-            `}
+            <a href="${item.url}" target="_blank" class="lounge-redirect-btn">
+              <span>${item.category === "music" ? "Listen on YouTube Music" : "View Detailed Analytics"}</span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
           </div>
         </div>
       `;
