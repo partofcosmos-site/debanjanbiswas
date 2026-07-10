@@ -173,37 +173,8 @@
         </div>
       </div>
 
-      <!-- GitHub Sync Section -->
-      <div class="curator-sync-section" style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px dashed rgba(255, 255, 255, 0.1);">
-        <h4 style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; margin: 0 0 0.5rem 0; font-size: 0.85rem; color: #fff; letter-spacing: 0.05em;" id="toggle-sync-settings">
-          <span style="display: flex; align-items: center; gap: 0.5rem;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-            GitHub Auto-Sync Setup
-          </span>
-          <span id="sync-settings-chevron" style="font-size: 0.65rem; color: #64748b; font-family: var(--font-mono); transition: transform 0.2s ease;">[Expand]</span>
-        </h4>
-        
-        <div id="sync-settings-panel" style="display: none; background: rgba(0,0,0,0.25); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 1rem;">
-          <div class="curator-field-group" style="margin-bottom: 0.75rem;">
-            <label style="font-size: 0.7rem; color: #94a3b8; display: block; margin-bottom: 0.25rem;">Personal Access Token (PAT)</label>
-            <input type="password" id="sync-token" class="curator-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" style="width: 100%; box-sizing: border-box;">
-            <span style="font-size: 0.6rem; color: #64748b; font-family: var(--font-mono); margin-top: 0.15rem; display: block;">Token must have 'repo' permission. Stored securely only in your browser storage.</span>
-          </div>
-          <div style="display: flex; gap: 0.75rem;">
-            <div class="curator-field-group" style="flex: 1;">
-              <label style="font-size: 0.7rem; color: #94a3b8; display: block; margin-bottom: 0.25rem;">Repo Owner</label>
-              <input type="text" id="sync-owner" class="curator-input" value="partofcosmos-site" style="width: 100%; box-sizing: border-box;">
-            </div>
-            <div class="curator-field-group" style="flex: 1;">
-              <label style="font-size: 0.7rem; color: #94a3b8; display: block; margin-bottom: 0.25rem;">Repo Name</label>
-              <input type="text" id="sync-repo" class="curator-input" value="debanjanbiswas" style="width: 100%; box-sizing: border-box;">
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Modal Bottom Bar Actions -->
-      <div class="curator-bottom-bar">
+      <div class="curator-bottom-bar" style="margin-top: 1.5rem;">
         <button id="curator-reset-btn" class="curator-btn curator-btn-secondary" style="border-color: rgba(239, 68, 68, 0.2); color: #f87171;">Reset to Default</button>
         <div style="display: flex; gap: 0.5rem;">
           <button id="curator-export-btn" class="curator-btn curator-btn-secondary">Copy Config Array</button>

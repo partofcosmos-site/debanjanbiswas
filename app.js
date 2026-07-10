@@ -2187,6 +2187,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       const expectedHash = "4cbe19716b1aa73a67dc4b28c34391879b503259fc76852082b4dafcf0de85b2";
       
       if (hash === expectedHash) {
+        if (GITHUB_ENCRYPTED_PAT && GITHUB_ENCRYPTED_IV) {
+          decryptedGithubToken = await decryptPAT(GITHUB_ENCRYPTED_PAT, GITHUB_ENCRYPTED_IV, input.value);
+        }
         closeOverlay();
         onSuccess();
       } else {
@@ -2219,67 +2222,63 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
   }
 
-  // GitHub Auto-Sync DOM Elements
-  const toggleSyncSettings = document.getElementById("toggle-sync-settings");
-  const syncSettingsPanel = document.getElementById("sync-settings-panel");
-  const syncSettingsChevron = document.getElementById("sync-settings-chevron");
-  
-  const syncTokenInput = document.getElementById("sync-token");
-  const syncOwnerInput = document.getElementById("sync-owner");
-  const syncRepoInput = document.getElementById("sync-repo");
-  const curatorSyncBtn = document.getElementById("curator-sync-btn");
+  // Secure GitHub credentials decrypted in browser memory
+  const GITHUB_ENCRYPTED_PAT = "";
+  const GITHUB_ENCRYPTED_IV = "";
+  const GITHUB_OWNER = "partofcosmos-site";
+  const GITHUB_REPO = "debanjanbiswas";
 
-  const GITHUB_CONFIG_KEY = "lounge_github_sync_config_v3";
+  let decryptedGithubToken = "";
 
-  // Collapsible Sync Configuration Toggle
-  if (toggleSyncSettings && syncSettingsPanel) {
-    toggleSyncSettings.addEventListener("click", () => {
-      const isHidden = syncSettingsPanel.style.display === "none";
-      syncSettingsPanel.style.display = isHidden ? "block" : "none";
-      if (syncSettingsChevron) {
-        syncSettingsChevron.textContent = isHidden ? "[Collapse]" : "[Expand]";
-      }
-    });
+  async function sha256Bytes(buffer) {
+    return new Uint8Array(await crypto.subtle.digest("SHA-256", buffer));
   }
 
-  // Load Saved Sync Configuration from Local Storage
-  const loadGithubConfig = () => {
+  // Safe client-side stream decryption helper using SHA-256 CTR keystream
+  async function decryptPAT(encryptedHex, ivHex, passcode) {
+    if (!encryptedHex || !ivHex) return "";
     try {
-      const config = JSON.parse(localStorage.getItem(GITHUB_CONFIG_KEY));
-      if (config) {
-        if (syncTokenInput) syncTokenInput.value = config.token || "";
-        if (syncOwnerInput) syncOwnerInput.value = config.owner || "partofcosmos-site";
-        if (syncRepoInput) syncRepoInput.value = config.repo || "debanjanbiswas";
+      const encoder = new TextEncoder();
+      const passcodeBytes = encoder.encode(passcode);
+      const key = await sha256Bytes(passcodeBytes);
+      
+      const encryptedBytes = new Uint8Array(encryptedHex.match(/.{1,2}/g).map(h => parseInt(h, 16)));
+      const nonceBytes = new Uint8Array(ivHex.match(/.{1,2}/g).map(h => parseInt(h, 16)));
+      
+      const decryptedBytes = new Uint8Array(encryptedBytes.length);
+      const blockSize = 32;
+      const numBlocks = Math.ceil(encryptedBytes.length / blockSize);
+      
+      for (let i = 0; i < numBlocks; i++) {
+        const counterBytes = new Uint8Array(key.length + nonceBytes.length + 4);
+        counterBytes.set(key, 0);
+        counterBytes.set(nonceBytes, key.length);
+        const view = new DataView(counterBytes.buffer);
+        view.setUint32(key.length + nonceBytes.length, i);
+        
+        const blockKey = await sha256Bytes(counterBytes);
+        
+        const start = i * blockSize;
+        const end = Math.min(start + blockSize, encryptedBytes.length);
+        for (let j = start; j < end; j++) {
+          decryptedBytes[j] = encryptedBytes[j] ^ blockKey[j - start];
+        }
       }
+      
+      return new TextDecoder().decode(decryptedBytes);
     } catch (e) {
-      console.error("Failed loading github configuration:", e);
+      console.error("PAT decryption failed:", e);
+      return "";
     }
-  };
-  loadGithubConfig();
+  }
 
-  // Save Config parameters to Local Storage
-  const saveGithubConfig = () => {
-    const config = {
-      token: syncTokenInput ? syncTokenInput.value.trim() : "",
-      owner: syncOwnerInput ? syncOwnerInput.value.trim() : "partofcosmos-site",
-      repo: syncRepoInput ? syncRepoInput.value.trim() : "debanjanbiswas"
-    };
-    localStorage.setItem(GITHUB_CONFIG_KEY, JSON.stringify(config));
-    return config;
-  };
+  const curatorSyncBtn = document.getElementById("curator-sync-btn");
 
   // Sync / Commit directly to Github Repository
   if (curatorSyncBtn) {
     curatorSyncBtn.addEventListener("click", async () => {
-      const config = saveGithubConfig();
-      
-      if (!config.token) {
-        if (syncSettingsPanel) {
-          syncSettingsPanel.style.display = "block";
-          if (syncSettingsChevron) syncSettingsChevron.textContent = "[Collapse]";
-        }
-        showStatus("GitHub Sync Failed: Missing Personal Access Token (PAT).", "error");
-        if (syncTokenInput) syncTokenInput.focus();
+      if (!decryptedGithubToken) {
+        showStatus("GitHub Sync Failed: Sync credentials not configured. Please run 'python encrypt_token.py' locally first.", "error");
         return;
       }
 
@@ -2290,13 +2289,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       try {
         const path = "app.js";
-        const url = `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${path}`;
+        const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`;
         
         // Fetch current app.js details (SHA & content)
         const getRes = await fetch(url, {
           method: "GET",
           headers: {
-            "Authorization": `token ${config.token}`,
+            "Authorization": `token ${decryptedGithubToken}`,
             "Accept": "application/vnd.github.v3+json",
             "Cache-Control": "no-cache"
           }
@@ -2339,7 +2338,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const putRes = await fetch(url, {
           method: "PUT",
           headers: {
-            "Authorization": `token ${config.token}`,
+            "Authorization": `token ${decryptedGithubToken}`,
             "Content-Type": "application/json",
             "Accept": "application/vnd.github.v3+json"
           },
@@ -2386,6 +2385,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Locked/Close action
         openModalBtn.style.display = "none";
         modalOverlay.classList.remove("active");
+        decryptedGithubToken = ""; // Wipe credentials from memory
         showStatus("Curator console locked.", "info");
       } else {
         // Prompt passcode challenge to unlock
@@ -2396,7 +2396,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           modalOverlay.classList.add("active");
         });
       }
-    }
   });
 });
 
