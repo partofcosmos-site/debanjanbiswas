@@ -20,9 +20,19 @@ I am a student from West Bengal, India, passionate about physics, astronomy, and
 
 ---
 ### ✨ About The Project
-This is my personal website showcasing my past,present and future.It is filled with my love and juicy experiences 💫
-This is my personal website showcasing my past,present and future.It is filled with my love and juicy experiences 💫     
-I made this website using HTML, CSS, and JavaScript to showcase my work, research, and projects in their purest form. have tried my best to show my best self in the website using the mold of HTML,CSS,Javascript .
+This is my personal website showcasing my past, present, and future. It's built with pure HTML, CSS, and vanilla JS. I wanted to design it myself without heavy frameworks, so the styling is custom glassmorphic CSS, and the logic runs on client-side JS.
+
+#### 🛠️ Tech Features & How I Made It:
+* **Interactive Media Lounge:**
+  An interactive space showing my favorite movies, anime watchlist, and music. Built with a responsive card layout featuring 3D flip animations using CSS transforms. 
+* **Dynamic Anime Metadata Integration:**
+  To keep the watchlist updated, the site queries the MyAnimeList API (Jikan API) on load. To make sure the API rate limits (429 errors) don't lock up or freeze the page loading animation, I structured it with an optimized scheduler that delays queries by 1000ms.
+* **Secret Curator Admin Console:**
+  Pressing a secret key combination (`Ctrl+Shift+K`) brings up a hidden passcode overlay. It verifies the passcode entirely client-side using a secure SHA-256 hash. Once unlocked, a spreadsheet-like editor lets me edit, add, or delete watch items directly on the live page.
+* **Direct Serverless Git Sync Pipeline:**
+  To sync changes back to my GitHub repository, I set up a secure client-side deployment script. My GitHub PAT (Personal Access Token) is stored as an encrypted string. Upon entering the passcode, it decrypts the token in memory and uses the GitHub REST API to commit the database modifications directly to the main branch. This triggers a fresh cloud rebuild of my live site automatically without exposing any tokens in the source code.
+* **YouTube Music Navigation:**
+  The music cards are connected directly to their official pages on YouTube Music, allowing visitors to instantly listen to the exact track in a new tab.
 
 ---
 
