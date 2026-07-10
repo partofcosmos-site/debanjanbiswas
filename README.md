@@ -30,11 +30,11 @@ There's also a 'Lounge' grid for my favorite movies, anime, and music. The cards
 
 ### 🏆 Milestones & Highlights
 
-*   **IIT Kharagpur RISE / I-KITES (2026)** – Selected scholar participating in the research & innovation program.
-*   **National Means Cum Merit Scholarship (NMMS) Scholar** – Academic aptitude scholarship recipient.
-*   **Physics Sandbox & Lounge Curation** – Designed and built a Newtonian orbital dynamics simulator and a synced movie/music watchlist from scratch.
-*   **Hack Club Member** – Part of the global community of teenager builders and developers.
-*   **Contest Participant** – Actively competing in physics, math, and coding contests to sharpen my problem-solving skills.
+*   **IIT Kharagpur RISE / I-KITES (2026)** – Selected scholar participating in the prestigious research, innovation, and entrepreneurship initiative commencing May 16, 2026.
+*   **NSRI Research Community** – Research member collaborating on open-source scientific codebases, decentralized developer environments, and physics computations.
+*   **Synthica Research Community** – Collaborating on machine learning pipelines, automated code validation systems, and agentic workflows.
+*   **NMMS Scholar (2023)** – Recipient of the National Means-cum-Merit Scholarship, a competitive aptitude merit award from the Government of India.
+*   **Hack Club Global Developer Network** – Collaborating on peer-led open-source software, deployment architectures, and custom build systems.
 
 ---
 
