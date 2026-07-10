@@ -20,11 +20,11 @@ I am a student from West Bengal, India, passionate about physics, astronomy, and
 
 ### ✨ About The Project
 
-This is my personal website where I share my work, resources, and things I like. I built the site from scratch using simple HTML, CSS, and JS because I didn't want any complex web frameworks. The styling is a custom glassmorphism style, and the animations are coded in vanilla JavaScript.
+This is my personal website where I share my work, resources, and things I like. I made the site using just HTML, CSS, and JS because I wanted to write everything myself. It has a clean glassmorphic design and basic animations that I wrote in plain JavaScript.
 
-I added a 'Lab' section where I coded an orbital physics simulator to play around with gravity. It runs Newtonian calculations to launch custom satellites around a central star. You click and drag to launch things with a custom speed, and it calculates specific orbital energy and eccentricity to classify orbit shapes on the fly. It also includes an N-Body option for multi-body gravity chaos, colliders, and KaTeX math formulas.
+I also coded a gravity simulator in the 'Lab' section to play around with physics. It runs Newtonian calculations to launch custom satellites around a central star. You click and drag to launch things with different speeds, and it calculates the orbital energy and eccentricity to classify the orbit shape on the fly. It has options for mutual gravity between planets, collisions, and KaTeX math equations.
 
-There's also a 'Lounge' watch and listen grid for my favorite movies, anime, and music. The cards flip around using CSS 3D transforms when clicked. The anime entries automatically fetch real-time info from the MyAnimeList API, with a 1-second delay so we don't hit rate limits. I also set up a hidden 'Curator Console' shortcut (Ctrl+Shift+K) with local SHA-256 passcode decryption that logs in and uses the GitHub REST API to push watch list edits back to my repository, which triggers a fresh build deploy automatically. The music entries link directly to their pages on YouTube Music.
+There's also a 'Lounge' grid for my favorite movies, anime, and music. The cards flip around using CSS 3D transforms when you click them. The anime ones fetch info from the MyAnimeList API, with a 1-second delay so we don't hit rate limits. I set up a hidden 'Curator Console' shortcut (Ctrl+Shift+K) with passcode decryption that logs in and uses the GitHub REST API to push watchlist edits back to my repo, which automatically deploys updates to the live site. The music cards link straight to YouTube Music.
 
 ---
 
