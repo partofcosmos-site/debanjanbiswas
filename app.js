@@ -1547,12 +1547,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Resolve Movie details from TMDB URLs, TMDB IDs, or plain titles
-  // Uses the iTunes Search API (free, no API key, CORS-friendly)
   async function resolveMovieLookup(val) {
     let movieId = "";
     let titleSlug = "";
     let tmdbPageUrl = "";
-
+    
     // Extract TMDB ID and title slug from URL like /movie/13505-captain-america-the-first-avenger
     const tmdbMatch = val.match(/themoviedb\.org\/movie\/(\d+)(?:\-([a-zA-Z0-9\-]+))?/);
     if (tmdbMatch) {
@@ -1583,13 +1582,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     let resolvedDuration = "120 Min";
     let resolvedTags = curatorTags.value.trim() ? curatorTags.value.trim().split(",").map(t => t.trim()) : ["Sci-Fi", "Cinema"];
 
-    // Search via iTunes Search API using JSONP to bypass CORS blocks on local file:// protocols
     if (titleSlug) {
       try {
-        showStatus(`Searching iTunes for "${titleSlug}"...`, "info");
+        showStatus(`Searching DuckDuckGo for "${titleSlug}"...`, "info");
         
-        const jsonpPromise = new Promise((resolve, reject) => {
-          const callbackName = 'itunesCallback_' + Math.round(100000 * Math.random());
+        // 1. DuckDuckGo JSONP Search
+        const ddgPromise = new Promise((resolve) => {
+          const callbackName = 'ddgCallback_' + Math.round(100000 * Math.random());
           window[callbackName] = (data) => {
             delete window[callbackName];
             const scriptEl = document.getElementById(callbackName);
@@ -1599,48 +1598,80 @@ document.addEventListener("DOMContentLoaded", async () => {
           
           const script = document.createElement('script');
           script.id = callbackName;
-          script.src = `https://itunes.apple.com/search?term=${encodeURIComponent(titleSlug)}&media=movie&limit=5&callback=${callbackName}`;
+          script.src = `https://api.duckduckgo.com/?q=${encodeURIComponent(titleSlug)}&format=json&callback=${callbackName}`;
           script.onerror = () => {
             delete window[callbackName];
             const scriptEl = document.getElementById(callbackName);
             if (scriptEl) scriptEl.remove();
-            reject(new Error("JSONP fetch failed"));
+            resolve(null);
           };
           document.body.appendChild(script);
         });
 
-        const itunesData = await jsonpPromise;
-        if (itunesData && itunesData.resultCount > 0) {
-          // Find the best match by comparing title similarity
-          const searchLower = titleSlug.toLowerCase();
-          let bestMatch = itunesData.results[0];
-          for (const result of itunesData.results) {
-            if (result.trackName && result.trackName.toLowerCase().includes(searchLower.split(" ")[0])) {
-              bestMatch = result;
-              break;
-            }
+        const ddgData = await ddgPromise;
+        
+        if (ddgData && (ddgData.AbstractText || ddgData.Image)) {
+          resolvedTitle = ddgData.Heading || resolvedTitle;
+          resolvedSynopsis = ddgData.AbstractText || resolvedSynopsis;
+          if (ddgData.Image) {
+            coverUrl = ddgData.Image.startsWith("http") ? ddgData.Image : `https://duckduckgo.com${ddgData.Image}`;
           }
-
-          resolvedTitle = bestMatch.trackName || resolvedTitle;
-          // Get high-res artwork (replace 100x100 with 600x600)
-          coverUrl = bestMatch.artworkUrl100 ? bestMatch.artworkUrl100.replace("100x100bb", "600x600bb") : coverUrl;
-          resolvedSynopsis = bestMatch.longDescription || bestMatch.shortDescription || resolvedSynopsis;
-          // Convert milliseconds to minutes
-          if (bestMatch.trackTimeMillis) {
-            resolvedDuration = `${Math.round(bestMatch.trackTimeMillis / 60000)} Min`;
-          }
-          // Extract genre
-          if (bestMatch.primaryGenreName) {
-            resolvedTags = [bestMatch.primaryGenreName];
-            if (bestMatch.genres && bestMatch.genres.length > 1) {
-              resolvedTags = bestMatch.genres.slice(0, 3);
-            }
-          }
+          showStatus(`DuckDuckGo metadata resolved for "${resolvedTitle}".`, "success");
         } else {
-          showStatus(`iTunes found no results for "${titleSlug}". Using extracted title.`, "info");
+          // 2. iTunes JSONP Fallback
+          showStatus(`DuckDuckGo returned empty. Searching iTunes for "${titleSlug}"...`, "info");
+          
+          const itunesPromise = new Promise((resolve) => {
+            const callbackName = 'itunesCallback_' + Math.round(100000 * Math.random());
+            window[callbackName] = (data) => {
+              delete window[callbackName];
+              const scriptEl = document.getElementById(callbackName);
+              if (scriptEl) scriptEl.remove();
+              resolve(data);
+            };
+            
+            const script = document.createElement('script');
+            script.id = callbackName;
+            script.src = `https://itunes.apple.com/search?term=${encodeURIComponent(titleSlug)}&media=movie&limit=5&callback=${callbackName}`;
+            script.onerror = () => {
+              delete window[callbackName];
+              const scriptEl = document.getElementById(callbackName);
+              if (scriptEl) scriptEl.remove();
+              resolve(null);
+            };
+            document.body.appendChild(script);
+          });
+
+          const itunesData = await itunesPromise;
+          if (itunesData && itunesData.resultCount > 0) {
+            const searchLower = titleSlug.toLowerCase();
+            let bestMatch = itunesData.results[0];
+            for (const result of itunesData.results) {
+              if (result.trackName && result.trackName.toLowerCase().includes(searchLower.split(" ")[0])) {
+                bestMatch = result;
+                break;
+              }
+            }
+
+            resolvedTitle = bestMatch.trackName || resolvedTitle;
+            coverUrl = bestMatch.artworkUrl100 ? bestMatch.artworkUrl100.replace("100x100bb", "600x600bb") : coverUrl;
+            resolvedSynopsis = bestMatch.longDescription || bestMatch.shortDescription || resolvedSynopsis;
+            if (bestMatch.trackTimeMillis) {
+              resolvedDuration = `${Math.round(bestMatch.trackTimeMillis / 60000)} Min`;
+            }
+            if (bestMatch.primaryGenreName) {
+              resolvedTags = [bestMatch.primaryGenreName];
+              if (bestMatch.genres && bestMatch.genres.length > 1) {
+                resolvedTags = bestMatch.genres.slice(0, 3);
+              }
+            }
+            showStatus(`iTunes metadata resolved for "${resolvedTitle}".`, "success");
+          } else {
+            showStatus(`No metadata found on DuckDuckGo or iTunes. Using placeholder values.`, "info");
+          }
         }
       } catch (err) {
-        console.warn("iTunes lookup failed, using slug title fallback:", err);
+        console.warn("Movie lookup chain failed, using fallback:", err);
       }
     }
 
