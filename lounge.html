@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" data-scroll-behavior="smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Cosmic Lounge | Debanjan Biswas</title>
+  <meta name="description" content="A curated recess of anime watch history, sci-fi movies, and cosmic thoughts by Debanjan Biswas.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Cosmic Background Layers -->
+  <div class="cosmic-background">
+    <canvas class="cosmic-canvas"></canvas>
+    <div class="planet-sphere">
+      <div class="planet-clouds"></div>
+    </div>
+    <div class="glow-blob glow-left"></div>
+    <div class="glow-blob glow-right"></div>
+  </div>
+  <div class="cosmic-grid"></div>
+
+  <!-- Header / Navigation Bar -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">DB</div>
+        <span class="logo-text">Debanjan</span>
+      </a>
+      <!-- Desktop Navigation -->
+      <nav class="desktop-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="resources.html" class="nav-link">Resources</a>
+        <a href="lab.html" class="nav-link">Lab</a>
+        <a href="lounge.html" class="nav-link active">Lounge</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <!-- Mobile toggle menu button -->
+      <button class="mobile-toggle" aria-label="Toggle Menu">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile dropdown menu -->
+    <div class="mobile-menu">
+      <nav>
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="resources.html" class="mobile-nav-link">Resources</a>
+        <a href="lab.html" class="mobile-nav-link">Lab</a>
+        <a href="lounge.html" class="mobile-nav-link active">Lounge</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content container -->
+  <main class="container">
+    <section class="page-section">
+      <div class="page-ambient-lights">
+        <div class="ambient-light-1"></div>
+        <div class="ambient-light-2"></div>
+      </div>
+
+      <!-- Page Header -->
+      <div style="margin-bottom: 2.5rem; position: relative; z-index: 10;">
+        <span class="text-sm-mono" style="color: var(--accent-indigo); text-transform: uppercase; letter-spacing: 0.1em; display: flex; align-items: center; gap: 0.375rem;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          Cosmic Recess &amp; Lounge
+        </span>
+        <h1 class="hero-title" style="margin-top: 0.5rem; margin-bottom: 1rem;">The Cosmic Lounge</h1>
+        <p class="hero-tagline" style="margin-bottom: 1.5rem; max-width: 44rem;">
+          A dedicated portal showcasing my favorite media, books, and thoughts outside of physics equations and code blocks. Pull active lists dynamically or browse my curated selections.
+        </p>
+        <div class="w-12 h-0.5 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full" style="width: 3rem; height: 2px; background: linear-gradient(to right, #6366f1, #ec4899); border-radius: 999px; margin-bottom: 1rem;"></div>
+      </div>
+
+      <!-- Search & Options Panel -->
+      <div class="lounge-controls-container">
+        
+        <!-- Search & Filter Tab Row -->
+        <div class="glass-panel lounge-search-panel" style="padding: 1.25rem; border-radius: 1rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="lounge-search" placeholder="Filter by title, genre, keyword, or personal notes..." class="lounge-search-field">
+          </div>
+          
+          <div class="lounge-tabs-row">
+            <button class="lounge-tab active" data-category="all">All Content</button>
+            <button class="lounge-tab" data-category="anime">Curated Anime</button>
+            <button class="lounge-tab" data-category="movie">Curated Movies</button>
+            <button class="lounge-tab" data-category="sync" id="tab-synced" style="display: none;">Synced List</button>
+          </div>
+        </div>
+
+        <!-- Sync watch list panel -->
+        <div class="glass-panel lounge-sync-panel" style="padding: 1.25rem; border-radius: 1rem; margin-bottom: 2rem;">
+          <div class="sync-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+            <span>Automated Watchlist Sync (AniList / MyAnimeList API)</span>
+          </div>
+          <p class="sync-desc">
+            Enter a MyAnimeList or AniList username to pull public completed watch history dynamically using GraphQL or REST endpoints.
+          </p>
+          <div class="sync-form">
+            <select id="sync-platform" class="sync-select">
+              <option value="anilist">AniList API</option>
+              <option value="mal">MyAnimeList (Jikan)</option>
+            </select>
+            <input type="text" id="sync-username" placeholder="Enter username..." class="sync-username-input">
+            <button id="sync-btn" class="sync-submit-btn">
+              <span>Sync Watchlist</span>
+            </button>
+          </div>
+          <div id="sync-status" class="sync-status-info"></div>
+        </div>
+
+      </div>
+
+      <!-- Gallery Grid -->
+      <div id="lounge-grid" class="lounge-grid">
+        
+        <!-- Anime 1: Steins;Gate -->
+        <div class="glass-panel lounge-card" data-category="anime" data-search="steins;gate time travel science fiction thriller causality looping okabe mad scientist">
+          <div class="lounge-card-img-wrap">
+            <img src="https://img.anilist.co/media/anime/cover/large/bx9253-74MvOgq22N47.png" alt="Steins;Gate Cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300'">
+            <div class="lounge-category-badge">Anime</div>
+            <div class="lounge-rating-badge">10.0 / 10</div>
+          </div>
+          <div class="lounge-card-content">
+            <h3 class="lounge-card-title">Steins;Gate</h3>
+            <div class="lounge-tags">
+              <span class="lounge-tag">Time Travel</span>
+              <span class="lounge-tag">Sci-Fi</span>
+              <span class="lounge-tag">Thriller</span>
+            </div>
+            <p class="lounge-card-desc">
+              A self-proclaimed mad scientist and his lab members accidentally invent a microwave-based time travel device, triggering a desperate fight to change worldlines and escape a dystopian timeline.
+            </p>
+            <div class="lounge-review-block">
+              <button class="review-toggle-btn">
+                <span>Personal Physics Review</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="review-expanded-content">
+                <p>
+                  The gold standard of time-travel fiction. It handles causality loops, world-lines, and attractor fields with extreme logical consistency. Okabe's transition from chuunibyou delusions to genuine mental exhaustion from looping is tragic and incredibly written.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Movie 1: Interstellar -->
+        <div class="glass-panel lounge-card" data-category="movie" data-search="interstellar nolan astrophysics black hole time dilation wormhole gravity gargantua relativity">
+          <div class="lounge-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600" alt="Interstellar Concept Cover" loading="lazy">
+            <div class="lounge-category-badge">Movie</div>
+            <div class="lounge-rating-badge">9.9 / 10</div>
+          </div>
+          <div class="lounge-card-content">
+            <h3 class="lounge-card-title">Interstellar</h3>
+            <div class="lounge-tags">
+              <span class="lounge-tag">Astrophysics</span>
+              <span class="lounge-tag">Relativity</span>
+              <span class="lounge-tag">Sci-Fi</span>
+            </div>
+            <p class="lounge-card-desc">
+              A team of astronauts travel through a wormhole in search of a new home for humanity, navigating extreme time dilation and gravitational waves near a supermassive black hole.
+            </p>
+            <div class="lounge-review-block">
+              <button class="review-toggle-btn">
+                <span>Personal Physics Review</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="review-expanded-content">
+                <p>
+                  Kip Thorne's general relativity modeling is flawless here. The visual rendering of the accretion disk around Gargantua and the gravitational time dilation on Miller's planet (1 hour = 7 years) are masterclasses in applying PCM equations to visual media.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Anime 2: Neon Genesis Evangelion -->
+        <div class="glass-panel lounge-card" data-category="anime" data-search="neon genesis evangelion eva shinji mecha psychological existential dread depression at field">
+          <div class="lounge-card-img-wrap">
+            <img src="https://img.anilist.co/media/anime/cover/large/bx30-9x0lSgL27rV0.png" alt="Evangelion Cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300'">
+            <div class="lounge-category-badge">Anime</div>
+            <div class="lounge-rating-badge">9.8 / 10</div>
+          </div>
+          <div class="lounge-card-content">
+            <h3 class="lounge-card-title">Neon Genesis Evangelion</h3>
+            <div class="lounge-tags">
+              <span class="lounge-tag">Psychological</span>
+              <span class="lounge-tag">Existential</span>
+              <span class="lounge-tag">Mecha</span>
+            </div>
+            <p class="lounge-card-desc">
+              In a post-apocalyptic world, a teenager is pressured by his cold father to pilot a giant bio-mechanical construct to defend humanity from mysterious, alien entities known as Angels.
+            </p>
+            <div class="lounge-review-block">
+              <button class="review-toggle-btn">
+                <span>Personal Physics Review</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="review-expanded-content">
+                <p>
+                  Evangelion is a masterpiece of deconstruction. It wraps a mecha premise around intense psychological exploration of depression, ego borders (the Absolute Terror Field), and the human instrument project. The mechanical designs are unforgettable.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Movie 2: Tenet -->
+        <div class="glass-panel lounge-card" data-category="movie" data-search="tenet nolan entropy inversion time reversal thermodynamics cpt symmetry pincer">
+          <div class="lounge-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=600" alt="Tenet Abstract Cover" loading="lazy">
+            <div class="lounge-category-badge">Movie</div>
+            <div class="lounge-rating-badge">9.4 / 10</div>
+          </div>
+          <div class="lounge-card-content">
+            <h3 class="lounge-card-title">Tenet</h3>
+            <div class="lounge-tags">
+              <span class="lounge-tag">Entropy</span>
+              <span class="lounge-tag">Thermodynamics</span>
+              <span class="lounge-tag">Action</span>
+            </div>
+            <p class="lounge-card-desc">
+              A secret agent is recruited to prevent an armageddon triggered by technology from the future that can invert the entropy of objects and people, causing them to move backward in time.
+            </p>
+            <div class="lounge-review-block">
+              <button class="review-toggle-btn">
+                <span>Personal Physics Review</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="review-expanded-content">
+                <p>
+                  Nolan's take on thermodynamic time arrows and CPT symmetry (Charge, Parity, Time inversion) is incredibly ambitious. The temporal pincer movements—where one team moves forward and the other backward through the same battle—are mind-bending to trace.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Anime 3: Kimi no Na wa (Your Name) -->
+        <div class="glass-panel lounge-card" data-category="anime" data-search="kimi no na wa your name shinkai comet orbit spacetime topological swapping body swap">
+          <div class="lounge-card-img-wrap">
+            <img src="https://img.anilist.co/media/anime/cover/large/bx21519-112rOqEkvfcy.png" alt="Your Name Cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300'">
+            <div class="lounge-category-badge">Anime</div>
+            <div class="lounge-rating-badge">9.5 / 10</div>
+          </div>
+          <div class="lounge-card-content">
+            <h3 class="lounge-card-title">Kimi no Na wa</h3>
+            <div class="lounge-tags">
+              <span class="lounge-tag">Drama</span>
+              <span class="lounge-tag">Space-Time</span>
+              <span class="lounge-tag">Romance</span>
+            </div>
+            <p class="lounge-card-desc">
+              Two high school students living in different parts of Japan swap bodies periodically, leading to a desperate attempt to warn and save a town from an impending orbital comet impact.
+            </p>
+            <div class="lounge-review-block">
+              <button class="review-toggle-btn">
+                <span>Personal Physics Review</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="review-expanded-content">
+                <p>
+                  The comet orbital trajectories, body-swapping across a three-year temporal offset, and Shinkai's breathtaking celestial artwork make this a spectacular visual and emotional experience. Musubi (connections) is a beautiful metaphor for spacetime topology.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Movie 3: Coherence -->
+        <div class="glass-panel lounge-card" data-category="movie" data-search="coherence quantum decoherence schrodinger cat multiverse parallel reality splitting">
+          <div class="lounge-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=600" alt="Coherence Concept Cover" loading="lazy">
+            <div class="lounge-category-badge">Movie</div>
+            <div class="lounge-rating-badge">9.5 / 10</div>
+          </div>
+          <div class="lounge-card-content">
+            <h3 class="lounge-card-title">Coherence</h3>
+            <div class="lounge-tags">
+              <span class="lounge-tag">Quantum</span>
+              <span class="lounge-tag">Thriller</span>
+              <span class="lounge-tag">Sci-Fi</span>
+            </div>
+            <p class="lounge-card-desc">
+              During a comet pass, a dinner party of friends experiences a local power outage, only to discover that the comet has created a quantum coherence event, splitting reality into multiple decohering multiverses.
+            </p>
+            <div class="lounge-review-block">
+              <button class="review-toggle-btn">
+                <span>Personal Physics Review</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="review-expanded-content">
+                <p>
+                  A brilliant low-budget demonstration of Schrödinger's cat. It shows how macroscopic quantum decoherence would break down if multiple parallel realities could interact within a localized zone. The tension rises as they realize they aren't in their original universe.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Anime 4: Code Geass -->
+        <div class="glass-panel lounge-card" data-category="anime" data-search="code geass lelouch rebellion mecha tactical strategy military zero requiem geopolitics">
+          <div class="lounge-card-img-wrap">
+            <img src="https://img.anilist.co/media/anime/cover/large/bx1575-snL29d8G4t4o.png" alt="Code Geass Cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300'">
+            <div class="lounge-category-badge">Anime</div>
+            <div class="lounge-rating-badge">9.6 / 10</div>
+          </div>
+          <div class="lounge-card-content">
+            <h3 class="lounge-card-title">Code Geass</h3>
+            <div class="lounge-tags">
+              <span class="lounge-tag">Strategy</span>
+              <span class="lounge-tag">Mecha</span>
+              <span class="lounge-tag">Military</span>
+            </div>
+            <p class="lounge-card-desc">
+              An exiled prince of an oppressive empire gains the power of absolute obedience and leads a masked rebellion to destroy his father's regime and construct a peaceful world for his sister.
+            </p>
+            <div class="lounge-review-block">
+              <button class="review-toggle-btn">
+                <span>Personal Physics Review</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="review-expanded-content">
+                <p>
+                  Lelouch is one of the greatest protagonists in fiction. The chess-like military tactics, geopolitical maneuvering, and the ultimate sacrificial play of the Zero Requiem make it an absolute masterclass in narrative tension and payoff.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Movie 4: Arrival -->
+        <div class="glass-panel lounge-card" data-category="movie" data-search="arrival fermat principle least time non linear linguistics time loop alien spacecraft">
+          <div class="lounge-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?q=80&w=600" alt="Arrival Concept Cover" loading="lazy">
+            <div class="lounge-category-badge">Movie</div>
+            <div class="lounge-rating-badge">9.7 / 10</div>
+          </div>
+          <div class="lounge-card-content">
+            <h3 class="lounge-card-title">Arrival</h3>
+            <div class="lounge-tags">
+              <span class="lounge-tag">Linguistics</span>
+              <span class="lounge-tag">Spacetime</span>
+              <span class="lounge-tag">Sci-Fi</span>
+            </div>
+            <p class="lounge-card-desc">
+              A linguist is recruited by the military to translate the language of alien visitors, discovering that learning their non-linear writing system fundamentally alters her brain's perception of time.
+            </p>
+            <div class="lounge-review-block">
+              <button class="review-toggle-btn">
+                <span>Personal Physics Review</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="review-expanded-content">
+                <p>
+                  Fascinating exploration of the Sapir-Whorf hypothesis and Fermat's Principle of Least Time. If light travel path is calculated by knowing the destination beforehand, these aliens perceive time simultaneously. The non-linear circular orthography is beautiful.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Anime 5: Serial Experiments Lain -->
+        <div class="glass-panel lounge-card" data-category="anime" data-search="serial experiments lain cyberpunk wired digital internet consciousness philosophy">
+          <div class="lounge-card-img-wrap">
+            <img src="https://img.anilist.co/media/anime/cover/large/bx339-95eU3XW1R11Z.png" alt="Lain Cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300'">
+            <div class="lounge-category-badge">Anime</div>
+            <div class="lounge-rating-badge">9.2 / 10</div>
+          </div>
+          <div class="lounge-card-content">
+            <h3 class="lounge-card-title">Serial Experiments Lain</h3>
+            <div class="lounge-tags">
+              <span class="lounge-tag">Cyberpunk</span>
+              <span class="lounge-tag">Psychological</span>
+              <span class="lounge-tag">Philosophy</span>
+            </div>
+            <p class="lounge-card-desc">
+              An introverted girl becomes increasingly obsessed with 'The Wired' (a global digital communications network), leading to the blurring of the boundary between the real world and digital consciousness.
+            </p>
+            <div class="lounge-review-block">
+              <button class="review-toggle-btn">
+                <span>Personal Physics Review</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="review-expanded-content">
+                <p>
+                  Extremely ahead of its time (released in 1998). It predicts social media isolation, the collective digital consciousness, and questions what constitutes reality if our digital footprints exist independently of our physical shells.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Layout -->
+  <footer>
+    <div class="footer-content">
+      <p class="copyright">© <span id="year-placeholder">2026</span> Debanjan Biswas. All rights reserved.</p>
+      <p class="title-meta">Full Stack Developer &amp; Physics Aspirant</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    document.getElementById("year-placeholder").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

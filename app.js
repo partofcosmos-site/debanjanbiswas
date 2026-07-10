@@ -966,3 +966,302 @@ function initLabSandbox() {
 
   draw();
 }
+
+/* ==========================================
+   Cosmic Lounge Controller
+   ========================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  // Only execute if on the Lounge page
+  const loungeGrid = document.getElementById("lounge-grid");
+  if (!loungeGrid) return;
+
+  const searchInput = document.getElementById("lounge-search");
+  const tabs = document.querySelectorAll(".lounge-tab");
+  const syncBtn = document.getElementById("sync-btn");
+  const syncPlatform = document.getElementById("sync-platform");
+  const syncUsername = document.getElementById("sync-username");
+  const syncStatus = document.getElementById("sync-status");
+  const tabSyncedBtn = document.getElementById("tab-synced");
+
+  // Keep track of dynamically synced cards
+  let syncedItems = [];
+
+  // Initialize collapsible personal reviews
+  initCollapsibleReviews();
+
+  // Search Filter event
+  if (searchInput) {
+    searchInput.addEventListener("input", filterGallery);
+  }
+
+  // Category Tabs click event
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      filterGallery();
+    });
+  });
+
+  // Toggling collapsible reviews helper
+  function initCollapsibleReviews() {
+    const reviewToggles = document.querySelectorAll(".review-toggle-btn");
+    reviewToggles.forEach(btn => {
+      // Remove old listener to avoid duplicate bindings
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+
+      const content = newBtn.nextElementSibling;
+      newBtn.addEventListener("click", () => {
+        newBtn.classList.toggle("expanded");
+        content.classList.toggle("show");
+      });
+    });
+  }
+
+  // Live filter cards by category and keyword search
+  function filterGallery() {
+    const activeTab = document.querySelector(".lounge-tab.active");
+    const category = activeTab ? activeTab.getAttribute("data-category") : "all";
+    const keyword = searchInput ? searchInput.value.toLowerCase().trim() : "";
+    const cards = loungeGrid.querySelectorAll(".lounge-card");
+
+    cards.forEach(card => {
+      const cardCategory = card.getAttribute("data-category");
+      const searchStr = card.getAttribute("data-search").toLowerCase();
+      
+      const matchesCategory = (category === "all" && cardCategory !== "sync") || 
+                              (category === cardCategory);
+      
+      const matchesKeyword = !keyword || searchStr.includes(keyword);
+
+      if (matchesCategory && matchesKeyword) {
+        card.style.display = "flex";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+
+  // Synchronize watchlist listener
+  if (syncBtn) {
+    syncBtn.addEventListener("click", async () => {
+      const platform = syncPlatform.value;
+      const username = syncUsername.value.trim();
+
+      if (!username) {
+        showStatus("Please enter a username.", "#f87171");
+        return;
+      }
+
+      // Show loader
+      loungeGrid.innerHTML = `
+        <div class="sync-loader-container">
+          <div class="galaxy-loader"></div>
+          <span style="font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.05em;">Accessing external grid... Syncing ${platform === "anilist" ? "AniList" : "MAL"} history</span>
+        </div>
+      `;
+      syncStatus.textContent = "Connecting to API...";
+      syncStatus.style.color = "var(--accent-indigo)";
+      syncBtn.disabled = true;
+
+      try {
+        if (platform === "anilist") {
+          syncedItems = await fetchAniList(username);
+        } else {
+          syncedItems = await fetchMAL(username);
+        }
+
+        if (!syncedItems || syncedItems.length === 0) {
+          throw new Error("No completed items found or user does not exist.");
+        }
+
+        // Render synced cards
+        renderSyncedCards(syncedItems);
+
+        // Show Synced tab and select it
+        if (tabSyncedBtn) {
+          tabSyncedBtn.style.display = "inline-block";
+          tabs.forEach(t => t.classList.remove("active"));
+          tabSyncedBtn.classList.add("active");
+        }
+
+        showStatus(`Synced ${syncedItems.length} completed titles successfully!`, "#4ade80");
+        filterGallery();
+
+      } catch (err) {
+        console.error(err);
+        showStatus(`Sync error: ${err.message}`, "#f87171");
+        // Restore grid by reloading page or resetting to fallback
+        restoreCuratedGrid();
+      } finally {
+        syncBtn.disabled = false;
+      }
+    });
+  }
+
+  function showStatus(msg, color) {
+    if (syncStatus) {
+      syncStatus.textContent = msg;
+      syncStatus.style.color = color;
+    }
+  }
+
+  // Fetch Watchlist from AniList (GraphQL)
+  async function fetchAniList(username) {
+    const query = `
+      query ($username: String) {
+        MediaListCollection(userName: $username, type: ANIME, status: COMPLETED) {
+          lists {
+            entries {
+              score(format: POINT_10)
+              progress
+              media {
+                title {
+                  english
+                  romaji
+                }
+                coverImage {
+                  large
+                }
+                genres
+                description
+                episodes
+                siteUrl
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const response = await fetch("https://graphql.anilist.co", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        query: query,
+        variables: { username: username }
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error("AniList user not found or API limits exceeded.");
+    }
+
+    const json = await response.json();
+    const lists = json.data.MediaListCollection.lists;
+    let items = [];
+
+    lists.forEach(list => {
+      list.entries.forEach(entry => {
+        const media = entry.media;
+        items.push({
+          title: media.title.english || media.title.romaji,
+          cover: media.coverImage.large,
+          rating: entry.score > 0 ? `${entry.score} / 10` : "Unrated",
+          episodes: media.episodes || "?",
+          genres: media.genres.slice(0, 3),
+          description: cleanHTMLDescription(media.description || "No synopsis available."),
+          url: media.siteUrl
+        });
+      });
+    });
+
+    // Sort by rating descending
+    return items.sort((a, b) => b.title.localeCompare(a.title));
+  }
+
+  // Fetch Watchlist from MAL (Jikan REST API v4)
+  async function fetchMAL(username) {
+    const url = `https://api.jikan.moe/v4/users/${username}/animelist?status=completed`;
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("MyAnimeList user not found or Jikan API rate limit hit.");
+    }
+
+    const json = await response.json();
+    if (!json.data || json.data.length === 0) {
+      return [];
+    }
+
+    return json.data.map(item => {
+      const anime = item.anime;
+      return {
+        title: anime.title,
+        cover: anime.images.jpg.large_image_url || anime.images.jpg.image_url,
+        rating: item.score > 0 ? `${item.score} / 10` : "Unrated",
+        episodes: anime.episodes || "?",
+        genres: [anime.type || "Anime"],
+        description: `Successfully watched ${anime.episodes || "?"} episodes. Completed score logged as ${item.score || "N/A"}.`,
+        url: anime.url
+      };
+    });
+  }
+
+  // Strips AniList description HTML tags
+  function cleanHTMLDescription(html) {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    let text = div.textContent || div.innerText || "";
+    if (text.length > 180) {
+      text = text.substring(0, 180) + "...";
+    }
+    return text;
+  }
+
+  // Render dynamically fetched watchlist items to the grid
+  function renderSyncedCards(items) {
+    loungeGrid.innerHTML = "";
+    items.forEach((item, index) => {
+      const searchKeywords = `${item.title} ${item.genres.join(" ")} ${item.description}`.toLowerCase();
+      const card = document.createElement("div");
+      card.className = "glass-panel lounge-card";
+      card.setAttribute("data-category", "sync");
+      card.setAttribute("data-search", searchKeywords);
+      
+      // Delay fade animations staggered
+      card.style.animationDelay = `${index * 0.05}s`;
+
+      card.innerHTML = `
+        <div class="lounge-card-img-wrap">
+          <img src="${item.cover}" alt="${item.title} Cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300'">
+          <div class="lounge-category-badge">Synced</div>
+          <div class="lounge-rating-badge">${item.rating}</div>
+        </div>
+        <div class="lounge-card-content">
+          <h3 class="lounge-card-title">${item.title}</h3>
+          <div class="lounge-tags">
+            ${item.genres.map(g => `<span class="lounge-tag">${g}</span>`).join("")}
+            <span class="lounge-tag" style="border-color: rgba(99,102,241,0.25); color: var(--accent-indigo);">${item.episodes} Eps</span>
+          </div>
+          <p class="lounge-card-desc">${item.description}</p>
+          <div class="lounge-review-block" style="border:none; padding-top:0;">
+            <a href="${item.url}" target="_blank" rel="noreferrer" class="review-toggle-btn" style="text-decoration:none; display:flex; align-items:center;">
+              <span>View on Platform</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </div>
+        </div>
+      `;
+      loungeGrid.appendChild(card);
+    });
+  }
+
+  // Restore grid back to initial curated favorites
+  function restoreCuratedGrid() {
+    // Simply reload the initial HTML block or let them browse original tabs
+    setTimeout(() => {
+      // Toggle back to "All Content"
+      const defaultTab = document.querySelector('.lounge-tab[data-category="all"]');
+      if (defaultTab) {
+        defaultTab.click();
+      }
+      // Re-trigger static grid contents
+      window.location.reload();
+    }, 2500);
+  }
+});
+
