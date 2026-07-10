@@ -1547,17 +1547,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Resolve Movie details from TMDB URLs, TMDB IDs, or plain titles
+  // Uses the iTunes Search API (free, no API key, CORS-friendly)
   async function resolveMovieLookup(val) {
     let movieId = "";
     let titleSlug = "";
     let tmdbPageUrl = "";
     
-    // Extract TMDB ID and title slug from URL like /movie/412117-project-hail-mary
+    // Extract TMDB ID and title slug from URL like /movie/13505-captain-america-the-first-avenger
     const tmdbMatch = val.match(/themoviedb\.org\/movie\/(\d+)(?:\-([a-zA-Z0-9\-]+))?/);
     if (tmdbMatch) {
       movieId = tmdbMatch[1];
       tmdbPageUrl = val.startsWith("http") ? val : `https://www.themoviedb.org/movie/${movieId}`;
-      // Extract human-readable title from slug (e.g. "project-hail-mary" → "Project Hail Mary")
       if (tmdbMatch[2]) {
         titleSlug = tmdbMatch[2].replace(/\-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
       }
@@ -1568,7 +1568,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       // Plain text title input
       movieId = "movie_" + Date.now();
       titleSlug = val;
-      tmdbPageUrl = `https://www.themoviedb.org/movie/${movieId}`;
+      tmdbPageUrl = `https://www.google.com/search?q=${encodeURIComponent(val)}+movie`;
     }
 
     // Check for duplicates
@@ -1577,33 +1577,51 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // Try to fetch poster from TMDB via the free TMDB API (no auth needed for basic search)
     let resolvedTitle = titleSlug || `Movie ${movieId}`;
     let coverUrl = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300";
     let resolvedSynopsis = "A curated cinematic experience.";
     let resolvedDuration = "120 Min";
     let resolvedTags = curatorTags.value.trim() ? curatorTags.value.trim().split(",").map(t => t.trim()) : ["Sci-Fi", "Cinema"];
 
-    // Attempt TMDB API v3 lookup (the public API with a commonly available read token)
-    // Note: TMDB requires an API key, but we can try the free OMDb API as fallback
+    // Search via iTunes Search API (completely free, no API key, CORS-friendly)
     if (titleSlug) {
       try {
-        // Use OMDb API (free tier, no key needed for limited use) to resolve movie details
-        const omdbRes = await fetch(`https://www.omdbapi.com/?t=${encodeURIComponent(titleSlug)}&type=movie&apikey=b3e03230`);
-        if (omdbRes.ok) {
-          const omdbData = await omdbRes.json();
-          if (omdbData.Response === "True") {
-            resolvedTitle = omdbData.Title || resolvedTitle;
-            coverUrl = (omdbData.Poster && omdbData.Poster !== "N/A") ? omdbData.Poster : coverUrl;
-            resolvedSynopsis = (omdbData.Plot && omdbData.Plot !== "N/A") ? omdbData.Plot : resolvedSynopsis;
-            resolvedDuration = (omdbData.Runtime && omdbData.Runtime !== "N/A") ? omdbData.Runtime : resolvedDuration;
-            if (omdbData.Genre && omdbData.Genre !== "N/A") {
-              resolvedTags = omdbData.Genre.split(",").map(g => g.trim()).slice(0, 3);
+        showStatus(`Searching iTunes for "${titleSlug}"...`, "info");
+        const itunesRes = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(titleSlug)}&media=movie&limit=5`);
+        if (itunesRes.ok) {
+          const itunesData = await itunesRes.json();
+          if (itunesData.resultCount > 0) {
+            // Find the best match by comparing title similarity
+            const searchLower = titleSlug.toLowerCase();
+            let bestMatch = itunesData.results[0];
+            for (const result of itunesData.results) {
+              if (result.trackName && result.trackName.toLowerCase().includes(searchLower.split(" ")[0])) {
+                bestMatch = result;
+                break;
+              }
             }
+
+            resolvedTitle = bestMatch.trackName || resolvedTitle;
+            // Get high-res artwork (replace 100x100 with 600x600)
+            coverUrl = bestMatch.artworkUrl100 ? bestMatch.artworkUrl100.replace("100x100bb", "600x600bb") : coverUrl;
+            resolvedSynopsis = bestMatch.longDescription || bestMatch.shortDescription || resolvedSynopsis;
+            // Convert milliseconds to minutes
+            if (bestMatch.trackTimeMillis) {
+              resolvedDuration = `${Math.round(bestMatch.trackTimeMillis / 60000)} Min`;
+            }
+            // Extract genre
+            if (bestMatch.primaryGenreName) {
+              resolvedTags = [bestMatch.primaryGenreName];
+              if (bestMatch.genres && bestMatch.genres.length > 1) {
+                resolvedTags = bestMatch.genres.slice(0, 3);
+              }
+            }
+          } else {
+            showStatus(`iTunes found no results for "${titleSlug}". Using extracted title.`, "info");
           }
         }
       } catch (err) {
-        console.warn("OMDb lookup failed, using slug title fallback:", err);
+        console.warn("iTunes lookup failed, using slug title fallback:", err);
       }
     }
 
@@ -1616,7 +1634,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       category: "movie",
       rating: customRating,
       tags: resolvedTags,
-      desc: resolvedSynopsis,
+      desc: resolvedSynopsis.length > 200 ? resolvedSynopsis.substring(0, 200) + "..." : resolvedSynopsis,
       synopsis: resolvedSynopsis,
       cover: coverUrl,
       duration: resolvedDuration,
