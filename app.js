@@ -1032,6 +1032,34 @@ document.addEventListener("DOMContentLoaded", async () => {
       url: "https://www.themoviedb.org/movie/1726"
     },
     {
+      id: "10138",
+      title: "Iron Man 2",
+      type: "Movie",
+      category: "movie",
+      rating: "6.9 / 10",
+      tags: ["Adventure", "Action"],
+      desc: "It's not the armor that makes the hero, but the man inside.",
+      synopsis: "With the world now aware of his dual life as the armored superhero Iron Man, billionaire inventor Tony Stark faces pressure from the government, the press and the public to share his technology with the military. Unwilling to let go of his invention, Stark, with Pepper Potts and James 'Rhodey' Rhodes at his side, must forge new alliances – and confront powerful enemies.",
+      cover: "https://image.tmdb.org/t/p/w500/6WBeq4fCfn7AN0o21W9qNcRF2l9.jpg",
+      duration: "124 Min",
+      badge: "HD 1080p",
+      url: "https://www.themoviedb.org/movie/10138"
+    },
+    {
+      id: "68721",
+      title: "Iron Man 3",
+      type: "Movie",
+      category: "movie",
+      rating: "6.9 / 10",
+      tags: ["Action", "Adventure"],
+      desc: "Unleash the power behind the armor.",
+      synopsis: "When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.",
+      cover: "https://image.tmdb.org/t/p/w500/qhPtAc1TKbMPqNvcdXSOn9Bn7hZ.jpg",
+      duration: "130 Min",
+      badge: "HD 1080p",
+      url: "https://www.themoviedb.org/movie/68721"
+    },
+    {
       id: "1771",
       title: "Captain America: The First Avenger",
       type: "Movie",
@@ -1072,6 +1100,20 @@ document.addEventListener("DOMContentLoaded", async () => {
       duration: "143 Min",
       badge: "HD 1080p",
       url: "https://www.themoviedb.org/movie/24428"
+    },
+    {
+      id: "99861",
+      title: "Avengers: Age of Ultron",
+      type: "Movie",
+      category: "movie",
+      rating: "7.3 / 10",
+      tags: ["Action", "Adventure"],
+      desc: "A new age has come.",
+      synopsis: "When Tony Stark tries to jumpstart a dormant peacekeeping program, things go awry and Earth’s Mightiest Heroes are put to the ultimate test as the fate of the planet hangs in the balance. As the villainous Ultron emerges, it is up to The Avengers to stop him from enacting his terrible plans, and soon uneasy alliances and unexpected action pave the way for an epic and unique global adventure.",
+      cover: "https://image.tmdb.org/t/p/w500/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",
+      duration: "141 Min",
+      badge: "IMAX 4K",
+      url: "https://www.themoviedb.org/movie/99861"
     },
     {
       id: "118340",
@@ -1158,18 +1200,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       url: "https://www.themoviedb.org/movie/577922"
     },
     {
-      id: "272",
-      title: "Batman Begins",
+      id: "127585",
+      title: "X-Men: Days of Future Past",
       type: "Movie",
       category: "movie",
-      rating: "7.7 / 10",
-      tags: ["Drama", "Crime"],
-      desc: "Evil fears the knight.",
-      synopsis: "Driven by tragedy, billionaire Bruce Wayne dedicates his life to uncovering and defeating the corruption that plagues his home, Gotham City.  Unable to work within the system, he instead creates a new identity, a symbol of fear for the criminal underworld - The Batman.",
-      cover: "https://image.tmdb.org/t/p/w500/sPX89Td70IDDjVr85jdSBb4rWGr.jpg",
-      duration: "140 Min",
+      rating: "7.5 / 10",
+      tags: ["Action", "Adventure"],
+      desc: "To save the future, they must alter the past.",
+      synopsis: "The ultimate X-Men ensemble fights a war for the survival of the species across two time periods as they join forces with their younger selves in an epic battle that must change the past – to save our future.",
+      cover: "https://image.tmdb.org/t/p/w500/tYfijzolzgoMOtegh1Y7j2Enorg.jpg",
+      duration: "132 Min",
       badge: "HD 1080p",
-      url: "https://www.themoviedb.org/movie/272"
+      url: "https://www.themoviedb.org/movie/127585"
     },
     {
       id: "155",
@@ -1186,20 +1228,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       url: "https://www.themoviedb.org/movie/155"
     },
     {
-      id: "49026",
-      title: "The Dark Knight Rises",
-      type: "Movie",
-      category: "movie",
-      rating: "7.8 / 10",
-      tags: ["Action", "Crime"],
-      desc: "The legend ends.",
-      synopsis: "Following the death of District Attorney Harvey Dent, Batman assumes responsibility for Dent's crimes to protect the late attorney's reputation and is subsequently hunted by the Gotham City Police Department. Eight years later, Batman encounters the mysterious Selina Kyle and the villainous Bane, a new terrorist leader who overwhelms Gotham's finest. The Dark Knight resurfaces to protect a city that has branded him an enemy.",
-      cover: "https://image.tmdb.org/t/p/w500/hr0L2aueqlP2BYUblTTjmtn0hw4.jpg",
-      duration: "165 Min",
-      badge: "IMAX 4K",
-      url: "https://www.themoviedb.org/movie/49026"
-    },
-    {
       id: "49521",
       title: "Man of Steel",
       type: "Movie",
@@ -1214,60 +1242,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       url: "https://www.themoviedb.org/movie/49521"
     },
     {
-      id: "791373",
-      title: "Zack Snyder's Justice League",
+      id: "209112",
+      title: "Batman v Superman: Dawn of Justice",
       type: "Movie",
       category: "movie",
-      rating: "8.1 / 10",
+      rating: "6.0 / 10",
       tags: ["Action", "Adventure"],
-      desc: "Us united.",
-      synopsis: "Determined to ensure Superman's ultimate sacrifice was not in vain, Bruce Wayne aligns forces with Diana Prince with plans to recruit a team of metahumans to protect the world from an approaching threat of catastrophic proportions.",
-      cover: "https://image.tmdb.org/t/p/w500/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg",
-      duration: "242 Min",
+      desc: "The greatest gladiator match in the history of the world.",
+      synopsis: "Fearing the actions of a god-like Super Hero left unchecked, Gotham City’s own formidable, forceful vigilante takes on Metropolis’s most revered, modern-day savior, while the world wrestles with what sort of hero it really needs. And with Batman and Superman at war with one another, a new threat quickly arises, putting mankind in greater danger than it’s ever known before.",
+      cover: "https://image.tmdb.org/t/p/w500/5UsK3grJvtQrtzEgqNlDljJW96w.jpg",
+      duration: "152 Min",
       badge: "IMAX 4K",
-      url: "https://www.themoviedb.org/movie/791373"
-    },
-    {
-      id: "414906",
-      title: "The Batman",
-      type: "Movie",
-      category: "movie",
-      rating: "7.7 / 10",
-      tags: ["Crime", "Mystery"],
-      desc: "Unmask the truth.",
-      synopsis: "In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddler.",
-      cover: "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
-      duration: "177 Min",
-      badge: "HD 1080p",
-      url: "https://www.themoviedb.org/movie/414906"
-    },
-    {
-      id: "13183",
-      title: "Watchmen",
-      type: "Movie",
-      category: "movie",
-      rating: "7.4 / 10",
-      tags: ["Mystery", "Action"],
-      desc: "Justice is coming to all of us. No matter what we do.",
-      synopsis: "In a gritty and alternate 1985, the glory days of costumed vigilantes have been brought to a close by a government crackdown. But after one of the masked veterans is brutally murdered, an investigation into the killer is initiated. The reunited heroes set out to prevent their own destruction, but in doing so they uncover a sinister plot that puts all of humanity in grave danger.",
-      cover: "https://image.tmdb.org/t/p/w500/aVURelN3pM56lFM7Dgfs5TixcIf.jpg",
-      duration: "163 Min",
-      badge: "HD 1080p",
-      url: "https://www.themoviedb.org/movie/13183"
-    },
-    {
-      id: "752",
-      title: "V for Vendetta",
-      type: "Movie",
-      category: "movie",
-      rating: "7.9 / 10",
-      tags: ["Action", "Thriller"],
-      desc: "People should not be afraid of their governments. Governments should be afraid of their people.",
-      synopsis: "In a world in which Great Britain has become a fascist state, a masked vigilante known only as “V” conducts guerrilla warfare against the oppressive British government. When V rescues a young woman from the secret police, he finds in her an ally with whom he can continue his fight to free the people of Britain.",
-      cover: "https://image.tmdb.org/t/p/w500/1avD1JeaRiJX5M4ahPdZPypGoGN.jpg",
-      duration: "132 Min",
-      badge: "HD 1080p",
-      url: "https://www.themoviedb.org/movie/752"
+      url: "https://www.themoviedb.org/movie/209112"
     },
     {
       id: "32281",
@@ -1322,8 +1308,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const savedList = localStorage.getItem(LIST_STORAGE_KEY);
   if (savedList) {
     curationList = JSON.parse(savedList);
-    // Auto-migrate old watchlists to include the new Marvel & DC films
-    if (curationList.length < 15) {
+    // Auto-migrate old watchlists to include the refined Marvel, DC, and X-Men films
+    const hasUnwatchedDC = curationList.some(item => item.id === "13183" || item.id === "272");
+    if (hasUnwatchedDC || curationList.length < 15) {
       curationList = [...defaultCurationList];
       localStorage.setItem(LIST_STORAGE_KEY, JSON.stringify(curationList));
       localStorage.removeItem(CACHE_STORAGE_KEY); // clear cache to force render
