@@ -2219,6 +2219,158 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
   }
 
+  // GitHub Auto-Sync DOM Elements
+  const toggleSyncSettings = document.getElementById("toggle-sync-settings");
+  const syncSettingsPanel = document.getElementById("sync-settings-panel");
+  const syncSettingsChevron = document.getElementById("sync-settings-chevron");
+  
+  const syncTokenInput = document.getElementById("sync-token");
+  const syncOwnerInput = document.getElementById("sync-owner");
+  const syncRepoInput = document.getElementById("sync-repo");
+  const curatorSyncBtn = document.getElementById("curator-sync-btn");
+
+  const GITHUB_CONFIG_KEY = "lounge_github_sync_config_v3";
+
+  // Collapsible Sync Configuration Toggle
+  if (toggleSyncSettings && syncSettingsPanel) {
+    toggleSyncSettings.addEventListener("click", () => {
+      const isHidden = syncSettingsPanel.style.display === "none";
+      syncSettingsPanel.style.display = isHidden ? "block" : "none";
+      if (syncSettingsChevron) {
+        syncSettingsChevron.textContent = isHidden ? "[Collapse]" : "[Expand]";
+      }
+    });
+  }
+
+  // Load Saved Sync Configuration from Local Storage
+  const loadGithubConfig = () => {
+    try {
+      const config = JSON.parse(localStorage.getItem(GITHUB_CONFIG_KEY));
+      if (config) {
+        if (syncTokenInput) syncTokenInput.value = config.token || "";
+        if (syncOwnerInput) syncOwnerInput.value = config.owner || "partofcosmos-site";
+        if (syncRepoInput) syncRepoInput.value = config.repo || "debanjanbiswas";
+      }
+    } catch (e) {
+      console.error("Failed loading github configuration:", e);
+    }
+  };
+  loadGithubConfig();
+
+  // Save Config parameters to Local Storage
+  const saveGithubConfig = () => {
+    const config = {
+      token: syncTokenInput ? syncTokenInput.value.trim() : "",
+      owner: syncOwnerInput ? syncOwnerInput.value.trim() : "partofcosmos-site",
+      repo: syncRepoInput ? syncRepoInput.value.trim() : "debanjanbiswas"
+    };
+    localStorage.setItem(GITHUB_CONFIG_KEY, JSON.stringify(config));
+    return config;
+  };
+
+  // Sync / Commit directly to Github Repository
+  if (curatorSyncBtn) {
+    curatorSyncBtn.addEventListener("click", async () => {
+      const config = saveGithubConfig();
+      
+      if (!config.token) {
+        if (syncSettingsPanel) {
+          syncSettingsPanel.style.display = "block";
+          if (syncSettingsChevron) syncSettingsChevron.textContent = "[Collapse]";
+        }
+        showStatus("GitHub Sync Failed: Missing Personal Access Token (PAT).", "error");
+        if (syncTokenInput) syncTokenInput.focus();
+        return;
+      }
+
+      curatorSyncBtn.disabled = true;
+      const originalText = curatorSyncBtn.textContent;
+      curatorSyncBtn.textContent = "Connecting...";
+      showStatus("Connecting to GitHub REST API...", "info");
+
+      try {
+        const path = "app.js";
+        const url = `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${path}`;
+        
+        // Fetch current app.js details (SHA & content)
+        const getRes = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Authorization": `token ${config.token}`,
+            "Accept": "application/vnd.github.v3+json",
+            "Cache-Control": "no-cache"
+          }
+        });
+
+        if (!getRes.ok) {
+          throw new Error(`Failed to fetch app.js from repository. Status: ${getRes.status} (${getRes.statusText})`);
+        }
+
+        const fileData = await getRes.json();
+        const fileSha = fileData.sha;
+        
+        // Decode base64 content safely handles UTF-8 characters
+        const rawContent = decodeURIComponent(escape(atob(fileData.content.replace(/\s/g, ''))));
+
+        // Locate defaultCurationList declaration boundaries in raw content
+        const startMarker = "const defaultCurationList = [";
+        const endMarker = "const LIST_STORAGE_KEY =";
+        
+        const startIndex = rawContent.indexOf(startMarker);
+        const endIndex = rawContent.indexOf(endMarker);
+        
+        if (startIndex === -1 || endIndex === -1) {
+          throw new Error("Unable to locate 'defaultCurationList' structure in repository's app.js.");
+        }
+
+        // Format updated list
+        const newListCode = `const defaultCurationList = ${JSON.stringify(curationList, null, 2)};\n\n  `;
+        
+        // Splice updated array in-place
+        const updatedContent = rawContent.substring(0, startIndex) + newListCode + rawContent.substring(endIndex);
+
+        // Encode back to base64
+        const encodedContent = btoa(unescape(encodeURIComponent(updatedContent)));
+
+        // Push commit
+        curatorSyncBtn.textContent = "Committing...";
+        showStatus("Pushing update commit to GitHub...", "info");
+
+        const putRes = await fetch(url, {
+          method: "PUT",
+          headers: {
+            "Authorization": `token ${config.token}`,
+            "Content-Type": "application/json",
+            "Accept": "application/vnd.github.v3+json"
+          },
+          body: JSON.stringify({
+            message: "feat(curator): sync default watchlist from live curator console",
+            content: encodedContent,
+            sha: fileSha
+          })
+        });
+
+        if (!putRes.ok) {
+          const errData = await putRes.json().catch(() => ({}));
+          throw new Error(`Commit failed. status: ${putRes.status}. ${errData.message || ""}`);
+        }
+
+        // Success toast
+        showStatus("Success! Watchlist synced back to GitHub. Live site is rebuilding...", "success");
+        
+        // Reset local caching
+        localStorage.setItem(LIST_STORAGE_KEY, JSON.stringify(curationList));
+        localStorage.removeItem(CACHE_STORAGE_KEY);
+      } catch (err) {
+        console.error("Auto-sync error:", err);
+        showStatus(`Auto-Sync Error: ${err.message}`, "error");
+      } finally {
+        curatorSyncBtn.disabled = false;
+        curatorSyncBtn.textContent = originalText;
+      }
+    });
+  }
+
   /* ==========================================
      Secret Curator Access (Ctrl+Shift+K)
      Only the site owner knows this shortcut.
