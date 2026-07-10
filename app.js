@@ -1481,7 +1481,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   function renderCards(items) {
     loungeGrid.innerHTML = "";
 
-    if (items.length === 0) {
+    // Sort items by rating (descending) so highest-rated masterpieces show up first
+    const sortedItems = [...items].sort((a, b) => {
+      const ratingA = parseFloat(a.rating) || 0;
+      const ratingB = parseFloat(b.rating) || 0;
+      return ratingB - ratingA;
+    });
+
+    if (sortedItems.length === 0) {
       loungeGrid.innerHTML = `
         <div style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px; color: #94a3b8; font-family: var(--font-mono);">
           <span>No items found in lounge watchlist.</span>
@@ -1490,7 +1497,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    items.forEach((item, index) => {
+    sortedItems.forEach((item, index) => {
       const searchKeywords = `${item.title} ${item.tags.join(" ")} ${item.synopsis}`.toLowerCase();
       const card = document.createElement("div");
       card.className = "lounge-card";
@@ -1668,7 +1675,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!curatorListBody) return;
     curatorListBody.innerHTML = "";
 
-    curationList.forEach(item => {
+    // Sort list for display: Anime first, then Movies, both sorted alphabetically by title
+    const sortedDisplayList = [...curationList].sort((a, b) => {
+      if (a.category !== b.category) {
+        return a.category.localeCompare(b.category);
+      }
+      const titleA = a.fallbackTitle || a.title || "";
+      const titleB = b.fallbackTitle || b.title || "";
+      return titleA.localeCompare(titleB);
+    });
+
+    sortedDisplayList.forEach(item => {
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td style="font-weight: 600;">${item.fallbackTitle || item.title || item.id}</td>
