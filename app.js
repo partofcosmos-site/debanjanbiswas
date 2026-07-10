@@ -2223,8 +2223,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Secure GitHub credentials decrypted in browser memory
-  const GITHUB_ENCRYPTED_PAT = "";
-  const GITHUB_ENCRYPTED_IV = "";
+  const GITHUB_ENCRYPTED_PAT = "ef89b7273222da674e949d6e0c63a9ae2e1c9faa747e34b2c68e00da8e47079485e5cd328201a605";
+  const GITHUB_ENCRYPTED_IV = "ee5d1a4a4bbe87b539683856ca7566da";
   const GITHUB_OWNER = "partofcosmos-site";
   const GITHUB_REPO = "debanjanbiswas";
 
