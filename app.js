@@ -977,7 +977,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const searchInput = document.getElementById("lounge-search");
   const tabs = document.querySelectorAll(".lounge-tab");
 
-  // Default curation list (excluding Code Geass and Lain)
+  // Default curation list containing Sci-Fi, Anime, Marvel, and DC Curations
   const defaultCurationList = [
     {
       id: "9253",
@@ -1018,6 +1018,132 @@ document.addEventListener("DOMContentLoaded", async () => {
       fallbackEps: "26 Eps"
     },
     {
+      id: "1726",
+      title: "Iron Man",
+      type: "Movie",
+      category: "movie",
+      rating: "7.7 / 10",
+      tags: ["Action", "Science Fiction"],
+      desc: "Heroes aren't born. They're built.",
+      synopsis: "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
+      cover: "https://image.tmdb.org/t/p/w500/78lPtwv72eTNqFW9COBYI0dWDJa.jpg",
+      duration: "126 Min",
+      badge: "HD 1080p",
+      url: "https://www.themoviedb.org/movie/1726"
+    },
+    {
+      id: "1771",
+      title: "Captain America: The First Avenger",
+      type: "Movie",
+      category: "movie",
+      rating: "7.0 / 10",
+      tags: ["Action", "Adventure"],
+      desc: "The one who never gives up awakens.",
+      synopsis: "During World War II, Steve Rogers is a sickly man from Brooklyn who's transformed into super-soldier Captain America to aid in the war effort. Rogers must stop the Red Skull – Adolf Hitler's ruthless head of weaponry, and the leader of an organization that intends to use a mysterious device of untold powers for world domination.",
+      cover: "https://image.tmdb.org/t/p/w500/vSNxAJTlD0r02V9sPYpOjqDZXUK.jpg",
+      duration: "124 Min",
+      badge: "HD 1080p",
+      url: "https://www.themoviedb.org/movie/1771"
+    },
+    {
+      id: "100402",
+      title: "Captain America: The Winter Soldier",
+      type: "Movie",
+      category: "movie",
+      rating: "7.7 / 10",
+      tags: ["Action", "Adventure"],
+      desc: "In heroes we trust.",
+      synopsis: "After the cataclysmic events in New York with The Avengers, Steve Rogers, aka Captain America is living quietly in Washington, D.C. and trying to adjust to the modern world. But when a S.H.I.E.L.D. colleague comes under attack, Steve becomes embroiled in a web of intrigue that threatens to put the world at risk. Joining forces with the Black Widow, Captain America struggles to expose the ever-widening conspiracy while fighting off professional assassins sent to silence him at every turn. When the full scope of the villainous plot is revealed, Captain America and the Black Widow enlist the help of a new ally, the Falcon. However, they soon find themselves up against an unexpected and formidable enemy—the Winter Soldier.",
+      cover: "https://image.tmdb.org/t/p/w500/tVFRpFw3xTedgPGqxW0AOI8Qhh0.jpg",
+      duration: "136 Min",
+      badge: "HD 1080p",
+      url: "https://www.themoviedb.org/movie/100402"
+    },
+    {
+      id: "24428",
+      title: "The Avengers",
+      type: "Movie",
+      category: "movie",
+      rating: "8.1 / 10",
+      tags: ["Science Fiction", "Action"],
+      desc: "Some assembly required.",
+      synopsis: "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
+      cover: "https://image.tmdb.org/t/p/w500/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
+      duration: "143 Min",
+      badge: "HD 1080p",
+      url: "https://www.themoviedb.org/movie/24428"
+    },
+    {
+      id: "118340",
+      title: "Guardians of the Galaxy",
+      type: "Movie",
+      category: "movie",
+      rating: "7.9 / 10",
+      tags: ["Action", "Science Fiction"],
+      desc: "When things get bad, they'll do their worst.",
+      synopsis: "Light years from Earth, 26 years after being abducted, Peter Quill finds himself the prime target of a manhunt after discovering an orb wanted by Ronan the Accuser.",
+      cover: "https://image.tmdb.org/t/p/w500/r7vmZjiyZw9rpJMQJdXpjgiCOk9.jpg",
+      duration: "121 Min",
+      badge: "HD 1080p",
+      url: "https://www.themoviedb.org/movie/118340"
+    },
+    {
+      id: "299536",
+      title: "Avengers: Infinity War",
+      type: "Movie",
+      category: "movie",
+      rating: "8.2 / 10",
+      tags: ["Adventure", "Action"],
+      desc: "Destiny arrives all the same.",
+      synopsis: "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+      cover: "https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
+      duration: "149 Min",
+      badge: "IMAX 4K",
+      url: "https://www.themoviedb.org/movie/299536"
+    },
+    {
+      id: "299534",
+      title: "Avengers: Endgame",
+      type: "Movie",
+      category: "movie",
+      rating: "8.2 / 10",
+      tags: ["Adventure", "Science Fiction"],
+      desc: "Avenge the fallen.",
+      synopsis: "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
+      cover: "https://image.tmdb.org/t/p/w500/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg",
+      duration: "181 Min",
+      badge: "IMAX 4K",
+      url: "https://www.themoviedb.org/movie/299534"
+    },
+    {
+      id: "324857",
+      title: "Spider-Man: Into the Spider-Verse",
+      type: "Movie",
+      category: "movie",
+      rating: "8.4 / 10",
+      tags: ["Animation", "Action"],
+      desc: "Enter a universe where more than one wears the mask.",
+      synopsis: "Struggling to find his place in the world while juggling school and family, Brooklyn teenager Miles Morales is unexpectedly bitten by a radioactive spider and develops unfathomable powers just like the one and only Spider-Man. While wrestling with the implications of his new abilities, Miles discovers a super collider created by the madman Wilson \"Kingpin\" Fisk, causing others from across the Spider-Verse to be inadvertently transported to his dimension.",
+      cover: "https://image.tmdb.org/t/p/w500/iiZZdoQBEYBv6id8su7ImL0oCbD.jpg",
+      duration: "117 Min",
+      badge: "HD 1080p",
+      url: "https://www.themoviedb.org/movie/324857"
+    },
+    {
+      id: "634649",
+      title: "Spider-Man: No Way Home",
+      type: "Movie",
+      category: "movie",
+      rating: "7.9 / 10",
+      tags: ["Action", "Adventure"],
+      desc: "The Multiverse unleashed.",
+      synopsis: "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
+      cover: "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
+      duration: "148 Min",
+      badge: "HD 1080p",
+      url: "https://www.themoviedb.org/movie/634649"
+    },
+    {
       id: "tenet",
       title: "Tenet",
       type: "Movie",
@@ -1030,6 +1156,118 @@ document.addEventListener("DOMContentLoaded", async () => {
       duration: "150 Min",
       badge: "CPT Inv",
       url: "https://www.themoviedb.org/movie/577922"
+    },
+    {
+      id: "272",
+      title: "Batman Begins",
+      type: "Movie",
+      category: "movie",
+      rating: "7.7 / 10",
+      tags: ["Drama", "Crime"],
+      desc: "Evil fears the knight.",
+      synopsis: "Driven by tragedy, billionaire Bruce Wayne dedicates his life to uncovering and defeating the corruption that plagues his home, Gotham City.  Unable to work within the system, he instead creates a new identity, a symbol of fear for the criminal underworld - The Batman.",
+      cover: "https://image.tmdb.org/t/p/w500/sPX89Td70IDDjVr85jdSBb4rWGr.jpg",
+      duration: "140 Min",
+      badge: "HD 1080p",
+      url: "https://www.themoviedb.org/movie/272"
+    },
+    {
+      id: "155",
+      title: "The Dark Knight",
+      type: "Movie",
+      category: "movie",
+      rating: "8.5 / 10",
+      tags: ["Action", "Crime"],
+      desc: "Welcome to a world without rules.",
+      synopsis: "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker.",
+      cover: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+      duration: "152 Min",
+      badge: "IMAX 4K",
+      url: "https://www.themoviedb.org/movie/155"
+    },
+    {
+      id: "49026",
+      title: "The Dark Knight Rises",
+      type: "Movie",
+      category: "movie",
+      rating: "7.8 / 10",
+      tags: ["Action", "Crime"],
+      desc: "The legend ends.",
+      synopsis: "Following the death of District Attorney Harvey Dent, Batman assumes responsibility for Dent's crimes to protect the late attorney's reputation and is subsequently hunted by the Gotham City Police Department. Eight years later, Batman encounters the mysterious Selina Kyle and the villainous Bane, a new terrorist leader who overwhelms Gotham's finest. The Dark Knight resurfaces to protect a city that has branded him an enemy.",
+      cover: "https://image.tmdb.org/t/p/w500/hr0L2aueqlP2BYUblTTjmtn0hw4.jpg",
+      duration: "165 Min",
+      badge: "IMAX 4K",
+      url: "https://www.themoviedb.org/movie/49026"
+    },
+    {
+      id: "49521",
+      title: "Man of Steel",
+      type: "Movie",
+      category: "movie",
+      rating: "6.7 / 10",
+      tags: ["Action", "Adventure"],
+      desc: "You are not alone.",
+      synopsis: "A young boy learns that he has extraordinary powers and is not of this earth. As a young man, he journeys to discover where he came from and what he was sent here to do. But the hero in him must emerge if he is to save the world from annihilation and become the symbol of hope for all mankind.",
+      cover: "https://image.tmdb.org/t/p/w500/8GFtkImmK0K1VaUChR0n9O61CFU.jpg",
+      duration: "143 Min",
+      badge: "HD 1080p",
+      url: "https://www.themoviedb.org/movie/49521"
+    },
+    {
+      id: "791373",
+      title: "Zack Snyder's Justice League",
+      type: "Movie",
+      category: "movie",
+      rating: "8.1 / 10",
+      tags: ["Action", "Adventure"],
+      desc: "Us united.",
+      synopsis: "Determined to ensure Superman's ultimate sacrifice was not in vain, Bruce Wayne aligns forces with Diana Prince with plans to recruit a team of metahumans to protect the world from an approaching threat of catastrophic proportions.",
+      cover: "https://image.tmdb.org/t/p/w500/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg",
+      duration: "242 Min",
+      badge: "IMAX 4K",
+      url: "https://www.themoviedb.org/movie/791373"
+    },
+    {
+      id: "414906",
+      title: "The Batman",
+      type: "Movie",
+      category: "movie",
+      rating: "7.7 / 10",
+      tags: ["Crime", "Mystery"],
+      desc: "Unmask the truth.",
+      synopsis: "In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddler.",
+      cover: "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
+      duration: "177 Min",
+      badge: "HD 1080p",
+      url: "https://www.themoviedb.org/movie/414906"
+    },
+    {
+      id: "13183",
+      title: "Watchmen",
+      type: "Movie",
+      category: "movie",
+      rating: "7.4 / 10",
+      tags: ["Mystery", "Action"],
+      desc: "Justice is coming to all of us. No matter what we do.",
+      synopsis: "In a gritty and alternate 1985, the glory days of costumed vigilantes have been brought to a close by a government crackdown. But after one of the masked veterans is brutally murdered, an investigation into the killer is initiated. The reunited heroes set out to prevent their own destruction, but in doing so they uncover a sinister plot that puts all of humanity in grave danger.",
+      cover: "https://image.tmdb.org/t/p/w500/aVURelN3pM56lFM7Dgfs5TixcIf.jpg",
+      duration: "163 Min",
+      badge: "HD 1080p",
+      url: "https://www.themoviedb.org/movie/13183"
+    },
+    {
+      id: "752",
+      title: "V for Vendetta",
+      type: "Movie",
+      category: "movie",
+      rating: "7.9 / 10",
+      tags: ["Action", "Thriller"],
+      desc: "People should not be afraid of their governments. Governments should be afraid of their people.",
+      synopsis: "In a world in which Great Britain has become a fascist state, a masked vigilante known only as “V” conducts guerrilla warfare against the oppressive British government. When V rescues a young woman from the secret police, he finds in her an ally with whom he can continue his fight to free the people of Britain.",
+      cover: "https://image.tmdb.org/t/p/w500/1avD1JeaRiJX5M4ahPdZPypGoGN.jpg",
+      duration: "132 Min",
+      badge: "HD 1080p",
+      url: "https://www.themoviedb.org/movie/752"
     },
     {
       id: "32281",
@@ -1084,6 +1322,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   const savedList = localStorage.getItem(LIST_STORAGE_KEY);
   if (savedList) {
     curationList = JSON.parse(savedList);
+    // Auto-migrate old watchlists to include the new Marvel & DC films
+    if (curationList.length < 15) {
+      curationList = [...defaultCurationList];
+      localStorage.setItem(LIST_STORAGE_KEY, JSON.stringify(curationList));
+      localStorage.removeItem(CACHE_STORAGE_KEY); // clear cache to force render
+    }
   } else {
     curationList = [...defaultCurationList];
     localStorage.setItem(LIST_STORAGE_KEY, JSON.stringify(curationList));
