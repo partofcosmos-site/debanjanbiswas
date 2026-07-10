@@ -1295,6 +1295,469 @@ document.addEventListener("DOMContentLoaded", async () => {
       badge: "Least T",
       url: "https://www.themoviedb.org/movie/329865"
     }
+  ,
+    {
+      id: "track-1",
+      title: "Star Wars (Epic Main Theme)",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["New Age"],
+      desc: "by Samuel Kim",
+      synopsis: "Song from the album: Star Wars: The Rise of Skywalker Tribute - Single. Total duration: 3:33.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/6a/1a/9c/6a1a9ce4-bca1-bf22-2d90-905499555926/194871868613.png/500x500bb.jpg",
+      duration: "3:33",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Star%20Wars%20%28Epic%20Main%20Theme%29%20Samuel%20Kim"
+    },
+    {
+      id: "track-2",
+      title: "Daylight",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by David Kushner",
+      synopsis: "Song from the album: Daylight - Single. Total duration: 3:32.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b9/f2/2b/b9f22b26-d962-70de-6d85-674139ded7cc/842812190988_Cover.jpg/500x500bb.jpg",
+      duration: "3:32",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Daylight%20David%20Kushner"
+    },
+    {
+      id: "track-3",
+      title: "Counting Stars",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by OneRepublic",
+      synopsis: "Song from the album: Native (Deluxe). Total duration: 4:17.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/25/46/a7/2546a71a-b2bb-b4c9-4c52-a4daa3ae23ca/13UMGIM15076.rgb.jpg/500x500bb.jpg",
+      duration: "4:17",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Counting%20Stars%20OneRepublic"
+    },
+    {
+      id: "track-4",
+      title: "Technoblade (Sped Up)",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by Abtmelody",
+      synopsis: "Song from the album: Technoblade (Sped Up) - Single. Total duration: 2:43.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/99/83/9d/99839d8d-6a80-d45c-030a-a0b3342cb3ad/199999655466.png/500x500bb.jpg",
+      duration: "2:43",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Technoblade%20%28Sped%20Up%29%20Abtmelody"
+    },
+    {
+      id: "track-5",
+      title: "See You Again (feat. Charlie Puth)",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Hip-Hop/Rap"],
+      desc: "by Wiz Khalifa",
+      synopsis: "Song from the album: Furious 7 (Original Motion Picture Soundtrack). Total duration: 3:49.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ce/a5/06/cea50685-c7ed-335e-09d1-9aa55a83db72/075679928184.jpg/500x500bb.jpg",
+      duration: "3:49",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=See%20You%20Again%20%28feat.%20Charlie%20Puth%29%20Wiz%20Khalifa"
+    },
+    {
+      id: "track-6",
+      title: "Let Me Down Slowly",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by Alec Benjamin",
+      synopsis: "Song from the album: Narrated for You. Total duration: 2:49.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/18/12/90/181290f5-737e-ac92-201f-d2f65c973f60/075679859518.jpg/500x500bb.jpg",
+      duration: "2:49",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Let%20Me%20Down%20Slowly%20Alec%20Benjamin"
+    },
+    {
+      id: "track-7",
+      title: "Cradles",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Bass"],
+      desc: "by Sub Urban",
+      synopsis: "Song from the album: Cradles - Single. Total duration: 3:29.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7b/bd/88/7bbd8845-ace6-cbba-1925-834b3e1b47ac/8721465222470.png/500x500bb.jpg",
+      duration: "3:29",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Cradles%20Sub%20Urban"
+    },
+    {
+      id: "track-8",
+      title: "On & On",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Dance"],
+      desc: "by Cartoon, J\u00e9ja & Daniel Levi",
+      synopsis: "Song from the album: On & On - Single. Total duration: 3:27.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f5/80/6e/f5806eb6-2539-0255-9996-ef7d3ad630c4/8721465219043.png/500x500bb.jpg",
+      duration: "3:27",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=On%20%26%20On%20Cartoon%2C%20J%C3%A9ja%20%26%20Daniel%20Levi"
+    },
+    {
+      id: "track-9",
+      title: "Ghost",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by Justin Bieber",
+      synopsis: "Song from the album: Justice (The Complete Edition). Total duration: 2:33.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/25/64/b3/2564b343-943a-68b2-4c55-ee2e14464cf0/21UMGIM83128.rgb.jpg/500x500bb.jpg",
+      duration: "2:33",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Ghost%20Justin%20Bieber"
+    },
+    {
+      id: "track-10",
+      title: "Falling",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by Trevor Daniel",
+      synopsis: "Song from the album: Falling - Single. Total duration: 2:39.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/fe/66/14/fe66145c-430e-f7a0-e5ce-8e8e5be19c89/888915747841.jpg/500x500bb.jpg",
+      duration: "2:39",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Falling%20Trevor%20Daniel"
+    },
+    {
+      id: "track-11",
+      title: "Sunflower (Spider-Man: Into the Spider-Verse)",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Hip-Hop/Rap"],
+      desc: "by Post Malone & Swae Lee",
+      synopsis: "Song from the album: Spider-Man: Into the Spider-Verse (Soundtrack From & Inspired by the Motion Picture). Total duration: 2:38.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4b/30/2c/4b302cb6-7a14-5464-4e97-0577e9d0be49/18UMGIM82277.rgb.jpg/500x500bb.jpg",
+      duration: "2:38",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Sunflower%20%28Spider-Man%3A%20Into%20the%20Spider-Verse%29%20Post%20Malone%20%26%20Swae%20Lee"
+    },
+    {
+      id: "track-12",
+      title: "You\u2019ll Be Alright, Kid",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by Alex Warren",
+      synopsis: "Song from the album: You'll Be Alright, Kid (Chapter 1). Total duration: 2:29.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/43/8e/29/438e296e-12f8-2cf3-1b00-d1390e502020/075679632241.jpg/500x500bb.jpg",
+      duration: "2:29",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=You%E2%80%99ll%20Be%20Alright%2C%20Kid%20Alex%20Warren"
+    },
+    {
+      id: "track-13",
+      title: "Let Me Love You (feat. Justin Bieber)",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Dance"],
+      desc: "by DJ Snake",
+      synopsis: "Song from the album: Encore. Total duration: 3:25.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/38/6d/64/386d64d2-c311-4ea5-0841-99658f6f7253/16UMGIM39232.rgb.jpg/500x500bb.jpg",
+      duration: "3:25",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Let%20Me%20Love%20You%20%28feat.%20Justin%20Bieber%29%20DJ%20Snake"
+    },
+    {
+      id: "track-14",
+      title: "Sunflower (Spider-Man: Into the Spider-Verse)",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Hip-Hop/Rap"],
+      desc: "by Post Malone & Swae Lee",
+      synopsis: "Song from the album: Spider-Man: Into the Spider-Verse (Soundtrack From & Inspired by the Motion Picture). Total duration: 2:38.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4b/30/2c/4b302cb6-7a14-5464-4e97-0577e9d0be49/18UMGIM82277.rgb.jpg/500x500bb.jpg",
+      duration: "2:38",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Sunflower%20%28Spider-Man%3A%20Into%20the%20Spider-Verse%29%20Post%20Malone%20%26%20Swae%20Lee"
+    },
+    {
+      id: "track-15",
+      title: "No Friends",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by CADMIUM & Rosendale",
+      synopsis: "Song from the album: No Friends - Single. Total duration: 3:55.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/60/e5/c5/60e5c57b-4c25-3737-45ed-911311a67866/artwork.jpg/500x500bb.jpg",
+      duration: "3:55",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=No%20Friends%20CADMIUM%20%26%20Rosendale"
+    },
+    {
+      id: "track-16",
+      title: "Royalty (Slowed)",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Electronic"],
+      desc: "by xtra bacon",
+      synopsis: "Song from the album: Royalty (All Versions) - EP. Total duration: 3:27.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/89/c1/a2/89c1a28f-4e53-53fe-1d07-a68a6b1b6914/663918005170_cover.jpg/500x500bb.jpg",
+      duration: "3:27",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Royalty%20%28Slowed%29%20xtra%20bacon"
+    },
+    {
+      id: "track-17",
+      title: "Royalty (Sped Up)",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Electronic"],
+      desc: "by xtra bacon",
+      synopsis: "Song from the album: Royalty (All Versions) - EP. Total duration: 2:38.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/89/c1/a2/89c1a28f-4e53-53fe-1d07-a68a6b1b6914/663918005170_cover.jpg/500x500bb.jpg",
+      duration: "2:38",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Royalty%20%28Sped%20Up%29%20xtra%20bacon"
+    },
+    {
+      id: "track-18",
+      title: "Pal Pal",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by AFUSIC & AliSoomroMusic",
+      synopsis: "Song from the album: Pal Pal - Single. Total duration: 2:27.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c8/cc/e8/c8cce868-9342-d78c-fec5-9d9e5b44106a/25UMGIM17787.rgb.jpg/500x500bb.jpg",
+      duration: "2:27",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Pal%20Pal%20AFUSIC%20%26%20AliSoomroMusic"
+    },
+    {
+      id: "track-19",
+      title: "Finding Her (Female Version)  (From \"UR Debut\")",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Indian Pop"],
+      desc: "by Tanishka Bahl, Kushagra, Bharath & Saaheal",
+      synopsis: "Song from the album: Finding Her (Female Version)  (From \"UR Debut\") - Single. Total duration: 3:26.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3b/34/17/3b34172f-d530-23d8-b2dd-f38d86917e0a/5034644902203.jpg/500x500bb.jpg",
+      duration: "3:26",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Finding%20Her%20%28Female%20Version%29%20%20%28From%20%22UR%20Debut%22%29%20Tanishka%20Bahl%2C%20Kushagra%2C%20Bharath%20%26%20Saaheal"
+    },
+    {
+      id: "track-20",
+      title: "Love Me Like You Do (From \"Fifty Shades of Grey\")",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by Ellie Goulding",
+      synopsis: "Song from the album: Delirium (Deluxe). Total duration: 4:12.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/df/09/7e/df097e10-36b1-a35c-bf5e-2ef138bd2ed7/15UMGIM68751.rgb.jpg/500x500bb.jpg",
+      duration: "4:12",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Love%20Me%20Like%20You%20Do%20%28From%20%22Fifty%20Shades%20of%20Grey%22%29%20Ellie%20Goulding"
+    },
+    {
+      id: "track-21",
+      title: "Perfect",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by Ed Sheeran",
+      synopsis: "Song from the album: \u00f7 (Deluxe). Total duration: 4:23.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/500x500bb.jpg",
+      duration: "4:23",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Perfect%20Ed%20Sheeran"
+    },
+    {
+      id: "track-22",
+      title: "abc (nicer)",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by GAYLE",
+      synopsis: "Song from the album: abc (nicer) - Single. Total duration: 2:48.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/ad/ce/4f/adce4fe1-c6ea-4e41-4a9f-d27d16e4adeb/075679761927.jpg/500x500bb.jpg",
+      duration: "2:48",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=abc%20%28nicer%29%20GAYLE"
+    },
+    {
+      id: "track-23",
+      title: "Finding Her",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Indian Pop"],
+      desc: "by Kushagra & Bharath",
+      synopsis: "Song from the album: Finding Her - Single. Total duration: 3:27.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/0e/4f/58/0e4f5828-64f8-26d5-ebde-661b6fee89fe/5034644353067.jpg/500x500bb.jpg",
+      duration: "3:27",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Finding%20Her%20Kushagra%20%26%20Bharath"
+    },
+    {
+      id: "track-24",
+      title: "Until I Found You",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Singer/Songwriter"],
+      desc: "by Stephen Sanchez",
+      synopsis: "Song from the album: Until I Found You - Single. Total duration: 2:57.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/64/d2/c5/64d2c511-67f4-ae09-5153-d39c3da413a3/21UMGIM75467.rgb.jpg/500x500bb.jpg",
+      duration: "2:57",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Until%20I%20Found%20You%20Stephen%20Sanchez"
+    },
+    {
+      id: "track-25",
+      title: "Infinity",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Alternative"],
+      desc: "by Jaymes Young",
+      synopsis: "Song from the album: Feel Something. Total duration: 3:57.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/fb/bf/6d/fbbf6d06-9a6c-9c49-c313-aed403613252/075679900180.jpg/500x500bb.jpg",
+      duration: "3:57",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Infinity%20Jaymes%20Young"
+    },
+    {
+      id: "track-26",
+      title: "Darkside",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Dance"],
+      desc: "by Alan Walker, Au/Ra & Tomine Harket",
+      synopsis: "Song from the album: Different World. Total duration: 3:31.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/7b/37/53/7b375382-ce23-cfa4-03d4-1db4b0f89d72/886447442562.jpg/500x500bb.jpg",
+      duration: "3:31",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Darkside%20Alan%20Walker%2C%20Au/Ra%20%26%20Tomine%20Harket"
+    },
+    {
+      id: "track-27",
+      title: "On My Way (Da Tweekaz Remix)",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Dance"],
+      desc: "by Alan Walker, Sabrina Carpenter & Farruko",
+      synopsis: "Song from the album: On My Way (Da Tweekaz Remix) - Single. Total duration: 3:24.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4b/83/31/4b8331ab-e75b-1e73-30dc-2511b1c93463/886447816639.jpg/500x500bb.jpg",
+      duration: "3:24",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=On%20My%20Way%20%28Da%20Tweekaz%20Remix%29%20Alan%20Walker%2C%20Sabrina%20Carpenter%20%26%20Farruko"
+    },
+    {
+      id: "track-28",
+      title: "Unstable (feat. The Kid LAROI)",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by Justin Bieber",
+      synopsis: "Song from the album: Justice. Total duration: 2:38.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f5/7a/9e/f57a9e6a-31c8-0784-dfbd-4a0120bfd4af/21UMGIM17517.rgb.jpg/500x500bb.jpg",
+      duration: "2:38",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Unstable%20%28feat.%20The%20Kid%20LAROI%29%20Justin%20Bieber"
+    },
+    {
+      id: "track-29",
+      title: "Memories",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by Maroon 5",
+      synopsis: "Song from the album: Memories - Single. Total duration: 3:09.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/22/58/58/225858c4-ef47-2b91-723a-47af3e99699a/19UMGIM64502.rgb.jpg/500x500bb.jpg",
+      duration: "3:09",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Memories%20Maroon%205"
+    },
+    {
+      id: "track-30",
+      title: "Ordinary",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by Alex Warren",
+      synopsis: "Song from the album: Ordinary - Single. Total duration: 3:06.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/46/78/fb/4678fb84-d19e-f11b-93ff-4dc17660bff8/075679619075.jpg/500x500bb.jpg",
+      duration: "3:06",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Ordinary%20Alex%20Warren"
+    },
+    {
+      id: "track-31",
+      title: "MUZYKA #1 No Copyright Music | Bez Praw Autorskich",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by NoA",
+      synopsis: "Total duration: 10:31:56.",
+      cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=300",
+      duration: "10:31:56",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=MUZYKA%20%231%20No%20Copyright%20Music%20%7C%20Bez%20Praw%20Autorskich%20NoA"
+    },
+    {
+      id: "track-32",
+      title: "Ariana",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Hip-Hop/Rap"],
+      desc: "by Angel Valdes",
+      synopsis: "Song from the album: Ariana - Single. Total duration: 2:44.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ce/31/40/ce31405c-6ffb-a775-af8f-a103a5f68b86/036885454997.png/500x500bb.jpg",
+      duration: "2:44",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Ariana%20Angel%20Valdes"
+    },
+    {
+      id: "track-33",
+      title: "Shape of You",
+      type: "Music",
+      category: "music",
+      rating: "9.0 / 10",
+      tags: ["Pop"],
+      desc: "by Ed Sheeran",
+      synopsis: "Song from the album: \u00f7 (Deluxe). Total duration: 3:53.",
+      cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/15/e6/e8/15e6e8a4-4190-6a8b-86c3-ab4a51b88288/190295851286.jpg/500x500bb.jpg",
+      duration: "3:53",
+      badge: "HQ Stereo",
+      url: "https://music.youtube.com/search?q=Shape%20of%20You%20Ed%20Sheeran"
+    }
   ];
 
   const LIST_STORAGE_KEY = "lounge_user_curations_list_v3";
@@ -1308,9 +1771,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   const savedList = localStorage.getItem(LIST_STORAGE_KEY);
   if (savedList) {
     curationList = JSON.parse(savedList);
-    // Auto-migrate old watchlists to include the refined Marvel, DC, and X-Men films
+    // Auto-migrate old watchlists to include the refined Marvel, DC, and music tracks
     const hasUnwatchedDC = curationList.some(item => item.id === "13183" || item.id === "272");
-    if (hasUnwatchedDC || curationList.length < 15) {
+    const hasMusic = curationList.some(item => item.category === "music");
+    if (hasUnwatchedDC || curationList.length < 15 || !hasMusic) {
       curationList = [...defaultCurationList];
       localStorage.setItem(LIST_STORAGE_KEY, JSON.stringify(curationList));
       localStorage.removeItem(CACHE_STORAGE_KEY); // clear cache to force render
@@ -1342,6 +1806,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       filterGallery();
     });
   });
+
+  // Initialize background player widget
+  initCosmicPlayer();
 
   // Fetch MAL/TMDB data and update local cached layouts
   async function refreshCuratedGrid() {
@@ -1425,7 +1892,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           tags: item.tags && item.tags.length > 0 ? item.tags : ["Sci-Fi", "Cinema"],
           desc: movieDesc.length > 200 ? movieDesc.substring(0, 200) + "..." : movieDesc,
           synopsis: movieSynopsis,
-          url: item.url || `https://www.themoviedb.org/movie/${item.id}`,
+          url: item.url || (item.category === "music" ? `https://music.youtube.com/search?q=${encodeURIComponent(item.title)}` : `https://www.themoviedb.org/movie/${item.id}`),
           type: item.type || "Movie"
         });
       }
@@ -1470,7 +1937,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           tags: item.tags && item.tags.length > 0 ? item.tags : ["Sci-Fi", "Cinema"],
           desc: movieDesc.length > 200 ? movieDesc.substring(0, 200) + "..." : movieDesc,
           synopsis: movieSynopsis,
-          url: item.url || `https://www.themoviedb.org/movie/${item.id}`,
+          url: item.url || (item.category === "music" ? `https://music.youtube.com/search?q=${encodeURIComponent(item.title)}` : `https://www.themoviedb.org/movie/${item.id}`),
           type: item.type || "Movie"
         };
       }
@@ -1511,7 +1978,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <div class="lounge-card-front">
             <div class="lounge-poster-wrapper">
               <img src="${item.cover}" alt="${item.title} Poster" onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300'">
-              <span class="media-type-badge type-${item.category === 'anime' ? 'tv' : 'movie'}">${item.type}</span>
+              <span class="media-type-badge type-${item.category}">${item.type}</span>
             </div>
             <div class="lounge-card-meta">
               <span class="meta-item">
@@ -2367,6 +2834,166 @@ document.addEventListener("DOMContentLoaded", async () => {
         curatorSyncBtn.disabled = false;
         curatorSyncBtn.textContent = originalText;
       }
+    });
+  }
+
+  /* ==========================================
+     COSMIC PLAYER LOGIC
+     ========================================== */
+  function initCosmicPlayer() {
+    const playerWidget = document.getElementById("cosmic-player");
+    const playBtn = document.getElementById("player-play");
+    const prevBtn = document.getElementById("player-prev");
+    const nextBtn = document.getElementById("player-next");
+    const minimizeBtn = document.getElementById("player-minimize");
+    const progressBar = document.getElementById("player-progress-bar");
+    const progressFilled = document.getElementById("player-progress-filled");
+    const volumeSlider = document.getElementById("player-volume");
+    const audioElement = document.getElementById("cosmic-audio-element");
+    const trackCover = document.getElementById("player-cover");
+    const trackName = document.getElementById("player-track-name");
+    const trackArtist = document.getElementById("player-artist");
+    const playIcon = document.getElementById("play-icon");
+    const pauseIcon = document.getElementById("pause-icon");
+    const vinylDisc = document.querySelector(".vinyl-disc");
+
+    if (!playerWidget || !audioElement) return;
+
+    // Collection of cosmic tracks to loop
+    const cosmicTracks = [
+      {
+        name: "Stellar Drift",
+        artist: "Lofi Space Ambient",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        cover: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=150"
+      },
+      {
+        name: "Quantum Horizon",
+        artist: "Synthwave Lounge",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+        cover: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?q=80&w=150"
+      },
+      {
+        name: "Andromeda Glow",
+        artist: "Nebula Chill",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+        cover: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=150"
+      }
+    ];
+
+    let currentTrackIdx = 0;
+
+    function loadTrack(idx) {
+      const track = cosmicTracks[idx];
+      audioElement.src = track.url;
+      trackCover.src = track.cover;
+      trackName.textContent = track.name;
+      trackArtist.textContent = track.artist;
+      progressFilled.style.width = "0%";
+    }
+
+    // Initialize first track
+    loadTrack(currentTrackIdx);
+
+    // Minimize toggle
+    minimizeBtn.addEventListener("click", () => {
+      playerWidget.classList.toggle("minimized");
+      const isMinimized = playerWidget.classList.contains("minimized");
+      minimizeBtn.innerHTML = isMinimized 
+        ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"></path></svg>'
+        : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"></path></svg>';
+    });
+
+    // Play/Pause toggle
+    playBtn.addEventListener("click", () => {
+      if (audioElement.paused) {
+        audioElement.play().catch(err => console.log("Audio play blocked by browser:", err));
+        playIcon.style.display = "none";
+        pauseIcon.style.display = "block";
+        vinylDisc.classList.add("playing");
+      } else {
+        audioElement.pause();
+        playIcon.style.display = "block";
+        pauseIcon.style.display = "none";
+        vinylDisc.classList.remove("playing");
+      }
+    });
+
+    // Next Track
+    nextBtn.addEventListener("click", () => {
+      currentTrackIdx = (currentTrackIdx + 1) % cosmicTracks.length;
+      loadTrack(currentTrackIdx);
+      audioElement.play().catch(() => {});
+      playIcon.style.display = "none";
+      pauseIcon.style.display = "block";
+      vinylDisc.classList.add("playing");
+    });
+
+    // Previous Track
+    prevBtn.addEventListener("click", () => {
+      currentTrackIdx = (currentTrackIdx - 1 + cosmicTracks.length) % cosmicTracks.length;
+      loadTrack(currentTrackIdx);
+      audioElement.play().catch(() => {});
+      playIcon.style.display = "none";
+      pauseIcon.style.display = "block";
+      vinylDisc.classList.add("playing");
+    });
+
+    // Volume Slider
+    volumeSlider.addEventListener("input", (e) => {
+      audioElement.volume = e.target.value;
+    });
+
+    // Progress Bar Update
+    audioElement.addEventListener("timeupdate", () => {
+      if (audioElement.duration) {
+        const percentage = (audioElement.currentTime / audioElement.duration) * 100;
+        progressFilled.style.width = `${percentage}%`;
+      }
+    });
+
+    // Seek Click
+    progressBar.addEventListener("click", (e) => {
+      const rect = progressBar.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const clickPercentage = clickX / width;
+      if (audioElement.duration) {
+        audioElement.currentTime = clickPercentage * audioElement.duration;
+      }
+    });
+
+    // Global listener to sync with card play button click
+    document.addEventListener("click", (e) => {
+      const redirectBtn = e.target.closest(".lounge-redirect-btn");
+      if (!redirectBtn) return;
+      
+      const card = redirectBtn.closest(".lounge-card");
+      if (!card || card.getAttribute("data-category") !== "music") return;
+
+      // Expand player if minimized
+      if (playerWidget.classList.contains("minimized")) {
+        playerWidget.classList.remove("minimized");
+        minimizeBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"></path></svg>';
+      }
+
+      // Read song details from clicked card elements
+      const songTitle = card.querySelector(".lounge-back-header h4").textContent;
+      const songDesc = card.querySelector(".lounge-back-desc").textContent;
+      const songCover = card.querySelector(".lounge-poster-wrapper img").src;
+
+      // Update cosmic player cover and details dynamically
+      trackCover.src = songCover;
+      trackName.textContent = songTitle;
+      trackArtist.textContent = songDesc;
+
+      // Toggle visual vinyl animation spin state
+      playIcon.style.display = "none";
+      pauseIcon.style.display = "block";
+      vinylDisc.classList.add("playing");
+
+      // Play local ambient lofi track to ensure sound plays
+      audioElement.play().catch(() => {});
     });
   }
 
