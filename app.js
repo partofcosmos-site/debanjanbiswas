@@ -19,7 +19,7 @@ function initNavbar() {
   toggleBtn.addEventListener("click", () => {
     const isExpanded = mobileMenu.style.display === "block";
     mobileMenu.style.display = isExpanded ? "none" : "block";
-    toggleBtn.innerHTML = isExpanded 
+    toggleBtn.innerHTML = isExpanded
       ? `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>`
       : `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`;
   });
@@ -251,7 +251,7 @@ function initResourcesAccordions() {
 
     trigger.addEventListener("click", () => {
       const isExpanded = card.classList.contains("expanded");
-      
+
       // Close other blogs
       blogCards.forEach((otherCard) => {
         if (otherCard !== card) {
@@ -330,13 +330,13 @@ function initLabSandbox() {
   let animationId;
   let planets = [];
   let sunMass = 5000;
-  
+
   // Drag and launch state
   let isDragging = false;
   let dragStart = { x: 0, y: 0 };
   let dragCurrent = { x: 0, y: 0 };
   const speedScale = 0.018; // Calibrated for launching
-  
+
   // Hover state
   let hoveredPlanet = null;
   let canvasMouse = { x: 0, y: 0 };
@@ -428,7 +428,7 @@ function initLabSandbox() {
 
         const rPlanet = 135;
         const speedPlanet = Math.sqrt((G * sunMass) / rPlanet);
-        
+
         // Heavy planet
         planets.push({
           id: 1,
@@ -529,7 +529,7 @@ function initLabSandbox() {
       // Custom velocity launch
       const vx = dx * speedScale;
       const vy = dy * speedScale;
-      
+
       const colors = ["#22d3ee", "#8b5cf6", "#ec4899", "#4ade80", "#a78bfa", "#fde047"];
       const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
@@ -551,7 +551,7 @@ function initLabSandbox() {
     const dx = x - centerX;
     const dy = y - centerY;
     const r = Math.sqrt(dx * dx + dy * dy);
-    
+
     if (r < 25) return;
 
     const orbitalSpeed = Math.sqrt((G * sunMass) / r);
@@ -608,7 +608,7 @@ function initLabSandbox() {
   function getAccelerationNBody(x, y, pIndex, allPlanets, nBodyEnabled) {
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
-    
+
     // Accel due to central sun
     const dxSun = centerX - x;
     const dySun = centerY - y;
@@ -647,28 +647,28 @@ function initLabSandbox() {
     const ry = p.y - centerY;
     const r = Math.sqrt(rx * rx + ry * ry);
     const mu = G * sunMass;
-    
+
     if (r < 0.1) return { energy: "-", eccentricity: "-", type: "-" };
 
     const v2 = p.vx * p.vx + p.vy * p.vy;
-    
+
     // E/m = v²/2 - mu/r
     const energy = v2 / 2 - mu / r;
-    
+
     // h = r x v
     const h = rx * p.vy - ry * p.vx;
-    
+
     // e² = 1 + (2 * E/m * h²) / mu²
     const eSq = 1 + (2 * energy * h * h) / (mu * mu);
     const eccentricity = Math.sqrt(Math.max(0, eSq));
-    
+
     let type = "Elliptical";
     if (eccentricity < 0.08) {
       type = "Circular";
     } else if (energy >= 0) {
       type = "Hyperbolic (Escape)";
     }
-    
+
     return {
       energy: energy.toFixed(2),
       eccentricity: eccentricity.toFixed(3),
@@ -772,17 +772,17 @@ function initLabSandbox() {
             const secondary = p1.mass < p2.mass ? p1 : p2;
 
             const mSum = primary.mass + secondary.mass;
-            
+
             // Conserve Momentum
             primary.vx = (primary.mass * primary.vx + secondary.mass * secondary.vx) / mSum;
             primary.vy = (primary.mass * primary.vy + secondary.mass * secondary.vy) / mSum;
-            
+
             // Center of Mass Position
             primary.x = (primary.mass * primary.x + secondary.mass * secondary.x) / mSum;
             primary.y = (primary.mass * primary.y + secondary.mass * secondary.y) / mSum;
-            
+
             primary.mass = Math.min(mSum, 24); // Cap max size
-            
+
             secondary.deleted = true;
             if (hoveredPlanet === secondary) {
               hoveredPlanet = primary;
@@ -795,7 +795,7 @@ function initLabSandbox() {
 
     // 4. Velocity Verlet Symplectic Integration Step
     const dt = 1;
-    
+
     // a. Compute accelerations at current positions
     const accs = planets.map((p, index) => {
       return getAccelerationNBody(p.x, p.y, index, planets, nBodyEnabled);
@@ -816,7 +816,7 @@ function initLabSandbox() {
     });
 
     // Filter out destroyed planets
-    planets = planets.filter((p) => !p.destroyed && (Math.sqrt((centerX - p.x)**2 + (centerY - p.y)**2) < 1200));
+    planets = planets.filter((p) => !p.destroyed && (Math.sqrt((centerX - p.x) ** 2 + (centerY - p.y) ** 2) < 1200));
 
     // c. Recompute accelerations at new positions
     const newAccs = planets.map((p, index) => {
@@ -936,7 +936,7 @@ function initLabSandbox() {
     if (hudCount) {
       hudCount.textContent = planets.length;
     }
-    
+
     // Choose which planet's stats to show in HUD (hovered first, else latest active)
     let displayPlanet = hoveredPlanet;
     if (!displayPlanet && planets.length > 0) {
@@ -1135,10 +1135,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (item.category === "anime") {
         try {
           await new Promise(resolve => setTimeout(resolve, JIKAN_DELAY));
-          
+
           const res = await fetch(`https://api.jikan.moe/v4/anime/${item.id}`);
           if (!res.ok) throw new Error(`Jikan error ${res.status}`);
-          
+
           const json = await res.json();
           const data = json.data;
 
@@ -1330,7 +1330,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       card.addEventListener("click", (e) => {
         // Prevent click triggers on redirection buttons or external links
         if (e.target.closest("a") || e.target.tagName === "A") return;
-        
+
         // Skip flip if user was scrolling
         if (isDragging) {
           isDragging = false;
@@ -1362,7 +1362,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     cards.forEach(card => {
       const cardCategory = card.getAttribute("data-category");
       const searchStr = card.getAttribute("data-search").toLowerCase();
-      
+
       const matchesCategory = (category === "all") || (category === cardCategory);
       const matchesKeyword = !keyword || searchStr.includes(keyword);
 
@@ -1388,7 +1388,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const curatorRating = document.getElementById("curator-rating");
   const curatorTags = document.getElementById("curator-tags");
   const fetchBtn = document.getElementById("curator-fetch-btn");
-  
+
   const statusMsg = document.getElementById("curator-status-msg");
   const curatorListBody = document.getElementById("curator-items-list");
 
@@ -1461,7 +1461,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // Auto-detect TMDB URLs regardless of dropdown selection
       const isTmdbUrl = /themoviedb\.org\/movie\//i.test(lookupVal);
-      
+
       if (isTmdbUrl || type === "movie") {
         await resolveMovieLookup(lookupVal);
       } else {
@@ -1519,7 +1519,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // Retrieve overrides
       const overrideRating = curatorRating.value.trim() || `${animeData.score ? animeData.score.toFixed(1) : "8.5"} / 10`;
-      const overrideTags = curatorTags.value.trim() ? curatorTags.value.trim().split(",").map(t => t.trim()) : (animeData.genres ? animeData.genres.slice(0,2).map(g => g.name) : ["Anime"]);
+      const overrideTags = curatorTags.value.trim() ? curatorTags.value.trim().split(",").map(t => t.trim()) : (animeData.genres ? animeData.genres.slice(0, 2).map(g => g.name) : ["Anime"]);
 
       const newAnimeItem = {
         id: malId,
@@ -1552,7 +1552,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let movieId = "";
     let titleSlug = "";
     let tmdbPageUrl = "";
-    
+
     // Extract TMDB ID and title slug from URL like /movie/13505-captain-america-the-first-avenger
     const tmdbMatch = val.match(/themoviedb\.org\/movie\/(\d+)(?:\-([a-zA-Z0-9\-]+))?/);
     if (tmdbMatch) {
@@ -1583,42 +1583,61 @@ document.addEventListener("DOMContentLoaded", async () => {
     let resolvedDuration = "120 Min";
     let resolvedTags = curatorTags.value.trim() ? curatorTags.value.trim().split(",").map(t => t.trim()) : ["Sci-Fi", "Cinema"];
 
-    // Search via iTunes Search API (completely free, no API key, CORS-friendly)
+    // Search via iTunes Search API using JSONP to bypass CORS blocks on local file:// protocols
     if (titleSlug) {
       try {
         showStatus(`Searching iTunes for "${titleSlug}"...`, "info");
-        const itunesRes = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(titleSlug)}&media=movie&limit=5`);
-        if (itunesRes.ok) {
-          const itunesData = await itunesRes.json();
-          if (itunesData.resultCount > 0) {
-            // Find the best match by comparing title similarity
-            const searchLower = titleSlug.toLowerCase();
-            let bestMatch = itunesData.results[0];
-            for (const result of itunesData.results) {
-              if (result.trackName && result.trackName.toLowerCase().includes(searchLower.split(" ")[0])) {
-                bestMatch = result;
-                break;
-              }
-            }
+        
+        const jsonpPromise = new Promise((resolve, reject) => {
+          const callbackName = 'itunesCallback_' + Math.round(100000 * Math.random());
+          window[callbackName] = (data) => {
+            delete window[callbackName];
+            const scriptEl = document.getElementById(callbackName);
+            if (scriptEl) scriptEl.remove();
+            resolve(data);
+          };
+          
+          const script = document.createElement('script');
+          script.id = callbackName;
+          script.src = `https://itunes.apple.com/search?term=${encodeURIComponent(titleSlug)}&media=movie&limit=5&callback=${callbackName}`;
+          script.onerror = () => {
+            delete window[callbackName];
+            const scriptEl = document.getElementById(callbackName);
+            if (scriptEl) scriptEl.remove();
+            reject(new Error("JSONP fetch failed"));
+          };
+          document.body.appendChild(script);
+        });
 
-            resolvedTitle = bestMatch.trackName || resolvedTitle;
-            // Get high-res artwork (replace 100x100 with 600x600)
-            coverUrl = bestMatch.artworkUrl100 ? bestMatch.artworkUrl100.replace("100x100bb", "600x600bb") : coverUrl;
-            resolvedSynopsis = bestMatch.longDescription || bestMatch.shortDescription || resolvedSynopsis;
-            // Convert milliseconds to minutes
-            if (bestMatch.trackTimeMillis) {
-              resolvedDuration = `${Math.round(bestMatch.trackTimeMillis / 60000)} Min`;
+        const itunesData = await jsonpPromise;
+        if (itunesData && itunesData.resultCount > 0) {
+          // Find the best match by comparing title similarity
+          const searchLower = titleSlug.toLowerCase();
+          let bestMatch = itunesData.results[0];
+          for (const result of itunesData.results) {
+            if (result.trackName && result.trackName.toLowerCase().includes(searchLower.split(" ")[0])) {
+              bestMatch = result;
+              break;
             }
-            // Extract genre
-            if (bestMatch.primaryGenreName) {
-              resolvedTags = [bestMatch.primaryGenreName];
-              if (bestMatch.genres && bestMatch.genres.length > 1) {
-                resolvedTags = bestMatch.genres.slice(0, 3);
-              }
-            }
-          } else {
-            showStatus(`iTunes found no results for "${titleSlug}". Using extracted title.`, "info");
           }
+
+          resolvedTitle = bestMatch.trackName || resolvedTitle;
+          // Get high-res artwork (replace 100x100 with 600x600)
+          coverUrl = bestMatch.artworkUrl100 ? bestMatch.artworkUrl100.replace("100x100bb", "600x600bb") : coverUrl;
+          resolvedSynopsis = bestMatch.longDescription || bestMatch.shortDescription || resolvedSynopsis;
+          // Convert milliseconds to minutes
+          if (bestMatch.trackTimeMillis) {
+            resolvedDuration = `${Math.round(bestMatch.trackTimeMillis / 60000)} Min`;
+          }
+          // Extract genre
+          if (bestMatch.primaryGenreName) {
+            resolvedTags = [bestMatch.primaryGenreName];
+            if (bestMatch.genres && bestMatch.genres.length > 1) {
+              resolvedTags = bestMatch.genres.slice(0, 3);
+            }
+          }
+        } else {
+          showStatus(`iTunes found no results for "${titleSlug}". Using extracted title.`, "info");
         }
       } catch (err) {
         console.warn("iTunes lookup failed, using slug title fallback:", err);
@@ -1655,10 +1674,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     saveBtn.addEventListener("click", async () => {
       localStorage.setItem(LIST_STORAGE_KEY, JSON.stringify(curationList));
       localStorage.removeItem(CACHE_STORAGE_KEY); // clear cache
-      
+
       showStatus("Saving curations and compiling lounge grid... please wait.", "info");
       await refreshCuratedGrid();
-      
+
       showStatus("Lounge configurations saved locally!", "success");
     });
   }
@@ -1670,7 +1689,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         curationList = [...defaultCurationList];
         localStorage.setItem(LIST_STORAGE_KEY, JSON.stringify(curationList));
         localStorage.removeItem(CACHE_STORAGE_KEY);
-        
+
         renderCuratorListTable();
         refreshCuratedGrid();
         showStatus("Reset lounge to default settings.", "info");
@@ -1710,7 +1729,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Toggle visibility of the gear button
         const isHidden = openModalBtn.style.display === "none";
         openModalBtn.style.display = isHidden ? "inline-flex" : "none";
-        
+
         if (isHidden) {
           // Auto-open the modal when first revealed
           renderCuratorListTable();
