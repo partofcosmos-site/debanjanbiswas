@@ -1827,7 +1827,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Dynamic fetch scheduler
   async function fetchCuratedData() {
     const list = [];
-    const JIKAN_DELAY = 350;
+    const JIKAN_DELAY = 1000;
 
     for (const item of curationList) {
       if (item.category === "anime") {
