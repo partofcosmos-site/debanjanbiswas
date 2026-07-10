@@ -977,8 +977,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const searchInput = document.getElementById("lounge-search");
   const tabs = document.querySelectorAll(".lounge-tab");
 
-  // Config: The 9 Curated Items (Anime use MAL IDs, movies use TMDB CDN links)
-  const curationList = [
+  // Default curation list (excluding Code Geass and Lain)
+  const defaultCurationList = [
     {
       id: "9253",
       type: "TV",
@@ -986,7 +986,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       rating: "10.0 / 10",
       tags: ["Time Travel", "Sci-Fi"],
       desc: "A self-proclaimed mad scientist and his lab members accidentally invent a microwave-based time travel device, triggering a desperate fight to change worldlines.",
-      review: "The gold standard of time-travel fiction. It handles causality loops, world-lines, and attractor fields with extreme logical consistency.",
       badge: "SUB/DUB",
       fallbackTitle: "Steins;Gate",
       fallbackCover: "https://cdn.myanimelist.net/images/anime/1935/127974.jpg",
@@ -1000,10 +999,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       rating: "9.9 / 10",
       tags: ["Astrophysics", "Relativity"],
       desc: "A team of astronauts travel through a wormhole in search of a new home for humanity, navigating extreme time dilation near Gargantua.",
-      review: "Kip Thorne's general relativity modeling is flawless here. The rendering of Gargantua and Miller's planet time dilation are masterclasses.",
+      synopsis: "A team of explorers travel through a newly discovered wormhole in an attempt to surpass the limitations on human space travel and ensure the survival of mankind.",
       cover: "https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
       duration: "169 Min",
-      badge: "4K IMAX"
+      badge: "4K IMAX",
+      url: "https://www.themoviedb.org/movie/157336"
     },
     {
       id: "30",
@@ -1012,7 +1012,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       rating: "9.8 / 10",
       tags: ["Psychological", "Existential"],
       desc: "In a post-apocalyptic world, a teenager is pressured to pilot a giant bio-mechanical construct to defend humanity from mysterious, alien Angels.",
-      review: "Evangelion is a masterpiece of deconstruction. It wraps mecha tropes around intense psychological exploration of depression and ego borders.",
       badge: "SUB/DUB",
       fallbackTitle: "Neon Genesis Evangelion",
       fallbackCover: "https://cdn.myanimelist.net/images/anime/1314/108941.jpg",
@@ -1026,10 +1025,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       rating: "9.4 / 10",
       tags: ["Entropy", "Thermodynamics"],
       desc: "A secret agent is recruited to prevent armageddon triggered by technology that can invert entropy, causing objects and people to move backward in time.",
-      review: "Nolan's take on thermodynamic time arrows and CPT symmetry is incredibly ambitious. Temporal pincer movements are mind-bending to trace.",
+      synopsis: "Armed with only one word - Tenet - and fighting for the survival of the entire world, the Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
       cover: "https://image.tmdb.org/t/p/w500/aCIFMriQh8rvhxpN1IWGgvH0Tlg.jpg",
       duration: "150 Min",
-      badge: "CPT Inv"
+      badge: "CPT Inv",
+      url: "https://www.themoviedb.org/movie/577922"
     },
     {
       id: "32281",
@@ -1038,7 +1038,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       rating: "9.5 / 10",
       tags: ["Space-Time", "Drama"],
       desc: "Two high school students swap bodies periodically, leading to a desperate attempt to warn and save a town from an impending orbital comet impact.",
-      review: "Comet orbital trajectories, body-swapping across a three-year offset, and celestial artwork make this a spectacular visual and emotional experience.",
       badge: "SUB/DUB",
       fallbackTitle: "Your Name",
       fallbackCover: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
@@ -1052,23 +1051,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       rating: "9.5 / 10",
       tags: ["Quantum", "Thriller"],
       desc: "During a comet pass, a dinner party of friends experiences a power outage, only to discover that the comet has created a quantum coherence event, splitting reality.",
-      review: "A brilliant low-budget demonstration of Schrödinger's cat. It shows how macroscopic quantum decoherence would break down if parallel realities could interact.",
+      synopsis: "On the night of a astronomical anomaly, eight friends at a dinner party experience a troubling chain of reality-bending events.",
       cover: "https://image.tmdb.org/t/p/w500/ezUtb9m5DeLwL2gxi4gktzNCvQv.jpg",
       duration: "89 Min",
-      badge: "Decoh"
-    },
-    {
-      id: "1575",
-      type: "TV",
-      category: "anime",
-      rating: "9.6 / 10",
-      tags: ["Strategy", "Mecha"],
-      desc: "An exiled prince of an oppressive empire gains the power of absolute obedience and leads a masked rebellion to destroy his father's regime.",
-      review: "Lelouch is one of the greatest protagonists in fiction. Chess-like military tactics, geopolitics, and the ultimate sacrificial play of the Zero Requiem are masterclasses.",
-      badge: "SUB/DUB",
-      fallbackTitle: "Code Geass",
-      fallbackCover: "https://cdn.myanimelist.net/images/anime/1032/135088.jpg",
-      fallbackEps: "25 Eps"
+      badge: "Decoh",
+      url: "https://www.themoviedb.org/movie/220289"
     },
     {
       id: "arrival",
@@ -1078,52 +1065,45 @@ document.addEventListener("DOMContentLoaded", async () => {
       rating: "9.7 / 10",
       tags: ["Linguistics", "Spacetime"],
       desc: "A linguist is recruited by the military to translate alien glyphs, discovering that learning their non-linear language alters her brain's perception of time.",
-      review: "Fascinating exploration of Fermat's Principle of Least Time. If light travel path is calculated by knowing the destination beforehand, time perception aligns.",
+      synopsis: "Taking place after alien crafts land around the world, an expert linguist is recruited by the military to determine whether they come in peace or are a threat.",
       cover: "https://image.tmdb.org/t/p/w500/3b4fRUYXFaGVDqkb0ikjB4cn7ub.jpg",
       duration: "116 Min",
-      badge: "Least T"
-    },
-    {
-      id: "339",
-      type: "TV",
-      category: "anime",
-      rating: "9.2 / 10",
-      tags: ["Cyberpunk", "Psychological"],
-      desc: "An introverted girl becomes obsessed with 'The Wired' (a global digital communications network), blurring the boundary between reality and digital consciousness.",
-      review: "Extremely ahead of its time. It predicts social media isolation, the collective digital consciousness, and questions what constitutes reality.",
-      badge: "SUB/DUB",
-      fallbackTitle: "Serial Experiments Lain",
-      fallbackCover: "https://cdn.myanimelist.net/images/anime/1718/91550.jpg",
-      fallbackEps: "13 Eps"
+      badge: "Least T",
+      url: "https://www.themoviedb.org/movie/329865"
     }
   ];
 
-  // Resolve All Items
-  let resolvedItems = [];
-  const CACHE_KEY = "lounge_curated_grid_cache_v2";
+  const LIST_STORAGE_KEY = "lounge_user_curations_list_v3";
+  const CACHE_STORAGE_KEY = "lounge_curated_grid_cache_v3";
 
-  try {
-    const cachedData = localStorage.getItem(CACHE_KEY);
-    if (cachedData) {
-      resolvedItems = JSON.parse(cachedData);
-    } else {
-      resolvedItems = await fetchCuratedData();
-      localStorage.setItem(CACHE_KEY, JSON.stringify(resolvedItems));
-    }
-  } catch (err) {
-    console.warn("Failed to load cached lounge data, falling back to static resolver...", err);
-    resolvedItems = getFallbackData();
+  // State
+  let curationList = [];
+  let resolvedItems = [];
+
+  // Initialize Lists
+  const savedList = localStorage.getItem(LIST_STORAGE_KEY);
+  if (savedList) {
+    curationList = JSON.parse(savedList);
+  } else {
+    curationList = [...defaultCurationList];
+    localStorage.setItem(LIST_STORAGE_KEY, JSON.stringify(curationList));
   }
 
-  // Render cards
-  renderCards(resolvedItems);
+  // Load Render Cache
+  const cachedData = localStorage.getItem(CACHE_STORAGE_KEY);
+  if (cachedData) {
+    resolvedItems = JSON.parse(cachedData);
+    renderCards(resolvedItems);
+  } else {
+    await refreshCuratedGrid();
+  }
 
-  // Hook Search Filter event
+  // Hook Search filter field
   if (searchInput) {
     searchInput.addEventListener("input", filterGallery);
   }
 
-  // Hook Category Tabs click event
+  // Hook Category tabs triggers
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
       tabs.forEach(t => t.classList.remove("active"));
@@ -1132,21 +1112,34 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  // Dynamic Jikan/Unsplash API Fetcher with Rate Limiter
+  // Fetch MAL/TMDB data and update local cached layouts
+  async function refreshCuratedGrid() {
+    loungeGrid.innerHTML = `
+      <div class="sync-loader-container" style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px; gap: 1.25rem; width: 100%;">
+        <div class="galaxy-loader"></div>
+        <span style="font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.05em; color: var(--accent-indigo); text-align: center; max-width: 320px;">Fetching dynamic data from public endpoints...</span>
+      </div>
+    `;
+
+    resolvedItems = await fetchCuratedData();
+    localStorage.setItem(CACHE_STORAGE_KEY, JSON.stringify(resolvedItems));
+    renderCards(resolvedItems);
+  }
+
+  // Dynamic fetch scheduler
   async function fetchCuratedData() {
     const list = [];
-    const JIKAN_DELAY = 350; // Milliseconds between Jikan hits to avoid 429 rate limits
+    const JIKAN_DELAY = 350;
 
     for (const item of curationList) {
       if (item.category === "anime") {
         try {
-          // Delay to respect Jikan limits
           await new Promise(resolve => setTimeout(resolve, JIKAN_DELAY));
           
           const res = await fetch(`https://api.jikan.moe/v4/anime/${item.id}`);
-          if (!res.ok) throw new Error(`Jikan returned ${res.status}`);
+          if (!res.ok) throw new Error(`Jikan error ${res.status}`);
           
-          const json = await res.resJson || await res.json();
+          const json = await res.json();
           const data = json.data;
 
           list.push({
@@ -1157,30 +1150,31 @@ document.addEventListener("DOMContentLoaded", async () => {
             episodes: `${data.episodes || "?"} Eps`,
             badge: item.badge,
             rating: item.rating,
-            tags: item.tags,
+            tags: data.genres ? data.genres.map(g => g.name).slice(0, 3) : item.tags,
             desc: item.desc,
-            review: item.review,
+            synopsis: data.synopsis || item.desc,
+            url: data.url || `https://myanimelist.net/anime/${item.id}`,
             type: data.type || item.type
           });
         } catch (err) {
-          console.error(`Error fetching MAL ID ${item.id}:`, err);
-          // Push fallback data on fail
+          console.warn(`Error resolving Jikan MAL ID ${item.id}, using static fallback...`, err);
           list.push({
             id: item.id,
             category: item.category,
-            title: item.fallbackTitle,
-            cover: item.fallbackCover,
-            episodes: item.fallbackEps,
+            title: item.fallbackTitle || "Curated Anime",
+            cover: item.fallbackCover || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300",
+            episodes: item.fallbackEps || "? Eps",
             badge: item.badge,
             rating: item.rating,
             tags: item.tags,
             desc: item.desc,
-            review: item.review,
+            synopsis: item.desc,
+            url: `https://myanimelist.net/anime/${item.id}`,
             type: item.type
           });
         }
       } else {
-        // Movies have statically defined high-quality TMDB covers
+        // Movies use configured TMDB detail strings
         list.push({
           id: item.id,
           category: item.category,
@@ -1191,7 +1185,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           rating: item.rating,
           tags: item.tags,
           desc: item.desc,
-          review: item.review,
+          synopsis: item.synopsis || item.desc,
+          url: item.url || `https://www.themoviedb.org/movie/${item.id}`,
           type: item.type
         });
       }
@@ -1213,7 +1208,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           rating: item.rating,
           tags: item.tags,
           desc: item.desc,
-          review: item.review,
+          synopsis: item.desc,
+          url: `https://myanimelist.net/anime/${item.id}`,
           type: item.type
         };
       } else {
@@ -1227,19 +1223,29 @@ document.addEventListener("DOMContentLoaded", async () => {
           rating: item.rating,
           tags: item.tags,
           desc: item.desc,
-          review: item.review,
+          synopsis: item.synopsis || item.desc,
+          url: item.url || `https://www.themoviedb.org/movie/${item.id}`,
           type: item.type
         };
       }
     });
   }
 
-  // Render HTML Cards dynamically inside #lounge-grid
+  // Dynamic card builder
   function renderCards(items) {
     loungeGrid.innerHTML = "";
 
+    if (items.length === 0) {
+      loungeGrid.innerHTML = `
+        <div style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px; color: #94a3b8; font-family: var(--font-mono);">
+          <span>No items found in lounge watchlist.</span>
+        </div>
+      `;
+      return;
+    }
+
     items.forEach((item, index) => {
-      const searchKeywords = `${item.title} ${item.tags.join(" ")} ${item.desc} ${item.review}`.toLowerCase();
+      const searchKeywords = `${item.title} ${item.tags.join(" ")} ${item.synopsis}`.toLowerCase();
       const card = document.createElement("div");
       card.className = "lounge-card";
       card.setAttribute("data-category", item.category);
@@ -1275,21 +1281,65 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div class="lounge-back-tags">
               ${item.tags.map(t => `<span class="lounge-tag">${t}</span>`).join("")}
             </div>
-            <p class="lounge-back-desc">${item.desc}</p>
-            <div class="lounge-back-review">
-              <h5>Physics Review:</h5>
-              <p>${item.review}</p>
+            <p class="lounge-back-desc" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${item.desc}</p>
+            <div class="lounge-back-review" style="flex: 1; display: flex; flex-direction: column; overflow: hidden; margin-bottom: 0.6rem;">
+              <h5>Official Synopsis</h5>
+              <p style="overflow-y: auto; flex: 1; margin: 0; padding-right: 0.25rem;">${item.synopsis}</p>
             </div>
+            <a href="${item.url}" target="_blank" class="lounge-redirect-btn">
+              <span>View Detailed Analytics</span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
           </div>
         </div>
       `;
 
-      // Mobile Tap-to-Flip listener
+      // Track touch dragging state to block scroll-trigger card flips on mobile
+      let startX = 0;
+      let startY = 0;
+      let isDragging = false;
+
+      card.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isDragging = false;
+      }, { passive: true });
+
+      card.addEventListener("touchmove", (e) => {
+        const diffX = Math.abs(e.touches[0].clientX - startX);
+        const diffY = Math.abs(e.touches[0].clientY - startY);
+        if (diffX > 10 || diffY > 10) {
+          isDragging = true;
+        }
+      }, { passive: true });
+
+      card.addEventListener("mousedown", (e) => {
+        startX = e.clientX;
+        startY = e.clientY;
+        isDragging = false;
+      });
+
+      card.addEventListener("mouseup", (e) => {
+        const diffX = Math.abs(e.clientX - startX);
+        const diffY = Math.abs(e.clientY - startY);
+        if (diffX > 10 || diffY > 10) {
+          isDragging = true;
+        }
+      });
+
       card.addEventListener("click", (e) => {
-        if (e.target.tagName === "A" || e.target.closest("a")) return;
+        // Prevent click triggers on redirection buttons or external links
+        if (e.target.closest("a") || e.target.tagName === "A") return;
+        
+        // Skip flip if user was scrolling
+        if (isDragging) {
+          isDragging = false;
+          return;
+        }
+
         card.classList.toggle("flipped");
 
-        // Unflip others
+        // Unflip all sibling cards
         const allCards = loungeGrid.querySelectorAll(".lounge-card");
         allCards.forEach(otherCard => {
           if (otherCard !== card) {
@@ -1302,7 +1352,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Live filter cards by category and keyword search
+  // Live filter cards
   function filterGallery() {
     const activeTab = document.querySelector(".lounge-tab.active");
     const category = activeTab ? activeTab.getAttribute("data-category") : "all";
@@ -1324,6 +1374,275 @@ document.addEventListener("DOMContentLoaded", async () => {
         card.style.display = "none";
       }
     });
+  }
+
+  /* ==========================================
+     Curator Console Modal Controller
+     ========================================== */
+  const modalOverlay = document.getElementById("curator-modal");
+  const openModalBtn = document.getElementById("open-curator-btn");
+  const closeModalBtn = document.getElementById("close-curator-btn");
+
+  const curatorLookup = document.getElementById("curator-lookup");
+  const curatorType = document.getElementById("curator-type");
+  const curatorRating = document.getElementById("curator-rating");
+  const curatorTags = document.getElementById("curator-tags");
+  const fetchBtn = document.getElementById("curator-fetch-btn");
+  
+  const statusMsg = document.getElementById("curator-status-msg");
+  const curatorListBody = document.getElementById("curator-items-list");
+
+  const saveBtn = document.getElementById("curator-save-btn");
+  const exportBtn = document.getElementById("curator-export-btn");
+  const resetBtn = document.getElementById("curator-reset-btn");
+
+  // Open modal
+  if (openModalBtn && modalOverlay) {
+    openModalBtn.addEventListener("click", () => {
+      renderCuratorListTable();
+      showStatus("Curator console loaded successfully.", "info");
+      modalOverlay.classList.add("active");
+    });
+  }
+
+  // Close modal
+  if (closeModalBtn && modalOverlay) {
+    closeModalBtn.addEventListener("click", () => {
+      modalOverlay.classList.remove("active");
+    });
+    modalOverlay.addEventListener("click", (e) => {
+      if (e.target === modalOverlay) {
+        modalOverlay.classList.remove("active");
+      }
+    });
+  }
+
+  // Render Curator List Rows
+  function renderCuratorListTable() {
+    if (!curatorListBody) return;
+    curatorListBody.innerHTML = "";
+
+    curationList.forEach(item => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td style="font-weight: 600;">${item.fallbackTitle || item.title || item.id}</td>
+        <td style="font-family: var(--font-mono); text-transform: uppercase; font-size: 0.65rem;">${item.category}</td>
+        <td style="font-family: var(--font-mono); color: #64748b;">${item.id}</td>
+        <td style="text-align: center;">
+          <button class="curator-item-delete" data-id="${item.id}" aria-label="Delete">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+          </button>
+        </td>
+      `;
+
+      tr.querySelector(".curator-item-delete").addEventListener("click", (e) => {
+        const idToDelete = e.currentTarget.getAttribute("data-id");
+        curationList = curationList.filter(item => item.id !== idToDelete);
+        renderCuratorListTable();
+        showStatus("Removed item from queue. Save changes to update lounge.", "info");
+      });
+
+      curatorListBody.appendChild(tr);
+    });
+  }
+
+  // Handle Fetch/Lookup Trigger
+  if (fetchBtn) {
+    fetchBtn.addEventListener("click", async () => {
+      const lookupVal = curatorLookup.value.trim();
+      const type = curatorType.value;
+
+      if (!lookupVal) {
+        showStatus("Please enter a valid lookup name, URL, or ID.", "error");
+        return;
+      }
+
+      showStatus("Resolving metadata query... please wait.", "info");
+
+      if (type === "anime") {
+        await resolveAnimeLookup(lookupVal);
+      } else {
+        await resolveMovieLookup(lookupVal);
+      }
+    });
+  }
+
+  // Resolve Anime Lookups (MAL ID, search query, or Anisuge URL)
+  async function resolveAnimeLookup(val) {
+    let malId = "";
+    let jikanQuery = val;
+
+    // Check if Anisuge Watch Link
+    const anisugeMatch = val.match(/anisuge\.tv\/watch\/([a-zA-Z0-9\-]+)/);
+    if (anisugeMatch && anisugeMatch[1]) {
+      let slug = anisugeMatch[1];
+      slug = slug.replace(/\-[a-zA-Z0-9]{5}$/, ""); // remove -2obfr style codes
+      jikanQuery = slug.replace(/\-/g, " "); // Replace dashes with spaces
+    }
+
+    // Check if direct MAL URL
+    const malUrlMatch = val.match(/myanimelist\.net\/anime\/([0-9]+)/);
+    if (malUrlMatch && malUrlMatch[1]) {
+      malId = malUrlMatch[1];
+    } else if (/^\d+$/.test(val)) {
+      malId = val;
+    }
+
+    try {
+      let animeData = null;
+
+      if (malId) {
+        const res = await fetch(`https://api.jikan.moe/v4/anime/${malId}`);
+        if (!res.ok) throw new Error("Anime ID lookup failed.");
+        const json = await res.json();
+        animeData = json.data;
+      } else {
+        // Query search
+        const res = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(jikanQuery)}&limit=1`);
+        if (!res.ok) throw new Error("Anime search failed.");
+        const json = await res.json();
+        if (!json.data || json.data.length === 0) {
+          throw new Error("No anime found matching this query.");
+        }
+        animeData = json.data[0];
+        malId = animeData.mal_id.toString();
+      }
+
+      // Check if duplicate
+      if (curationList.some(item => item.id === malId)) {
+        showStatus(`"${animeData.title_english || animeData.title}" is already in the list!`, "error");
+        return;
+      }
+
+      // Retrieve overrides
+      const overrideRating = curatorRating.value.trim() || `${animeData.score ? animeData.score.toFixed(1) : "8.5"} / 10`;
+      const overrideTags = curatorTags.value.trim() ? curatorTags.value.trim().split(",").map(t => t.trim()) : (animeData.genres ? animeData.genres.slice(0,2).map(g => g.name) : ["Anime"]);
+
+      const newAnimeItem = {
+        id: malId,
+        type: animeData.type || "TV",
+        category: "anime",
+        rating: overrideRating,
+        tags: overrideTags,
+        desc: animeData.synopsis ? (animeData.synopsis.split("\n")[0]) : "No description available.",
+        badge: "SUB/DUB",
+        fallbackTitle: animeData.title_english || animeData.title,
+        fallbackCover: animeData.images.webp.large_image_url || animeData.images.jpg.large_image_url,
+        fallbackEps: `${animeData.episodes || "?"} Eps`
+      };
+
+      curationList.push(newAnimeItem);
+      renderCuratorListTable();
+      curatorLookup.value = "";
+      curatorRating.value = "";
+      curatorTags.value = "";
+      showStatus(`Successfully resolved and queued "${newAnimeItem.fallbackTitle}".`, "success");
+
+    } catch (err) {
+      showStatus(`Lookup Failed: ${err.message}`, "error");
+    }
+  }
+
+  // Resolve Movie details (supports direct TMDB page URLs and image cover links)
+  async function resolveMovieLookup(val) {
+    let movieId = "";
+    
+    // Check if TMDB URL
+    const tmdbMatch = val.match(/themoviedb\.org\/movie\/([0-9]+)/);
+    if (tmdbMatch && tmdbMatch[1]) {
+      movieId = tmdbMatch[1];
+    } else if (/^\d+$/.test(val)) {
+      movieId = val;
+    } else {
+      // General title fallback
+      movieId = "movie_" + Date.now();
+    }
+
+    // We allow manually configuring movie covers or searching custom URLs
+    const customRating = curatorRating.value.trim() || "9.0 / 10";
+    const customTags = curatorTags.value.trim() ? curatorTags.value.trim().split(",").map(t => t.trim()) : ["Sci-Fi", "Cinema"];
+
+    let customTitle = "Curated Sci-Fi";
+    let coverUrl = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300";
+
+    // If search text or manual inputs were typed
+    if (!/^\d+$/.test(movieId) && !movieId.startsWith("movie_")) {
+      customTitle = val;
+    } else if (/^\d+$/.test(movieId)) {
+      customTitle = `Movie ID ${movieId}`;
+      coverUrl = `https://image.tmdb.org/t/p/w500/aCIFMriQh8rvhxpN1IWGgvH0Tlg.jpg`; // TMDB placeholder cover
+    }
+
+    const newMovieItem = {
+      id: movieId,
+      title: customTitle,
+      type: "Movie",
+      category: "movie",
+      rating: customRating,
+      tags: customTags,
+      desc: "A selected science fiction film.",
+      synopsis: "A curated cinematic experience exploring advanced physics, relative time dilations, or cosmic wonders.",
+      cover: coverUrl,
+      duration: "120 Min",
+      badge: "HD 1080p",
+      url: tmdbMatch ? val : `https://www.themoviedb.org/movie/${movieId}`
+    };
+
+    curationList.push(newMovieItem);
+    renderCuratorListTable();
+    curatorLookup.value = "";
+    curatorRating.value = "";
+    curatorTags.value = "";
+    showStatus(`Queued movie "${newMovieItem.title}" successfully.`, "success");
+  }
+
+  // Save changes locally and clear grid cache
+  if (saveBtn) {
+    saveBtn.addEventListener("click", async () => {
+      localStorage.setItem(LIST_STORAGE_KEY, JSON.stringify(curationList));
+      localStorage.removeItem(CACHE_STORAGE_KEY); // clear cache
+      
+      showStatus("Saving curations and compiling lounge grid... please wait.", "info");
+      await refreshCuratedGrid();
+      
+      showStatus("Lounge configurations saved locally!", "success");
+    });
+  }
+
+  // Reset to default curation list
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      if (confirm("Are you sure you want to reset your Cosmic Lounge list to the default watch history? This will erase all custom additions.")) {
+        curationList = [...defaultCurationList];
+        localStorage.setItem(LIST_STORAGE_KEY, JSON.stringify(curationList));
+        localStorage.removeItem(CACHE_STORAGE_KEY);
+        
+        renderCuratorListTable();
+        refreshCuratedGrid();
+        showStatus("Reset lounge to default settings.", "info");
+      }
+    });
+  }
+
+  // Copy Config Array to Clipboard
+  if (exportBtn) {
+    exportBtn.addEventListener("click", () => {
+      const codeString = `const curationList = ${JSON.stringify(curationList, null, 2)};`;
+      navigator.clipboard.writeText(codeString)
+        .then(() => {
+          showStatus("JavaScript config array copied to clipboard! Paste this into app.js.", "success");
+        })
+        .catch(err => {
+          showStatus("Failed to copy code: " + err, "error");
+        });
+    });
+  }
+
+  // Helper status alert manager
+  function showStatus(text, type) {
+    if (!statusMsg) return;
+    statusMsg.className = `curator-status ${type}`;
+    statusMsg.textContent = text;
   }
 });
 

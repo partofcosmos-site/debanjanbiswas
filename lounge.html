@@ -84,10 +84,16 @@
             <input type="text" id="lounge-search" placeholder="Search title, genre, keyword..." class="lounge-search-field">
           </div>
           
-          <div class="lounge-tabs-row">
-            <button class="lounge-tab active" data-category="all">All Content</button>
-            <button class="lounge-tab" data-category="anime">Anime Series</button>
-            <button class="lounge-tab" data-category="movie">Sci-Fi Cinema</button>
+          <div class="lounge-tabs-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 0.5rem;">
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="lounge-tab active" data-category="all">All Content</button>
+              <button class="lounge-tab" data-category="anime">Anime Series</button>
+              <button class="lounge-tab" data-category="movie">Sci-Fi Cinema</button>
+            </div>
+            <button class="lounge-manage-btn" id="open-curator-btn" aria-label="Open Curator Console">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06-.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              <span>Curator Console</span>
+            </button>
           </div>
         </div>
       </div>
@@ -109,6 +115,74 @@
       <p class="title-meta">Full Stack Developer &amp; Physics Aspirant</p>
     </div>
   </footer>
+
+  <!-- Curator Console Modal Overlay -->
+  <div id="curator-modal" class="curator-modal-overlay">
+    <div class="curator-modal-content">
+      <div class="curator-modal-header">
+        <h3>Curator Console</h3>
+        <button class="curator-close-btn" id="close-curator-btn" aria-label="Close Modal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      
+      <div id="curator-status-msg" class="curator-status"></div>
+
+      <!-- Add Item Form -->
+      <div class="curator-field-group">
+        <label>Retrieve Item (MAL ID / TMDB URL / Anisuge URL / Search query)</label>
+        <div style="display: flex; gap: 0.5rem;">
+          <input type="text" id="curator-lookup" class="curator-input" placeholder="e.g. 9253 or anisuge.tv/watch/... or Death Note" style="flex: 1;">
+          <select id="curator-type" class="curator-select" style="width: 100px;">
+            <option value="anime">Anime</option>
+            <option value="movie">Movie</option>
+          </select>
+          <button id="curator-fetch-btn" class="curator-btn curator-btn-primary">Add Item</button>
+        </div>
+        <span style="font-size: 0.65rem; color: #64748b; font-family: var(--font-mono); margin-top: 0.1rem;">Pasting an Anisuge watch link will automatically extract and resolve its name.</span>
+      </div>
+
+      <div class="curator-form-row">
+        <div class="curator-field-group">
+          <label>Custom Rating Override</label>
+          <input type="text" id="curator-rating" class="curator-input" placeholder="e.g. 9.8 / 10">
+        </div>
+        <div class="curator-field-group">
+          <label>Custom Genres / Tags</label>
+          <input type="text" id="curator-tags" class="curator-input" placeholder="e.g. Sci-Fi, Psychological">
+        </div>
+      </div>
+
+      <!-- Active List Editor -->
+      <div class="curator-list-section">
+        <h4>Currently Displayed Items</h4>
+        <div class="curator-items-table-wrapper">
+          <table class="curator-items-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Type</th>
+                <th>ID</th>
+                <th style="width: 40px; text-align: center;">Del</th>
+              </tr>
+            </thead>
+            <tbody id="curator-items-list">
+              <!-- JS builds current rows here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Modal Bottom Bar Actions -->
+      <div class="curator-bottom-bar">
+        <button id="curator-reset-btn" class="curator-btn curator-btn-secondary" style="border-color: rgba(239, 68, 68, 0.2); color: #f87171;">Reset to Default</button>
+        <div style="display: flex; gap: 0.5rem;">
+          <button id="curator-export-btn" class="curator-btn curator-btn-secondary">Copy Config Array</button>
+          <button id="curator-save-btn" class="curator-btn curator-btn-primary">Save Locally</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
   <script>
