@@ -1175,19 +1175,27 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       } else {
         // Movies use configured TMDB detail strings
+        const movieSynopsis = item.synopsis || item.desc || "A curated science fiction cinematic experience.";
+        let movieDesc = item.desc || item.synopsis || "A curated watch.";
+        
+        // If desc and synopsis are exactly the same, split desc to show just the first sentence
+        if (movieDesc === movieSynopsis) {
+          movieDesc = movieSynopsis.split(".")[0] + ".";
+        }
+
         list.push({
           id: item.id,
           category: item.category,
-          title: item.title,
-          cover: item.cover,
-          episodes: item.duration,
-          badge: item.badge,
-          rating: item.rating,
-          tags: item.tags,
-          desc: item.desc,
-          synopsis: item.synopsis || item.desc,
+          title: item.title || "Curated Movie",
+          cover: item.cover || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300",
+          episodes: item.duration || item.fallbackEps || "120 Min",
+          badge: item.badge || "HD 1080p",
+          rating: item.rating || "9.0 / 10",
+          tags: item.tags && item.tags.length > 0 ? item.tags : ["Sci-Fi", "Cinema"],
+          desc: movieDesc.length > 200 ? movieDesc.substring(0, 200) + "..." : movieDesc,
+          synopsis: movieSynopsis,
           url: item.url || `https://www.themoviedb.org/movie/${item.id}`,
-          type: item.type
+          type: item.type || "Movie"
         });
       }
     }
@@ -1201,31 +1209,38 @@ document.addEventListener("DOMContentLoaded", async () => {
         return {
           id: item.id,
           category: item.category,
-          title: item.fallbackTitle,
-          cover: item.fallbackCover,
-          episodes: item.fallbackEps,
-          badge: item.badge,
-          rating: item.rating,
-          tags: item.tags,
-          desc: item.desc,
-          synopsis: item.desc,
+          title: item.fallbackTitle || "Curated Anime",
+          cover: item.fallbackCover || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300",
+          episodes: item.fallbackEps || "? Eps",
+          badge: item.badge || "SUB/DUB",
+          rating: item.rating || "8.5 / 10",
+          tags: item.tags && item.tags.length > 0 ? item.tags : ["Anime"],
+          desc: item.desc || "A curated watch.",
+          synopsis: item.desc || "No synopsis available.",
           url: `https://myanimelist.net/anime/${item.id}`,
-          type: item.type
+          type: item.type || "TV"
         };
       } else {
+        const movieSynopsis = item.synopsis || item.desc || "A curated science fiction cinematic experience.";
+        let movieDesc = item.desc || item.synopsis || "A curated watch.";
+        
+        if (movieDesc === movieSynopsis) {
+          movieDesc = movieSynopsis.split(".")[0] + ".";
+        }
+
         return {
           id: item.id,
           category: item.category,
-          title: item.title,
-          cover: item.cover,
-          episodes: item.duration,
-          badge: item.badge,
-          rating: item.rating,
-          tags: item.tags,
-          desc: item.desc,
-          synopsis: item.synopsis || item.desc,
+          title: item.title || "Curated Movie",
+          cover: item.cover || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300",
+          episodes: item.duration || item.fallbackEps || "120 Min",
+          badge: item.badge || "HD 1080p",
+          rating: item.rating || "9.0 / 10",
+          tags: item.tags && item.tags.length > 0 ? item.tags : ["Sci-Fi", "Cinema"],
+          desc: movieDesc.length > 200 ? movieDesc.substring(0, 200) + "..." : movieDesc,
+          synopsis: movieSynopsis,
           url: item.url || `https://www.themoviedb.org/movie/${item.id}`,
-          type: item.type
+          type: item.type || "Movie"
         };
       }
     });
@@ -1565,28 +1580,73 @@ document.addEventListener("DOMContentLoaded", async () => {
       tmdbPageUrl = `https://www.themoviedb.org/movie/${movieId}`;
     } else {
       // Plain text title input
-      movieId = "movie_" + Date.now();
+      movieId = "";
       titleSlug = val;
-      tmdbPageUrl = `https://www.google.com/search?q=${encodeURIComponent(val)}+movie`;
     }
 
     // Check for duplicates
-    if (curationList.some(item => item.id === movieId)) {
+    if (movieId && curationList.some(item => item.id === movieId)) {
       showStatus(`Movie ID ${movieId} is already in the list!`, "error");
       return;
     }
 
     let resolvedTitle = titleSlug || `Movie ${movieId}`;
     let coverUrl = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300";
-    let resolvedSynopsis = "A curated cinematic experience.";
+    let resolvedDesc = "A curated cinematic experience.";
+    let resolvedSynopsis = "A curated cinematic experience exploring cosmic wonders, advanced physics, or space-time anomalies.";
     let resolvedDuration = "120 Min";
     let resolvedTags = curatorTags.value.trim() ? curatorTags.value.trim().split(",").map(t => t.trim()) : ["Sci-Fi", "Cinema"];
 
-    if (titleSlug) {
+    const apiKey = "04c35731a5ee918f014970082a0088b1";
+    let resolvedSuccessfully = false;
+
+    // 1. Primary Lookup: TMDb API (highly reliable, CORS-enabled for public reads)
+    try {
+      showStatus("Resolving movie details from TMDb...", "info");
+      
+      if (!movieId && titleSlug) {
+        const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(titleSlug)}&language=en-US`;
+        const searchRes = await fetch(searchUrl);
+        if (searchRes.ok) {
+          const searchData = await searchRes.json();
+          if (searchData.results && searchData.results.length > 0) {
+            movieId = searchData.results[0].id.toString();
+            tmdbPageUrl = `https://www.themoviedb.org/movie/${movieId}`;
+          }
+        }
+      }
+
+      if (movieId) {
+        const detailUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`;
+        const detailRes = await fetch(detailUrl);
+        if (detailRes.ok) {
+          const movieData = await detailRes.json();
+          resolvedTitle = movieData.title || resolvedTitle;
+          resolvedSynopsis = movieData.overview || resolvedSynopsis;
+          
+          // Use movie tagline for description, otherwise use first sentence of overview
+          resolvedDesc = movieData.tagline || (resolvedSynopsis.split(".")[0] + ".");
+          resolvedDuration = movieData.runtime ? `${movieData.runtime} Min` : resolvedDuration;
+          
+          if (movieData.poster_path) {
+            coverUrl = `https://image.tmdb.org/t/p/w500${movieData.poster_path}`;
+          }
+          if (movieData.genres && movieData.genres.length > 0) {
+            resolvedTags = movieData.genres.map(g => g.name).slice(0, 3);
+          }
+          resolvedSuccessfully = true;
+          showStatus(`TMDb metadata successfully resolved for "${resolvedTitle}".`, "success");
+        }
+      }
+    } catch (err) {
+      console.warn("TMDb API lookup failed, falling back to DuckDuckGo/iTunes:", err);
+    }
+
+    // 2. Fallback: DuckDuckGo Instant Answer API (JSONP bypasses CORS)
+    if (!resolvedSuccessfully && titleSlug) {
       try {
-        showStatus(`Searching DuckDuckGo for "${titleSlug}"...`, "info");
+        showStatus(`TMDb failed. Searching DuckDuckGo for "${titleSlug}"...`, "info");
         
-        // 1. DuckDuckGo JSONP Search
         const ddgPromise = new Promise((resolve) => {
           const callbackName = 'ddgCallback_' + Math.round(100000 * Math.random());
           window[callbackName] = (data) => {
@@ -1598,7 +1658,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           
           const script = document.createElement('script');
           script.id = callbackName;
-          script.src = `https://api.duckduckgo.com/?q=${encodeURIComponent(titleSlug)}&format=json&callback=${callbackName}`;
+          script.src = `https://api.duckduckgo.com/?q=${encodeURIComponent(titleSlug)}&format=json&no_redirect=1&no_html=1&callback=${callbackName}`;
           script.onerror = () => {
             delete window[callbackName];
             const scriptEl = document.getElementById(callbackName);
@@ -1609,87 +1669,98 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
 
         const ddgData = await ddgPromise;
-        
         if (ddgData && (ddgData.AbstractText || ddgData.Image)) {
           resolvedTitle = ddgData.Heading || resolvedTitle;
           resolvedSynopsis = ddgData.AbstractText || resolvedSynopsis;
+          resolvedDesc = resolvedSynopsis.split(".")[0] + ".";
           if (ddgData.Image) {
             coverUrl = ddgData.Image.startsWith("http") ? ddgData.Image : `https://duckduckgo.com${ddgData.Image}`;
           }
+          resolvedSuccessfully = true;
           showStatus(`DuckDuckGo metadata resolved for "${resolvedTitle}".`, "success");
-        } else {
-          // 2. iTunes JSONP Fallback
-          showStatus(`DuckDuckGo returned empty. Searching iTunes for "${titleSlug}"...`, "info");
-          
-          const itunesPromise = new Promise((resolve) => {
-            const callbackName = 'itunesCallback_' + Math.round(100000 * Math.random());
-            window[callbackName] = (data) => {
-              delete window[callbackName];
-              const scriptEl = document.getElementById(callbackName);
-              if (scriptEl) scriptEl.remove();
-              resolve(data);
-            };
-            
-            const script = document.createElement('script');
-            script.id = callbackName;
-            script.src = `https://itunes.apple.com/search?term=${encodeURIComponent(titleSlug)}&media=movie&limit=5&callback=${callbackName}`;
-            script.onerror = () => {
-              delete window[callbackName];
-              const scriptEl = document.getElementById(callbackName);
-              if (scriptEl) scriptEl.remove();
-              resolve(null);
-            };
-            document.body.appendChild(script);
-          });
-
-          const itunesData = await itunesPromise;
-          if (itunesData && itunesData.resultCount > 0) {
-            const searchLower = titleSlug.toLowerCase();
-            let bestMatch = itunesData.results[0];
-            for (const result of itunesData.results) {
-              if (result.trackName && result.trackName.toLowerCase().includes(searchLower.split(" ")[0])) {
-                bestMatch = result;
-                break;
-              }
-            }
-
-            resolvedTitle = bestMatch.trackName || resolvedTitle;
-            coverUrl = bestMatch.artworkUrl100 ? bestMatch.artworkUrl100.replace("100x100bb", "600x600bb") : coverUrl;
-            resolvedSynopsis = bestMatch.longDescription || bestMatch.shortDescription || resolvedSynopsis;
-            if (bestMatch.trackTimeMillis) {
-              resolvedDuration = `${Math.round(bestMatch.trackTimeMillis / 60000)} Min`;
-            }
-            if (bestMatch.primaryGenreName) {
-              resolvedTags = [bestMatch.primaryGenreName];
-              if (bestMatch.genres && bestMatch.genres.length > 1) {
-                resolvedTags = bestMatch.genres.slice(0, 3);
-              }
-            }
-            showStatus(`iTunes metadata resolved for "${resolvedTitle}".`, "success");
-          } else {
-            showStatus(`No metadata found on DuckDuckGo or iTunes. Using placeholder values.`, "info");
-          }
         }
       } catch (err) {
-        console.warn("Movie lookup chain failed, using fallback:", err);
+        console.warn("DuckDuckGo fallback lookup failed:", err);
       }
+    }
+
+    // 3. Second Fallback: iTunes Search API (JSONP bypasses CORS)
+    if (!resolvedSuccessfully && titleSlug) {
+      try {
+        showStatus(`Searching iTunes fallback for "${titleSlug}"...`, "info");
+        
+        const itunesPromise = new Promise((resolve) => {
+          const callbackName = 'itunesCallback_' + Math.round(100000 * Math.random());
+          window[callbackName] = (data) => {
+            delete window[callbackName];
+            const scriptEl = document.getElementById(callbackName);
+            if (scriptEl) scriptEl.remove();
+            resolve(data);
+          };
+          
+          const script = document.createElement('script');
+          script.id = callbackName;
+          script.src = `https://itunes.apple.com/search?term=${encodeURIComponent(titleSlug)}&media=movie&limit=5&callback=${callbackName}`;
+          script.onerror = () => {
+            delete window[callbackName];
+            const scriptEl = document.getElementById(callbackName);
+            if (scriptEl) scriptEl.remove();
+            resolve(null);
+          };
+          document.body.appendChild(script);
+        });
+
+        const itunesData = await itunesPromise;
+        if (itunesData && itunesData.resultCount > 0) {
+          const searchLower = titleSlug.toLowerCase();
+          let bestMatch = itunesData.results[0];
+          for (const result of itunesData.results) {
+            if (result.trackName && result.trackName.toLowerCase().includes(searchLower.split(" ")[0])) {
+              bestMatch = result;
+              break;
+            }
+          }
+
+          resolvedTitle = bestMatch.trackName || resolvedTitle;
+          coverUrl = bestMatch.artworkUrl100 ? bestMatch.artworkUrl100.replace("100x100bb", "600x600bb") : coverUrl;
+          resolvedSynopsis = bestMatch.longDescription || bestMatch.shortDescription || resolvedSynopsis;
+          resolvedDesc = resolvedSynopsis.split(".")[0] + ".";
+          if (bestMatch.trackTimeMillis) {
+            resolvedDuration = `${Math.round(bestMatch.trackTimeMillis / 60000)} Min`;
+          }
+          if (bestMatch.primaryGenreName) {
+            resolvedTags = [bestMatch.primaryGenreName];
+            if (bestMatch.genres && bestMatch.genres.length > 1) {
+              resolvedTags = bestMatch.genres.slice(0, 3);
+            }
+          }
+          resolvedSuccessfully = true;
+          showStatus(`iTunes metadata resolved for "${resolvedTitle}".`, "success");
+        }
+      } catch (err) {
+        console.warn("iTunes fallback lookup failed:", err);
+      }
+    }
+
+    if (!resolvedSuccessfully) {
+      showStatus("Could not fetch metadata online. Using default placeholders.", "info");
     }
 
     const customRating = curatorRating.value.trim() || "9.0 / 10";
 
     const newMovieItem = {
-      id: movieId,
+      id: movieId || "movie_" + Date.now(),
       title: resolvedTitle,
       type: "Movie",
       category: "movie",
       rating: customRating,
       tags: resolvedTags,
-      desc: resolvedSynopsis.length > 200 ? resolvedSynopsis.substring(0, 200) + "..." : resolvedSynopsis,
+      desc: resolvedDesc.length > 200 ? resolvedDesc.substring(0, 200) + "..." : resolvedDesc,
       synopsis: resolvedSynopsis,
       cover: coverUrl,
       duration: resolvedDuration,
       badge: "HD 1080p",
-      url: tmdbPageUrl
+      url: tmdbPageUrl || `https://www.google.com/search?q=${encodeURIComponent(resolvedTitle)}+movie`
     };
 
     curationList.push(newMovieItem);
