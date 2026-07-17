@@ -293,13 +293,13 @@ p {
   margin-bottom: 2rem;
 }
 
-.social-links {
+.secondary-links-row {
   display: flex;
   gap: 1.5rem;
   align-items: center;
 }
 
-.social-link {
+.link-pill {
   color: #64748b;
   text-decoration: none;
   font-size: 14px;
@@ -309,7 +309,7 @@ p {
   transition: color 0.2s;
 }
 
-.social-link:hover {
+.link-pill:hover {
   color: #fff;
 }
 
